@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Project/Menu/Scene/scene.unity
+    path: Assets/My3DPlatformer/Scene/scene.unity
     guid: e69ce8767f46f63449002113043e1664
   - enabled: 1
-    path: Assets/_Project/Scene/TestingPlayGroundScene.unity
+    path: Assets/My3DPlatformer/Scene/TestingPlayGroundScene.unity
     guid: 3c335b2b4e984ec48ac11f32aad809a7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
