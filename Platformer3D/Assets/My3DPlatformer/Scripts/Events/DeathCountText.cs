@@ -3,53 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class DeathCountText : MonoBehaviour, IDataPersistence
+
+namespace Platformer
 {
-    private int deathCount = 0;
-
-    private TextMeshProUGUI deathCountText;
-
-    private void Awake()
+    public class DeathCountText : MonoBehaviour, IDataPersistence
     {
-        deathCountText = this.GetComponent<TextMeshProUGUI>();
-    }
+        private int deathCount = 0;
 
-    public void LoadData(GameData data)
-    {
-        this.deathCount = data.deathCount;
-    }
+        private TextMeshProUGUI deathCountText;
 
-    public void SaveData(GameData data)
-    {
-        data.deathCount = this.deathCount;
-    }
+        private void Awake()
+        {
+            deathCountText = this.GetComponent<TextMeshProUGUI>();
+        }
 
-    private void Start()
-    {
-        // subscribe to events
-        GameEventsManager.instance.onPlayerDeath += OnPlayerDeath;
-        GameEventsManager.instance.onEnemyDeath += OnEnemyDeath;
-    }
+        public void LoadData(GameData data)
+        {
+            this.deathCount = data.deathCount;
+        }
 
-    private void OnDestroy()
-    {
-        // unsubscribe from events
-        GameEventsManager.instance.onPlayerDeath -= OnPlayerDeath;
-        GameEventsManager.instance.onEnemyDeath -= OnEnemyDeath;
-    }
+        public void SaveData(GameData data)
+        {
+            data.deathCount = this.deathCount;
+        }
 
-    private void OnPlayerDeath()
-    {
-        deathCount++;
-    }
+        private void Start()
+        {
+            // subscribe to events
+            //GameEventsManager.instance.onPlayerDeath += OnPlayerDeath;
+           // GameEventsManager.instance.onEnemyDeath += OnEnemyDeath;
+        }
 
-    private void OnEnemyDeath()
-    {
-        deathCount++;
-    }
+        private void OnDestroy()
+        {
+            // unsubscribe from events
+            GameEventsManager.instance.onPlayerDeath -= OnPlayerDeath;
+            GameEventsManager.instance.onEnemyDeath -= OnEnemyDeath;
+        }
 
-    private void Update()
-    {
-        deathCountText.text = "" + deathCount;
+        private void OnPlayerDeath()
+        {
+            deathCount++;
+        }
+
+        private void OnEnemyDeath()
+        {
+            deathCount++;
+        }
+
+        private void Update()
+        {
+            deathCountText.text = "" + deathCount;
+        }
     }
 }

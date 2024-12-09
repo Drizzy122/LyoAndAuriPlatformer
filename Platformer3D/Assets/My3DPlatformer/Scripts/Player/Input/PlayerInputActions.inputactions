@@ -254,7 +254,7 @@
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyboardOrGamepad;Keyboard&Mouse",
+                    "groups": "KeyboardOrGamepad;Keyboard&Mouse;Gamepad",
                     "action": "MouseControlCamera",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -319,7 +319,7 @@
                     "id": "845dd9a6-b620-4801-a8a5-b4e468537fb8",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "groups": ";Gamepad",
                     "action": "Look",
                     "isComposite": false,
@@ -860,6 +860,34 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menu",
+            "id": "989928ac-25e8-4d34-ab19-103aab24e968",
+            "actions": [
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "a69d65ec-9542-4d24-9c1d-4751a5e54047",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5868c6e2-b3f8-433f-9927-1c850e570438",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

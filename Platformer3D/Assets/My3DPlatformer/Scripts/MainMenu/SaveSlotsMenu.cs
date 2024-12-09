@@ -39,7 +39,9 @@ public class SaveSlotsMenu : Menu
         else if(saveSlot.hasData)
         {
             confirmPopUpMenu.ActivateMenu(
-                "Starting a New Game with this slot will override the currently saved data. Are you sure?",
+                "A LYO AND AURI SAVE GAME ALREADY EXISTS IN THE SAVE FILE YOU HAVE SELECTED                                                               " +
+                "                                                                                    " +
+                "DO YOU WISH TO OVERWRITE THIS?",
                 // function to execute if we select "yes"
                 () =>
                 {
