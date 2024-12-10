@@ -13,12 +13,13 @@ namespace Platformer
 
         [SerializeField, Self] GroundChecker groundChecker;
         [SerializeField, Self] Animator animator;
+        [SerializeField, Self] FootstepController footstepController;
+
         [SerializeField, Anywhere] CinemachineFreeLook freeLookVCam;
         [SerializeField, Anywhere] InputReader input;
 
         [Header("Movement Settings")] [SerializeField]
         float moveSpeed = 6f;
-
         [SerializeField] float rotationSpeed = 15f;
         [SerializeField] float smoothTime = 0.2f;
 
@@ -78,12 +79,27 @@ namespace Platformer
             SetupStateMachine();
         }
 
+        void TriggerFootstepEvents()
+        {
+            if (groundChecker.IsGrounded && currentSpeed > 0.1f)
+            {
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+                {
+                    // Trigger left foot during certain frames
+                    if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime % 1 < 0.5f)
+                        footstepController.LeftFootDown();
+                    else
+                        footstepController.RightFootDown();
+                }
+            }
+        }
+
         public void LoadData(GameData data)
         {
             //Debug.Log("Loading player position: " + data.playerPosition.ToString());
             this.transform.position = data.playerPosition;
         }
-
+    
         public void SaveData(GameData data)
         {
             // Debug.Log("Saving player position: " + this.transform.position.ToString());
@@ -217,6 +233,7 @@ namespace Platformer
 
             HandleTimers();
             UpdateAnimator();
+            TriggerFootstepEvents();
         }
 
         void FixedUpdate()
