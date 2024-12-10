@@ -9,12 +9,13 @@ namespace Platformer
         [SerializeField] private int totalCoins = 0;
         
         private int coinsCollected = 0; 
-
         private TextMeshProUGUI coinsCollectedText;
        
         private void Awake()
         {
             coinsCollectedText = this.GetComponent<TextMeshProUGUI>();
+     
+          
         }
         private void Start()
         {

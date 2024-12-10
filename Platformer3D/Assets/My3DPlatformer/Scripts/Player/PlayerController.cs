@@ -38,7 +38,7 @@ namespace Platformer
         float attackCooldown = 0.5f;
 
         [SerializeField] float attackDistance = 1f;
-        [SerializeField] int attackDamage = 10;
+       // [SerializeField] int attackDamage = 10;
 
         const float ZeroF = 0f;
 
@@ -181,7 +181,7 @@ namespace Platformer
                 Debug.Log(enemy.name);
                 if (enemy.CompareTag("Enemy"))
                 {
-                    enemy.GetComponent<Health>().TakeDamage(attackDamage);
+                    //enemy.GetComponent<Health>().TakeDamage(attackDamage);
                 }
             }
         }

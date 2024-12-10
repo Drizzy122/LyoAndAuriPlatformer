@@ -6,7 +6,15 @@ namespace Platformer
     {
         [SerializeField] private string id;
         [SerializeField] private bool collected = false;
+        
+
         [ContextMenu("Generate guid for id")]
+
+        void Awake()
+        {
+            GenerateGuid();
+            
+        }
         private void GenerateGuid()
         {
             id = System.Guid.NewGuid().ToString();
@@ -32,8 +40,10 @@ namespace Platformer
         {
             if (!collected)
             {
+                
                 CollectCoin();
             }
+            
         }
         private void CollectCoin()
         {

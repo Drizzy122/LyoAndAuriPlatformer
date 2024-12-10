@@ -13,6 +13,7 @@ namespace Platformer {
         
         [SerializeField] float wanderRadius = 10f;
         [SerializeField] float timeBetweenAttacks = 1f;
+        [SerializeField] float damageAmount = 10f;
         
         StateMachine stateMachine;
         
@@ -51,9 +52,20 @@ namespace Platformer {
         
         public void Attack() {
             if (attackTimer.IsRunning) return;
-            
+
             attackTimer.Start();
-            playerDetector.PlayerHealth.TakeDamage(10);
+
+            // Access PlayerHealth and apply damage only if the player is not invulnerable
+            var playerHealth = playerDetector.Player.GetComponent<PlayerHealth>();
+            if (playerHealth != null) {
+                if (!playerHealth.IsInvulnerable) { // Assuming you add a public IsInvulnerable property
+                    playerHealth.TakeDamage(damageAmount);
+                } else {
+                    Debug.Log("Player is invulnerable. Attack did no damage.");
+                }
+            } else {
+                Debug.LogWarning("PlayerHealth component not found on the player!");
+            }
         }
     }
 }
