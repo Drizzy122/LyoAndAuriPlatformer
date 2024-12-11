@@ -196,7 +196,7 @@
                 {
                     "name": "",
                     "id": "143bb1cd-cc10-4eca-a2f0-a3664166fe91",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -262,7 +262,7 @@
                 {
                     "name": "",
                     "id": "e450180a-6fb2-4d82-8929-fb205b518df0",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardOrGamepad",
@@ -273,7 +273,7 @@
                 {
                     "name": "",
                     "id": "d133c5b8-26f9-46a8-8b1f-e2254779aaf5",
-                    "path": "<Keyboard>/rightShift",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardOrGamepad",
