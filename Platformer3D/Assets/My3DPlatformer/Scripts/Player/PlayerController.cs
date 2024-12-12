@@ -28,6 +28,12 @@ namespace Platformer
         [SerializeField] float jumpDuration = 0.5f;
         [SerializeField] float jumpCooldown = 0f;
         [SerializeField] float gravityMultiplier = 3f;
+        [SerializeField] private int jumpCount = 2;
+        private int remainingJumps = 2;
+
+        [Header("Glide Settings")] 
+        [SerializeField] private float glideFallSpeed;
+        [SerializeField] private float glideTime = 3;
         
 
         [Header("Dash Settings")] [SerializeField]
@@ -56,6 +62,7 @@ namespace Platformer
         List<Timer> timers;
         CountdownTimer jumpTimer;
         CountdownTimer jumpCooldownTimer;
+        CountdownTimer glideTimer;
         CountdownTimer dashTimer;
         CountdownTimer dashCooldownTimer;
         CountdownTimer attackTimer;
@@ -115,11 +122,14 @@ namespace Platformer
             // Declare states
             var locomotionState = new LocomotionState(this, animator);
             var jumpState = new JumpState(this, animator);
+            var glideState = new GlideState(this, animator);
             var dashState = new DashState(this, animator);
             var attackState = new AttackState(this, animator);
 
+
             // Define transitions
             At(locomotionState, jumpState, new FuncPredicate(() => jumpTimer.IsRunning));
+            At(locomotionState, glideState, new FuncPredicate(() => glideTimer.IsRunning));
             At(locomotionState, dashState, new FuncPredicate(() => dashTimer.IsRunning));
             At(locomotionState, attackState, new FuncPredicate(() => attackTimer.IsRunning));
             At(attackState, locomotionState, new FuncPredicate(() => !attackTimer.IsRunning));
@@ -134,7 +144,8 @@ namespace Platformer
             return groundChecker.IsGrounded
                    && !attackTimer.IsRunning
                    && !jumpTimer.IsRunning
-                   && !dashTimer.IsRunning;
+                   && !dashTimer.IsRunning
+                   && !glideTimer.IsRunning;
         }
 
         void SetupTimers()
@@ -145,6 +156,8 @@ namespace Platformer
 
             jumpTimer.OnTimerStart += () => jumpVelocity = jumpForce;
             jumpTimer.OnTimerStop += () => jumpCooldownTimer.Start();
+
+            glideTimer = new CountdownTimer(glideTime);
 
             dashTimer = new CountdownTimer(dashDuration);
             dashCooldownTimer = new CountdownTimer(dashCooldown);
@@ -171,6 +184,7 @@ namespace Platformer
             input.Jump += OnJump;
             input.Dash += OnDash;
             input.Attack += OnAttack;
+            //input.Glide += OnGlide;
         }
 
         void OnDisable()
@@ -178,6 +192,7 @@ namespace Platformer
             input.Jump -= OnJump;
             input.Dash -= OnDash;
             input.Attack -= OnAttack;
+            //input.Glide -= OnGlide;
         }
 
         void OnAttack()
@@ -205,8 +220,14 @@ namespace Platformer
 
         void OnJump(bool performed)
         {
-            if (performed && !jumpTimer.IsRunning && !jumpCooldownTimer.IsRunning && groundChecker.IsGrounded)
+            if (performed && groundChecker.IsGrounded)
             {
+                remainingJumps = jumpCount;
+            }
+            
+            if (performed && !jumpTimer.IsRunning && !jumpCooldownTimer.IsRunning && remainingJumps > 0)
+            {
+                remainingJumps--;
                 jumpTimer.Start();
             }
             else if (!performed && jumpTimer.IsRunning)
@@ -224,6 +245,22 @@ namespace Platformer
             else if (!performed && dashTimer.IsRunning)
             {
                 dashTimer.Stop();
+            }
+        }
+
+        void OnGlide(bool performed)
+        {
+            if (performed)
+            {
+                if (!glideTimer.IsRunning && jumpTimer.IsRunning && !groundChecker.IsGrounded)
+                {
+                    glideTimer.Start();
+                    jumpTimer.Stop();
+                }
+            }
+            else if (glideTimer.IsRunning)
+            {
+                glideTimer.Stop();
             }
         }
 
@@ -272,6 +309,11 @@ namespace Platformer
 
             // Apply velocity
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpVelocity, rb.linearVelocity.z);
+        }
+
+        public void HandleGlide()
+        {
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, -glideFallSpeed, rb.linearVelocity.z);
         }
 
         public void HandleMovement()
