@@ -13,7 +13,9 @@ namespace Platformer
         public event UnityAction EnableMouseControlCamera = delegate { };
         public event UnityAction DisableMouseControlCamera = delegate { };
         public event UnityAction<bool> Jump = delegate { };
+        public event UnityAction<bool> Glide = delegate {  }; 
         public event UnityAction<bool> Dash = delegate { };
+        
         public event UnityAction Attack = delegate { };
 
         PlayerInputActions inputActions;
@@ -89,6 +91,19 @@ namespace Platformer
                     break;
                 case InputActionPhase.Canceled:
                     Jump.Invoke(false);
+                    break;
+            }
+        }
+
+        public void OnGlide(InputAction.CallbackContext context)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Started:
+                    Glide.Invoke(true);
+                    break;
+                case InputActionPhase.Canceled:
+                    Glide.Invoke(false);
                     break;
             }
         }

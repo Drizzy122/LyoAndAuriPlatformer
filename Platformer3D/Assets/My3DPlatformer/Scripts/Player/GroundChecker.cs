@@ -1,18 +1,25 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Platformer
 {
     public class GroundChecker : MonoBehaviour
     {
-        [SerializeField] float groundDistance = 0.08f;
+        [SerializeField] float groundDistance = 0.3f;
         [SerializeField] LayerMask groundLayers;
 
-        public bool IsGrounded { get; private set; }
+        public bool IsGrounded;
 
         void Update()
         {
-            IsGrounded = Physics.SphereCast(transform.position, groundDistance, Vector3.down, out _, groundDistance,
-                groundLayers);
+            RaycastHit[] hits = (Physics.SphereCastAll(transform.position + Vector3.up * groundDistance * 0.7f, groundDistance, Vector3.down, 0, groundLayers));
+            IsGrounded = hits.Length > 0;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(transform.position  + Vector3.up * groundDistance * 0.7f, groundDistance);
         }
     }
 }

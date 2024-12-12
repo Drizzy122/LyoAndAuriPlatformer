@@ -1911,7 +1911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 345272023}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14397652, y: 0.0000000073729547, z: -0.0000000010727089, w: 0.9895811}
+  m_LocalRotation: {x: 0.14397651, y: 0, z: 0, w: 0.9895811}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8098,8 +8098,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978365626}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11873434, y: 0.00000003050222, z: -0.0000000036474628, w: 0.9929261}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0000009536743}
+  m_LocalRotation: {x: 0.11873433, y: 0, z: 0, w: 0.99292606}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0000009536743}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9160,8 +9160,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249159386}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10122052, y: 0.0000000074123157, z: -7.5415174e-10, w: 0.99486405}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0000009536743}
+  m_LocalRotation: {x: 0.10122052, y: 0, z: 0, w: 0.99486405}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0000009536743}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18191,6 +18191,9 @@ MonoBehaviour:
   jumpDuration: 0.5
   jumpCooldown: 0
   gravityMultiplier: 3
+  jumpCount: 2
+  glideFallSpeed: 1
+  glideTime: 3
   dashForce: 3
   dashDuration: 3
   dashCooldown: 5
@@ -18457,7 +18460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0de82d6e6e34dd2970b3cb12bc5419a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundDistance: 0.08
+  groundDistance: 0.45
   groundLayers:
     serializedVersion: 2
     m_Bits: 64

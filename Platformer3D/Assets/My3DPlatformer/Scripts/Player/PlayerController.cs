@@ -32,7 +32,7 @@ namespace Platformer
         private int remainingJumps = 2;
 
         [Header("Glide Settings")] 
-        [SerializeField] private float glideFallSpeed;
+        [SerializeField] private float glideFallSpeed = 0.1f;
         [SerializeField] private float glideTime = 3;
         
 
@@ -59,13 +59,14 @@ namespace Platformer
 
         Vector3 movement;
 
-        List<Timer> timers;
-        CountdownTimer jumpTimer;
-        CountdownTimer jumpCooldownTimer;
-        CountdownTimer glideTimer;
-        CountdownTimer dashTimer;
-        CountdownTimer dashCooldownTimer;
-        CountdownTimer attackTimer;
+        [Header("Timers, dont touch")]
+        private List<Timer> timers;
+        private CountdownTimer jumpTimer;
+        private CountdownTimer jumpCooldownTimer;
+        private CountdownTimer glideTimer;
+        private CountdownTimer dashTimer;
+        private CountdownTimer dashCooldownTimer;
+        private CountdownTimer attackTimer;
 
         StateMachine stateMachine;
 
@@ -129,7 +130,11 @@ namespace Platformer
 
             // Define transitions
             At(locomotionState, jumpState, new FuncPredicate(() => jumpTimer.IsRunning));
-            At(locomotionState, glideState, new FuncPredicate(() => glideTimer.IsRunning));
+            At(locomotionState, jumpState, new FuncPredicate(() => !groundChecker.IsGrounded));
+
+            At(jumpState, glideState, new FuncPredicate(() => glideTimer.IsRunning));
+            At(glideState, jumpState, new FuncPredicate(() => !glideTimer.IsRunning));
+            
             At(locomotionState, dashState, new FuncPredicate(() => dashTimer.IsRunning));
             At(locomotionState, attackState, new FuncPredicate(() => attackTimer.IsRunning));
             At(attackState, locomotionState, new FuncPredicate(() => !attackTimer.IsRunning));
@@ -171,7 +176,7 @@ namespace Platformer
 
             attackTimer = new CountdownTimer(attackCooldown);
 
-            timers = new(5) { jumpTimer, jumpCooldownTimer, dashTimer, dashCooldownTimer, attackTimer };
+            timers = new(5) { jumpTimer, jumpCooldownTimer, glideTimer, dashTimer, dashCooldownTimer, attackTimer };
         }
 
         void At(IState from, IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
@@ -184,7 +189,7 @@ namespace Platformer
             input.Jump += OnJump;
             input.Dash += OnDash;
             input.Attack += OnAttack;
-            //input.Glide += OnGlide;
+            input.Glide += OnGlide;
         }
 
         void OnDisable()
@@ -192,7 +197,7 @@ namespace Platformer
             input.Jump -= OnJump;
             input.Dash -= OnDash;
             input.Attack -= OnAttack;
-            //input.Glide -= OnGlide;
+            input.Glide -= OnGlide;
         }
 
         void OnAttack()
@@ -252,14 +257,18 @@ namespace Platformer
         {
             if (performed)
             {
-                if (!glideTimer.IsRunning && jumpTimer.IsRunning && !groundChecker.IsGrounded)
+          
+                if (!glideTimer.IsRunning //&& jumpTimer.IsRunning
+                                          && !groundChecker.IsGrounded)
                 {
+                    print("Glide Started");
                     glideTimer.Start();
                     jumpTimer.Stop();
                 }
             }
-            else if (glideTimer.IsRunning)
+            else if (! performed && glideTimer.IsRunning)
             {
+                print("Glide Stopped");
                 glideTimer.Stop();
             }
         }
@@ -314,6 +323,8 @@ namespace Platformer
         public void HandleGlide()
         {
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, -glideFallSpeed, rb.linearVelocity.z);
+
+            if (groundChecker.IsGrounded) glideTimer.Stop();
         }
 
         public void HandleMovement()
