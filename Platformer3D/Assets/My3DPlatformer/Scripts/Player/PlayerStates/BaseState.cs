@@ -7,13 +7,13 @@ namespace Platformer
         protected readonly PlayerController player;
         protected readonly Animator animator;
 
-        public static readonly int BoredBehaviorHash = Animator.StringToHash("Bored");
+        public static readonly int DoubleJumpHash = Animator.StringToHash("DoubleJump");
         protected static readonly int LocomotionHash = Animator.StringToHash("Locomotion");
         protected static readonly int JumpHash = Animator.StringToHash("Jump");
         protected static readonly int DashHash = Animator.StringToHash("Dash");
         protected static readonly int AttackHash = Animator.StringToHash("Attack");
         protected static readonly int Glide = Animator.StringToHash("Glide");
-        protected static readonly int WallClime = Animator.StringToHash("WallClimber");
+        // protected static readonly int WallClime = Animator.StringToHash("WallClimber");
 
         protected const float crossFadeDuration = 0.1f;
 
