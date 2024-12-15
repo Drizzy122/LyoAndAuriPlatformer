@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/My3DPlatformer/Scene/TestingPlayGroundScene.unity
     guid: 3c335b2b4e984ec48ac11f32aad809a7
+  - enabled: 1
+    path: Assets/My3DPlatformer/Scene/EndScene.unity
+    guid: 81612526b6d80964e93332cb6af47b7b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

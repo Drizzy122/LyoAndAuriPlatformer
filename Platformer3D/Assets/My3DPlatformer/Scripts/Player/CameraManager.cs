@@ -12,7 +12,7 @@ namespace Platformer {
         [Header("Settings")] 
         [SerializeField, Range(0.5f, 3f)] float speedMultiplier = 1f;
         
-        bool isRMBPressed;
+        public bool isRMBPressed;
         bool cameraMovementLock;
 
         void OnEnable() {
