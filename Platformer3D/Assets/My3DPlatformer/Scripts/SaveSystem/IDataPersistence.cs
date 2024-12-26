@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDataPersistence 
+namespace Platformer
 {
-    void LoadData(GameData data);
+    public interface IDataPersistence
+    {
+        void LoadData(GameData data);
 
-    void SaveData(GameData data);
+        void SaveData(GameData data);
+    }
 }

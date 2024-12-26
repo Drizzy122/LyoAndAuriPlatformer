@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/My3DPlatformer/Scene/scene.unity
+    path: Assets/My3DPlatformer/Scene/MainMenu.unity
     guid: e69ce8767f46f63449002113043e1664
   - enabled: 1
     path: Assets/My3DPlatformer/Scene/TestingPlayGroundScene.unity
