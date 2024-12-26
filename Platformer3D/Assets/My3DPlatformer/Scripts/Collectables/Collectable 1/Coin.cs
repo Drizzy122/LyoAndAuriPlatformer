@@ -1,5 +1,5 @@
+using FMOD.Studio;
 using UnityEngine;
-
 namespace Platformer
 { 
     public class Coin : MonoBehaviour, IDataPersistence
@@ -7,7 +7,6 @@ namespace Platformer
         [SerializeField] private string id;
         [SerializeField] private bool collected = false;
         
-
         [ContextMenu("Generate guid for id")]
 
         void Awake()
@@ -49,6 +48,7 @@ namespace Platformer
         {
             collected = true;
             gameObject.SetActive(false);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.coinCollected, this.transform.position);
             GameEventsManager.instance.CoinCollected();
         }
     }

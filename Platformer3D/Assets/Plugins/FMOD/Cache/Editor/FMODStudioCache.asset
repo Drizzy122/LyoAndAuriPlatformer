@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8973425009739457073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/PlayerFootSteps
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/PlayerFootSteps
+  Guid:
+    Data1: -1929407460
+    Data2: 1216582649
+    Data3: 1777770941
+    Data4: 1216175034
+  Banks:
+  - {fileID: 4692167704546982273}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 400
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,17 +40,47 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 1478892967565295588}
-  - {fileID: 4246844423742107385}
-  EditorEvents: []
+  - {fileID: 7828782676984614360}
+  - {fileID: 6155442199699966018}
+  - {fileID: 4692167704546982273}
+  EditorEvents:
+  - {fileID: -8973425009739457073}
+  - {fileID: 4571160434584822680}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 4246844423742107385}
+  - {fileID: 6155442199699966018}
   StringsBanks:
-  - {fileID: 1478892967565295588}
-  cacheTime: 638701312193136723
+  - {fileID: 7828782676984614360}
+  cacheTime: 638707706809419861
   cacheVersion: 131622
---- !u!114 &1478892967565295588
+--- !u!114 &4571160434584822680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Collectables/CoinCollected
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Collectables/CoinCollected
+  Guid:
+    Data1: 599354306
+    Data2: 1118834064
+    Data3: 107161774
+    Data4: -1910977757
+  Banks:
+  - {fileID: 4692167704546982273}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4692167704546982273
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -33,17 +90,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
+  m_Name: bank:/SFX.bank
   m_EditorClassIdentifier: 
-  Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638701312193136723
+  Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 638707706809419861
   FileSizes:
   - Name: Desktop
-    Value: 712
+    Value: 27008
   Exists: 1
---- !u!114 &4246844423742107385
+--- !u!114 &6155442199699966018
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,8 +115,28 @@ MonoBehaviour:
   Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638701312193114027
+  lastModified: 638707706808984705
   FileSizes:
   - Name: Desktop
     Value: 1036
+  Exists: 1
+--- !u!114 &7828782676984614360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638707706808999431
+  FileSizes:
+  - Name: Desktop
+    Value: 890
   Exists: 1

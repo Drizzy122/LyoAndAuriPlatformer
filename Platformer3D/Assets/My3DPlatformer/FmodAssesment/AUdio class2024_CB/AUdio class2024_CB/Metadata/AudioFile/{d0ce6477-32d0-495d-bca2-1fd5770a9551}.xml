@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{d0ce6477-32d0-495d-bca2-1fd5770a9551}">
+		<property name="assetPath">
+			<value>Abelton Tracks/Organ Da 2-Kontakt.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>48</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c8d53859-22b6-454d-b796-a9d977f7202b}</destination>
+		</relationship>
+	</object>
+</objects>

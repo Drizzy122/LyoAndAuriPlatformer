@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{38f605a7-9357-42f7-9112-1f738380cdf1}">
+		<property name="assetPath">
+			<value>Abelton Tracks/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c8d53859-22b6-454d-b796-a9d977f7202b}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -3,6 +3,7 @@ using Cinemachine;
 using KBCore.Refs;
 using UnityEngine;
 using Utilities;
+using FMOD.Studio;
 
 namespace Platformer
 {
@@ -20,21 +21,24 @@ namespace Platformer
 
         [Header("Movement Settings")] [SerializeField]
         float moveSpeed = 6f;
+
         [SerializeField] float rotationSpeed = 15f;
         [SerializeField] float smoothTime = 0.2f;
 
-        [Header("Jump Settings")]
-        [SerializeField] float jumpForce = 10f;
+        [Header("Jump Settings")] [SerializeField]
+        float jumpForce = 10f;
+
         [SerializeField] float jumpDuration = 0.5f;
         [SerializeField] float jumpCooldown = 0f;
         [SerializeField] float gravityMultiplier = 3f;
         [SerializeField] private int jumpCount = 2;
         private int remainingJumps = 2;
 
-        [Header("Glide Settings")] 
-        [SerializeField] private float glideFallSpeed = 0.1f;
+        [Header("Glide Settings")] [SerializeField]
+        private float glideFallSpeed = 0.1f;
+
         [SerializeField] private float glideTime = 3;
-        
+
 
         [Header("Dash Settings")] [SerializeField]
         float dashForce = 10f;
@@ -48,6 +52,7 @@ namespace Platformer
         [SerializeField] float attackDistance = 1f;
         [SerializeField] int attackDamage = 10;
 
+
         const float ZeroF = 0f;
 
         Transform mainCam;
@@ -59,8 +64,7 @@ namespace Platformer
 
         Vector3 movement;
 
-        [Header("Timers, dont touch")]
-        private List<Timer> timers;
+        [Header("Timers, dont touch")] private List<Timer> timers;
         private CountdownTimer jumpTimer;
         private CountdownTimer jumpCooldownTimer;
         private CountdownTimer glideTimer;
@@ -69,6 +73,9 @@ namespace Platformer
         private CountdownTimer attackTimer;
 
         StateMachine stateMachine;
+
+        //Audio
+        private EventInstance playerFootsteps;
 
         // Animator parameters
         static readonly int Speed = Animator.StringToHash("Speed");
@@ -81,26 +88,32 @@ namespace Platformer
             // Invoke event when observed transform is teleported, adjusting freeLookVCam's position accordingly
             freeLookVCam.OnTargetObjectWarped(transform,
                 transform.position - freeLookVCam.transform.position - Vector3.forward);
-
             rb.freezeRotation = true;
 
             SetupTimers();
             SetupStateMachine();
         }
 
-        void TriggerFootstepEvents()
+        void Start()
         {
-            if (groundChecker.IsGrounded && currentSpeed > 0.1f)
-            {
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
-                {
-                    // Trigger left foot during certain frames
-                    if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime % 1 < 0.5f)
-                        footstepController.LeftFootDown();
-                    else
-                        footstepController.RightFootDown();
-                }
-            }
+            playerFootsteps = AudioManager.instance.CreateEventInstance(FMODEvents.instance.playerFootsteps);
+            input.EnablePlayerActions();
+        }
+
+        void Update()
+        {
+            movement = new Vector3(input.Direction.x, 0f, input.Direction.y);
+            stateMachine.Update();
+
+            HandleTimers();
+            UpdateAnimator();
+            TriggerFootstepEvents();
+            UpdateSound();
+        }
+
+        void FixedUpdate()
+        {
+            stateMachine.FixedUpdate();
         }
 
         public void LoadData(GameData data)
@@ -108,7 +121,7 @@ namespace Platformer
             //Debug.Log("Loading player position: " + data.playerPosition.ToString());
             this.transform.position = data.playerPosition;
         }
-    
+
         public void SaveData(GameData data)
         {
             // Debug.Log("Saving player position: " + this.transform.position.ToString());
@@ -134,7 +147,7 @@ namespace Platformer
 
             At(jumpState, glideState, new FuncPredicate(() => glideTimer.IsRunning));
             At(glideState, jumpState, new FuncPredicate(() => !glideTimer.IsRunning));
-            
+
             At(locomotionState, dashState, new FuncPredicate(() => dashTimer.IsRunning));
             At(locomotionState, attackState, new FuncPredicate(() => attackTimer.IsRunning));
             At(attackState, locomotionState, new FuncPredicate(() => !attackTimer.IsRunning));
@@ -182,8 +195,6 @@ namespace Platformer
         void At(IState from, IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
         void Any(IState to, IPredicate condition) => stateMachine.AddAnyTransition(to, condition);
 
-        void Start() => input.EnablePlayerActions();
-
         void OnEnable()
         {
             input.Jump += OnJump;
@@ -215,7 +226,7 @@ namespace Platformer
 
             foreach (var enemy in hitEnemies)
             {
-                Debug.Log(enemy.name);
+                // Debug.Log(enemy.name);
                 if (enemy.CompareTag("Enemy"))
                 {
                     enemy.GetComponent<EnemyHealth>().TakeDamage(attackDamage);
@@ -229,7 +240,7 @@ namespace Platformer
             {
                 remainingJumps = jumpCount;
             }
-            
+
             if (performed && !jumpTimer.IsRunning && !jumpCooldownTimer.IsRunning && remainingJumps > 0)
             {
                 remainingJumps--;
@@ -257,35 +268,20 @@ namespace Platformer
         {
             if (performed)
             {
-          
+
                 if (!glideTimer.IsRunning //&& jumpTimer.IsRunning
-                                          && !groundChecker.IsGrounded)
+                    && !groundChecker.IsGrounded)
                 {
-                    print("Glide Started");
+                    //print("Glide Started");
                     glideTimer.Start();
                     jumpTimer.Stop();
                 }
             }
-            else if (! performed && glideTimer.IsRunning)
+            else if (!performed && glideTimer.IsRunning)
             {
-                print("Glide Stopped");
+                //print("Glide Stopped");
                 glideTimer.Stop();
             }
-        }
-
-        void Update()
-        {
-            movement = new Vector3(input.Direction.x, 0f, input.Direction.y);
-            stateMachine.Update();
-
-            HandleTimers();
-            UpdateAnimator();
-            TriggerFootstepEvents();
-        }
-
-        void FixedUpdate()
-        {
-            stateMachine.FixedUpdate();
         }
 
         void UpdateAnimator()
@@ -337,6 +333,7 @@ namespace Platformer
                 HandleRotation(adjustedDirection);
                 HandleHorizontalMovement(adjustedDirection);
                 SmoothSpeed(adjustedDirection.magnitude);
+
             }
             else
             {
@@ -344,6 +341,7 @@ namespace Platformer
 
                 // Reset horizontal velocity for a snappy stop
                 rb.linearVelocity = new Vector3(ZeroF, rb.linearVelocity.y, ZeroF);
+
             }
         }
 
@@ -365,6 +363,41 @@ namespace Platformer
         void SmoothSpeed(float value)
         {
             currentSpeed = Mathf.SmoothDamp(currentSpeed, value, ref velocity, smoothTime);
+        }
+
+        void TriggerFootstepEvents()
+        {
+            if (groundChecker.IsGrounded && currentSpeed > 0.1f)
+            {
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
+                {
+                    // Trigger left foot during certain frames
+                    if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime % 1 < 0.5f)
+                        footstepController.LeftFootDown();
+                    else
+                        footstepController.RightFootDown();
+                }
+            }
+        }
+
+        void UpdateSound()
+        {
+            // start footsteps event if the player has an x velocity and is on the ground
+            if (rb.linearVelocity.x != 0 && groundChecker.IsGrounded)
+            {
+                // get the playback state
+                PLAYBACK_STATE playbackState;
+                playerFootsteps.getPlaybackState(out playbackState);
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    playerFootsteps.start();
+                }
+            }
+            // otherwise, stop the footstep event
+            else
+            {
+                playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+            }
         }
     }
 }
