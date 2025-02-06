@@ -1,19 +1,29 @@
-using FMOD.Studio;
+using System;
 using UnityEngine;
+using FMODUnity;
+
+
 namespace Platformer
 { 
+    [RequireComponent(typeof(StudioEventEmitter))]
     public class Coin : MonoBehaviour, IDataPersistence
     {
         [SerializeField] private string id;
         [SerializeField] private bool collected = false;
-        
+        private StudioEventEmitter emitter;
         [ContextMenu("Generate guid for id")]
 
         void Awake()
         {
             GenerateGuid();
-            
         }
+
+        private void Start()
+        {
+            emitter = AudioManager.instance.InitializeEventEmitter(FMODEvents.instance.coinidle, this.gameObject);
+            emitter.Play();
+        }
+
         private void GenerateGuid()
         {
             id = System.Guid.NewGuid().ToString();
@@ -39,7 +49,6 @@ namespace Platformer
         {
             if (!collected)
             {
-                
                 CollectCoin();
             }
             
@@ -48,6 +57,7 @@ namespace Platformer
         {
             collected = true;
             gameObject.SetActive(false);
+            emitter.Stop();
             AudioManager.instance.PlayOneShot(FMODEvents.instance.coinCollected, this.transform.position);
             GameEventsManager.instance.CoinCollected();
         }

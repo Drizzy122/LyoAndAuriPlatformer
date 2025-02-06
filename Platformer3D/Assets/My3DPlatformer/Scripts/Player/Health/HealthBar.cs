@@ -1,19 +1,22 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+namespace Platformer
 {
-    [SerializeField] private PlayerHealth playerHealth;
-    [SerializeField] private Image totalhealthBar;
-    [SerializeField] private Image currenthealthBar;
-
-    private void Start()
+    public class HealthBar : MonoBehaviour
     {
-        totalhealthBar.fillAmount = playerHealth.currentHealth / 10;
-    }
+        [SerializeField] private PlayerHealth playerHealth;
+        [SerializeField] private Image totalhealthBar;
+        [SerializeField] private Image currenthealthBar;
 
-    private void Update()
-    {
-        currenthealthBar.fillAmount = playerHealth.currentHealth / 10;
+        private void Start()
+        {
+            totalhealthBar.fillAmount = playerHealth.currentHealth / 10;
+        }
+
+        private void Update()
+        {
+            currenthealthBar.fillAmount = playerHealth.currentHealth / 10;
+        }
     }
 }

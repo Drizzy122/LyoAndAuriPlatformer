@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3070155276170072698}
   - component: {fileID: 2235887512230847548}
   - component: {fileID: 7900767887983087108}
+  - component: {fileID: 1291690956315998712}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -70,13 +71,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: f0840a51-313c-47d7-a3eb-db408f80df45
   collected: 0
-  coinCollectedSound:
-    Guid:
-      Data1: 599354306
-      Data2: 1118834064
-      Data3: 107161774
-      Data4: -1910977757
-    Path: event:/Collectables/CoinCollected
 --- !u!114 &7900767887983087108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +84,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 50
+--- !u!114 &1291690956315998712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6335867501095370354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1801124840
+      Data2: 1271984550
+      Data3: 505836727
+      Data4: 1764496347
+    Path: event:/SFX/Collectables/CoinIdle
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 3
 --- !u!1001 &4073046525471133548
 PrefabInstance:
   m_ObjectHideFlags: 0

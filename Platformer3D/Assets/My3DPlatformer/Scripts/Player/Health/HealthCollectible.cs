@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthCollectible : MonoBehaviour
+namespace Platformer
 {
-    [SerializeField] private float healthValue;
-    private void OnTriggerEnter(Collider collision)
+    public class HealthCollectible : MonoBehaviour
     {
-        if(collision.tag == "Player")
+        [SerializeField] private float healthValue;
+
+        private void OnTriggerEnter(Collider collision)
         {
-            collision.GetComponent<PlayerHealth>().AddHealth(healthValue);
-            gameObject.SetActive(false);
+            if (collision.tag == "Player")
+            {
+                collision.GetComponent<PlayerHealth>().AddHealth(healthValue);
+                gameObject.SetActive(false);
+            }
         }
     }
 }

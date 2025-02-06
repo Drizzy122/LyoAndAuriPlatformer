@@ -245,6 +245,7 @@ namespace Platformer
             {
                 remainingJumps--;
                 jumpTimer.Start();
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.playerJump, this.transform.position);
             }
             else if (!performed && jumpTimer.IsRunning)
             {
@@ -257,6 +258,7 @@ namespace Platformer
             if (performed && !dashTimer.IsRunning && !dashCooldownTimer.IsRunning)
             {
                 dashTimer.Start();
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.playerSpin, this.transform.position);
             }
             else if (!performed && dashTimer.IsRunning)
             {

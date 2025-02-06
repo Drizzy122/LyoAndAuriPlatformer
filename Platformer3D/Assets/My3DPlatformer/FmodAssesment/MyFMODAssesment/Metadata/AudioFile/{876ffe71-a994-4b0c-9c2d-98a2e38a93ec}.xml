@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{876ffe71-a994-4b0c-9c2d-98a2e38a93ec}">
+		<property name="assetPath">
+			<value>Examples/Music/music_lvl_01_bleep_c.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>9.0566041666666663</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{71b7c89f-1cc0-4869-a27b-077a5ac13105}</destination>
+		</relationship>
+	</object>
+</objects>

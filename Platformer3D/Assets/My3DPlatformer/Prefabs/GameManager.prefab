@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2956221783554936621}
   - component: {fileID: 4265806762296035029}
-  - component: {fileID: 4539851908779843278}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -30,8 +29,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4681072771469160924}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4265806762296035029
@@ -46,73 +44,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdfcf57162c58cb4ea15c6da70634faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4539851908779843278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2924724142383075274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e275d751bf20d243b0db36df3c6638e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &6976262026701380681
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4681072771469160924}
-  - component: {fileID: 4202915091256309078}
-  m_Layer: 0
-  m_Name: FMODEvents
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4681072771469160924
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6976262026701380681}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2956221783554936621}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4202915091256309078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6976262026701380681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89df26716c6c6d0428eb4e289a195259, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <playerFootsteps>k__BackingField:
-    Guid:
-      Data1: -1929407460
-      Data2: 1216582649
-      Data3: 1777770941
-      Data4: 1216175034
-    Path: event:/Player/New Event
-  <coinCollected>k__BackingField:
-    Guid:
-      Data1: 599354306
-      Data2: 1118834064
-      Data3: 107161774
-      Data4: -1910977757
-    Path: event:/Collectables/CoinCollected

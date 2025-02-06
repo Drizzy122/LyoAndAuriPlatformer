@@ -3230,12 +3230,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8198098967171644346}
-        m_TargetAssemblyTypeName: SaveSlotsMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: Platformer.SaveSlotsMenu, Assembly-CSharp
         m_MethodName: OnClearClicked
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 2081986811}
-          m_ObjectArgumentAssemblyTypeName: SaveSlot, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Platformer.SaveSlot, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3470,12 +3470,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8198098967171644346}
-        m_TargetAssemblyTypeName: SaveSlotsMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: Platformer.SaveSlotsMenu, Assembly-CSharp
         m_MethodName: OnSaveSlotClicked
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 690771699}
-          m_ObjectArgumentAssemblyTypeName: SaveSlot, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Platformer.SaveSlot, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8982,12 +8982,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8198098967171644346}
-        m_TargetAssemblyTypeName: SaveSlotsMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: Platformer.SaveSlotsMenu, Assembly-CSharp
         m_MethodName: OnSaveSlotClicked
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1662175408}
-          m_ObjectArgumentAssemblyTypeName: SaveSlot, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Platformer.SaveSlot, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -10348,12 +10348,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8198098967171644346}
-        m_TargetAssemblyTypeName: SaveSlotsMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: Platformer.SaveSlotsMenu, Assembly-CSharp
         m_MethodName: OnClearClicked
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 690771699}
-          m_ObjectArgumentAssemblyTypeName: SaveSlot, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Platformer.SaveSlot, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11381,12 +11381,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8198098967171644346}
-        m_TargetAssemblyTypeName: SaveSlotsMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: Platformer.SaveSlotsMenu, Assembly-CSharp
         m_MethodName: OnSaveSlotClicked
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 2081986811}
-          m_ObjectArgumentAssemblyTypeName: SaveSlot, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Platformer.SaveSlot, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11789,12 +11789,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8198098967171644346}
-        m_TargetAssemblyTypeName: SaveSlotsMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: Platformer.SaveSlotsMenu, Assembly-CSharp
         m_MethodName: OnClearClicked
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1662175408}
-          m_ObjectArgumentAssemblyTypeName: SaveSlot, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Platformer.SaveSlot, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -13144,7 +13144,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9182068382448156546}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: Platformer.MainMenu, Assembly-CSharp
         m_MethodName: OnNewGameClicked
         m_Mode: 1
         m_Arguments:
@@ -13645,8 +13645,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1868941146884728691}
   - component: {fileID: 7352524102086545167}
-  - component: {fileID: 3918224377954712074}
   - component: {fileID: 3537580659495306947}
+  - component: {fileID: 7352524102086545168}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -14119,12 +14119,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8198098967171644346}
-        m_TargetAssemblyTypeName: SaveSlotsMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: Platformer.SaveSlotsMenu, Assembly-CSharp
         m_MethodName: OnSaveSlotClicked
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1476227633249797647}
-          m_ObjectArgumentAssemblyTypeName: SaveSlot, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Platformer.SaveSlot, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -15260,14 +15260,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 14.92
---- !u!81 &3918224377954712074
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2190324883999367228}
-  m_Enabled: 1
 --- !u!224 &3990149033884776828
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18347,6 +18339,20 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &7352524102086545168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2190324883999367228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!114 &7358826313439840880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19243,12 +19249,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8198098967171644346}
-        m_TargetAssemblyTypeName: SaveSlotsMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: Platformer.SaveSlotsMenu, Assembly-CSharp
         m_MethodName: OnClearClicked
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1476227633249797647}
-          m_ObjectArgumentAssemblyTypeName: SaveSlot, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Platformer.SaveSlot, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
