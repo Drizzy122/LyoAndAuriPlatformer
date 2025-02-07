@@ -19,13 +19,15 @@ namespace Platformer
             if (currentHealth > 0)
             {
                 //noop
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.enemyHurt, this.transform.position);
             }
             else
             {
                 if (!dead)
                 {
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.enemyDeath, this.transform.position);
                     dead = true;
-                    Destroy(gameObject); // Destroy enemy object after 1 seconds
+                    Destroy(gameObject, 1f); // Destroy enemy object after 1 seconds
                 }
             }
         }

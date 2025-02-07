@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{bbf18d3c-76c0-4dc3-a8e6-8858fd8bc6e8}">
+		<property name="assetPath">
+			<value>Enemy/slash-21834.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.39183673469387753</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{71b7c89f-1cc0-4869-a27b-077a5ac13105}</destination>
+		</relationship>
+	</object>
+</objects>

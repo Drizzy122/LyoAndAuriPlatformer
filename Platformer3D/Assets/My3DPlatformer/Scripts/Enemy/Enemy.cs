@@ -52,7 +52,7 @@ namespace Platformer {
         
         public void Attack() {
             if (attackTimer.IsRunning) return;
-
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.enemyAttack, this.transform.position);
             attackTimer.Start();
 
             // Access PlayerHealth and apply damage only if the player is not invulnerable

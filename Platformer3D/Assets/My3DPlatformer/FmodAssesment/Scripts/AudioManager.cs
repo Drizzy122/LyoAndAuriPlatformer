@@ -13,11 +13,13 @@ namespace Platformer
         [Range(0, 1)] public float musicVolume = 1;
         [Range(0, 1)] public float ambienceVolume = 1;
         [Range(0, 1)] public float SFXVolume = 1;
+        [Range(0, 1)] public float UIVolume = 1;
 
         private Bus masterBus;
         private Bus musicBus;
         private Bus ambienceBus;
         private Bus sfxBus;
+        private Bus uiBus;
         public static AudioManager instance { get; private set; }
         
         private List<EventInstance> eventInstances;
@@ -42,6 +44,7 @@ namespace Platformer
             musicBus = RuntimeManager.GetBus("bus:/Music");
             ambienceBus = RuntimeManager.GetBus("bus:/Ambience");
             sfxBus = RuntimeManager.GetBus("bus:/SFX");
+            uiBus = RuntimeManager.GetBus("bus:/UI");
         }
 
         private void Start()
@@ -56,6 +59,7 @@ namespace Platformer
             musicBus.setVolume(musicVolume);
             ambienceBus.setVolume(ambienceVolume);
             sfxBus.setVolume(SFXVolume);
+            uiBus.setVolume(UIVolume);
         }
 
         private void InitiializeAmbience(EventReference ambienceEventReference)

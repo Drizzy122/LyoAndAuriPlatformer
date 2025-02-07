@@ -9,7 +9,8 @@ public class VolumeSlider : MonoBehaviour
         MASTER, 
         MUSIC, 
         AMBIENCE, 
-        SFX
+        SFX,
+        UI
     }
     
     [Header("Type")]
@@ -37,6 +38,9 @@ public class VolumeSlider : MonoBehaviour
             case VolumeType.SFX:
                 volumeSlider.value = AudioManager.instance.SFXVolume;
                 break;
+            case VolumeType.UI:
+                volumeSlider.value = AudioManager.instance.UIVolume;
+                break;
             default:
                 Debug.LogWarning("Volume Type not suppoerted: " + volumeType);
                 break;
@@ -58,6 +62,9 @@ public class VolumeSlider : MonoBehaviour
                 break;
             case VolumeType.SFX:
                 AudioManager.instance.SFXVolume = volumeSlider.value;
+                break;
+            case VolumeType.UI:
+                AudioManager.instance.UIVolume = volumeSlider.value;
                 break;
             default:
                 Debug.LogWarning("Volume Type not suppoerted: " + volumeType);

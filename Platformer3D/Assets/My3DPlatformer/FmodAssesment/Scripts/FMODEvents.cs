@@ -9,7 +9,7 @@ namespace Platformer
         [field: SerializeField] public EventReference playerFootsteps { get; private set; }
         [field: SerializeField] public EventReference playerJump { get; private set; }
         [field: SerializeField] public EventReference playerSpin { get; private set; }
-       // [field: SerializeField] public EventReference playerAttack { get; private set; }
+        [field: SerializeField] public EventReference playerAttack { get; private set; }
         [field: SerializeField] public EventReference playerHurt { get; private set; }
         [field: SerializeField] public EventReference playerDeath { get; private set; }
         
@@ -40,6 +40,9 @@ namespace Platformer
         [field: SerializeField] public EventReference coinCollected { get; private set;}
         
         [field: SerializeField] public EventReference coinidle { get; private set; }
+        
+        [field: Header("UI")]
+        [field: SerializeField] public EventReference ui { get; private set; }
         public static FMODEvents instance { get; private set; }
 
         private void Awake()

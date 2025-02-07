@@ -215,6 +215,7 @@ namespace Platformer
         {
             if (!attackTimer.IsRunning)
             {
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.playerAttack, this.transform.position);
                 attackTimer.Start();
             }
         }

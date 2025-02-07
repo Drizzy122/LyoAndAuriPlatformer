@@ -1,5 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9161349686259906517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MenuUI/ButtonClick
+  m_EditorClassIdentifier: 
+  Path: event:/MenuUI/ButtonClick
+  Guid:
+    Data1: -1545642054
+    Data2: 1106326596
+    Data3: -71604603
+    Data4: -483362582
+  Banks:
+  - {fileID: -1193120755417481347}
+  - {fileID: 4692167704546982273}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 114
 --- !u!114 &-8973425009739457073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,10 +151,10 @@ MonoBehaviour:
   Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/Level 1.bank
   Name: Level 1
   StudioPath: bank:/Level 1
-  lastModified: 638743994015041445
+  lastModified: 638744834016323537
   FileSizes:
   - Name: Desktop
-    Value: 6288000
+    Value: 6954624
   Exists: 1
 --- !u!114 &-3121445378955360581
 MonoBehaviour:
@@ -154,7 +182,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 914
 --- !u!114 &-2976336568697765799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +235,54 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
+  Length: 391
+--- !u!114 &-2064710236493618142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NoNeedForAudio
+  m_EditorClassIdentifier: 
+  Path: event:/NoNeedForAudio
+  Guid:
+    Data1: -1563188644
+    Data2: 1268921251
+    Data3: 1749173164
+    Data4: 1206875980
+  Banks:
+  - {fileID: 4692167704546982273}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
   Length: 0
+--- !u!114 &-1193120755417481347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/UI.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/UI.bank
+  Name: UI
+  StudioPath: bank:/UI
+  lastModified: 638744834016617333
+  FileSizes:
+  - Name: Desktop
+    Value: 670080
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +300,7 @@ MonoBehaviour:
   - {fileID: 6155442199699966018}
   - {fileID: 4692167704546982273}
   - {fileID: -4573789887035054693}
+  - {fileID: -1193120755417481347}
   EditorEvents:
   - {fileID: -8973425009739457073}
   - {fileID: 4571160434584822680}
@@ -240,12 +316,15 @@ MonoBehaviour:
   - {fileID: 5105218782186271551}
   - {fileID: -3121445378955360581}
   - {fileID: -2439262468342809185}
+  - {fileID: 7702841872506264587}
+  - {fileID: -9161349686259906517}
+  - {fileID: -2064710236493618142}
   EditorParameters: []
   MasterBanks:
   - {fileID: 6155442199699966018}
   StringsBanks:
   - {fileID: 7828782676984614360}
-  cacheTime: 638744486177810986
+  cacheTime: 638744867346045639
   cacheVersion: 131622
 --- !u!114 &1225820080050802219
 MonoBehaviour:
@@ -324,7 +403,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 917
 --- !u!114 &3516990006403655708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,10 +473,10 @@ MonoBehaviour:
   Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638744486177810986
+  lastModified: 638744867346045639
   FileSizes:
   - Name: Desktop
-    Value: 97760
+    Value: 129984
   Exists: 1
 --- !u!114 &5105218782186271551
 MonoBehaviour:
@@ -425,7 +504,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 889
 --- !u!114 &6023005121931544440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,11 +548,39 @@ MonoBehaviour:
   Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638744471232220538
+  lastModified: 638744837857724851
   FileSizes:
   - Name: Desktop
-    Value: 1486
+    Value: 1632
   Exists: 1
+--- !u!114 &7702841872506264587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MenuUI/MenuMusic
+  m_EditorClassIdentifier: 
+  Path: event:/MenuUI/MenuMusic
+  Guid:
+    Data1: 1915315585
+    Data2: 1266347783
+    Data3: -1870545234
+    Data4: -2031054523
+  Banks:
+  - {fileID: -4573789887035054693}
+  - {fileID: -1193120755417481347}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 56888
 --- !u!114 &7828782676984614360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,10 +596,10 @@ MonoBehaviour:
   Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638744471232245634
+  lastModified: 638744837857739879
   FileSizes:
   - Name: Desktop
-    Value: 1652
+    Value: 1876
   Exists: 1
 --- !u!114 &8941216384794023426
 MonoBehaviour:
