@@ -2,6 +2,7 @@
 
 namespace Platformer {
     public abstract class EnemyBaseState : IState {
+        
         protected readonly Enemy enemy;
         protected readonly Animator animator;
         

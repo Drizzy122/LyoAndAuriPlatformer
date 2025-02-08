@@ -13,20 +13,17 @@ namespace Platformer
         [field: SerializeField] public EventReference playerHurt { get; private set; }
         [field: SerializeField] public EventReference playerDeath { get; private set; }
         
-        [field:Header("Enemy SFX")]
-        [field: SerializeField] public EventReference enemyFootsteps { get; private set; }
+        [field:Header("Ground Enemy SFX")]
+        
         [field: SerializeField] public EventReference enemyAttack { get; private set; }
         [field: SerializeField] public EventReference enemyHurt { get; private set; }
         [field: SerializeField] public EventReference enemyDeath { get; private set; }
         
-        
-        
-        
-        
-        
-        
-        
-        
+        [field:Header("Flying Enemy SFX")]
+        [field: SerializeField] public EventReference flyingEnemyWings { get; private set; }
+        [field: SerializeField] public EventReference flyingEnemyAttack { get; private set; }
+        [field: SerializeField] public EventReference flyingEnemyHurt { get; private set; }
+        [field: SerializeField] public EventReference flyingEnemyDeath { get; private set; }
         
         [field: Header("Music")] 
         [field: SerializeField] public EventReference music { get; private set; }

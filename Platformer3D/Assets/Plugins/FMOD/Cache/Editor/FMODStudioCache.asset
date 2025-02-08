@@ -136,6 +136,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1619
+--- !u!114 &-5075143074031230658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemy/FlyingAI/FlyingEnemyHurt
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemy/FlyingAI/FlyingEnemyHurt
+  Guid:
+    Data1: -1523671156
+    Data2: 1174197846
+    Data3: 176781246
+    Data4: 277588279
+  Banks:
+  - {fileID: 4692167704546982273}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 889
 --- !u!114 &-4573789887035054693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +290,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-1356104028582517364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemy/FlyingAI/FlyingEnemyAttack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemy/FlyingAI/FlyingEnemyAttack
+  Guid:
+    Data1: 2003343331
+    Data2: 1196514553
+    Data3: 1893235883
+    Data4: -1053725677
+  Banks:
+  - {fileID: 4692167704546982273}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 391
 --- !u!114 &-1193120755417481347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,19 +366,22 @@ MonoBehaviour:
   - {fileID: 1225820080050802219}
   - {fileID: 2481737627562806805}
   - {fileID: -8097971349750934256}
-  - {fileID: 3516990006403655708}
   - {fileID: 5105218782186271551}
   - {fileID: -3121445378955360581}
   - {fileID: -2439262468342809185}
   - {fileID: 7702841872506264587}
   - {fileID: -9161349686259906517}
   - {fileID: -2064710236493618142}
+  - {fileID: 2432084167047904523}
+  - {fileID: -5075143074031230658}
+  - {fileID: -1356104028582517364}
+  - {fileID: 4062084282892234351}
   EditorParameters: []
   MasterBanks:
   - {fileID: 6155442199699966018}
   StringsBanks:
   - {fileID: 7828782676984614360}
-  cacheTime: 638744867346045639
+  cacheTime: 638745748477499563
   cacheVersion: 131622
 --- !u!114 &1225820080050802219
 MonoBehaviour:
@@ -377,6 +434,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &2432084167047904523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemy/FlyingAI/FlyingEnemy
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemy/FlyingAI/FlyingEnemy
+  Guid:
+    Data1: 1762425133
+    Data2: 1073761384
+    Data3: -139311437
+    Data4: 705961775
+  Banks:
+  - {fileID: 4692167704546982273}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1185
 --- !u!114 &2481737627562806805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,7 +488,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 917
---- !u!114 &3516990006403655708
+--- !u!114 &4062084282892234351
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -414,14 +498,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Enemy/EnemyFootSteps
+  m_Name: event:/SFX/Enemy/FlyingAI/FlyingEnemyDeath
   m_EditorClassIdentifier: 
-  Path: event:/SFX/Enemy/EnemyFootSteps
+  Path: event:/SFX/Enemy/FlyingAI/FlyingEnemyDeath
   Guid:
-    Data1: 916411653
-    Data2: 1243730254
-    Data3: -1211464050
-    Data4: -1712246864
+    Data1: 372219380
+    Data2: 1283658168
+    Data3: -658285123
+    Data4: 1173456290
   Banks:
   - {fileID: 4692167704546982273}
   IsStream: 0
@@ -430,7 +514,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 914
 --- !u!114 &4571160434584822680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,10 +557,10 @@ MonoBehaviour:
   Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638744867346045639
+  lastModified: 638745748477499563
   FileSizes:
   - Name: Desktop
-    Value: 129984
+    Value: 138336
   Exists: 1
 --- !u!114 &5105218782186271551
 MonoBehaviour:
@@ -548,7 +632,7 @@ MonoBehaviour:
   Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638744837857724851
+  lastModified: 638745740562300905
   FileSizes:
   - Name: Desktop
     Value: 1632
@@ -596,10 +680,10 @@ MonoBehaviour:
   Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638744837857739879
+  lastModified: 638745740562326551
   FileSizes:
   - Name: Desktop
-    Value: 1876
+    Value: 2018
   Exists: 1
 --- !u!114 &8941216384794023426
 MonoBehaviour:
