@@ -7,6 +7,8 @@ namespace Platformer
         [SerializeField] private float startingHealth;
         public float currentHealth { get; private set; }
         private bool dead;
+        
+        public System.Action OnDeath; // Add a public event to notify death
 
         private void Awake()
         {
@@ -18,7 +20,7 @@ namespace Platformer
             currentHealth = Mathf.Clamp(currentHealth - damage, 0, startingHealth);
             if (currentHealth > 0)
             {
-                //noop
+                
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.enemyHurt, this.transform.position);
             }
             else
@@ -27,7 +29,7 @@ namespace Platformer
                 {
                     AudioManager.instance.PlayOneShot(FMODEvents.instance.enemyDeath, this.transform.position);
                     dead = true;
-                    Destroy(gameObject, 1f); // Destroy enemy object after 1 seconds
+                    OnDeath?.Invoke(); // Trigger death event
                 }
             }
         }

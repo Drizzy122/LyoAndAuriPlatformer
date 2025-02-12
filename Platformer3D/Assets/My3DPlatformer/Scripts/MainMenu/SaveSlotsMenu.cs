@@ -69,7 +69,7 @@ namespace Platformer
             // save the game anytime before loading a new scene
             DataPersistenceManager.instance.SaveGame();
             // load the scene 
-            SceneManager.LoadSceneAsync("TestingPlayGroundScene");
+            SceneManager.LoadSceneAsync("Game");
         }
 
         public void OnClearClicked(SaveSlot saveSlot)

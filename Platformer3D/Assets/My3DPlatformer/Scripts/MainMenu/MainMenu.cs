@@ -50,7 +50,7 @@ namespace Platformer
             DataPersistenceManager.instance.SaveGame();
             //load the next scene - which will in turn load the game because of
             //onSceneLoaded() in the DataPersistenceManager
-            SceneManager.LoadSceneAsync("TestingPlayGroundScene");
+            SceneManager.LoadSceneAsync("Game");
         }
 
         private void DisableMenuButton()

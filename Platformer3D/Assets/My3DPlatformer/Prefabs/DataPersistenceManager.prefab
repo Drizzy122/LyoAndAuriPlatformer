@@ -50,4 +50,4 @@ MonoBehaviour:
   TestSelectedProfileId: ' MyPlatformerGame'
   fileName: MyPlatformer.Json
   useEncryption: 0
-  autoSaveTimeSeconds: 20
+  autoSaveTimeSeconds: 30

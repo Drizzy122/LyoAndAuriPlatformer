@@ -4,11 +4,12 @@ using Utilities;
 
 namespace Platformer {
     [RequireComponent(typeof(PlayerDetector))]
+     [RequireComponent(typeof(EnemyHealth))]
+    
     public class FlyingEnemy : Entity
     {
         [SerializeField, Self] PlayerDetector playerDetector;
         [SerializeField, Child] Animator animator;
-        
         [SerializeField] float speed = 5f; // Flying speed
         [SerializeField] float stoppingDistance = 1f;
 
@@ -16,7 +17,7 @@ namespace Platformer {
         [SerializeField] float timeBetweenAttacks = 1f;
         [SerializeField] float damageAmount = 10f;
         
-
+        private EnemyHealth enemyHealth;
         StateMachine stateMachine;
         CountdownTimer attackTimer;
         
@@ -25,20 +26,30 @@ namespace Platformer {
         void Start()
         {
             float rotationSpeed = 3f; // Adjust rotation speed here
+           
 
+            
+            enemyHealth = GetComponent<EnemyHealth>();
             attackTimer = new CountdownTimer(timeBetweenAttacks);
             stateMachine = new StateMachine();
-
+            
+            
             var wanderState = new FlyingEnemyWanderState(this, animator, wanderRadius, speed, rotationSpeed);
             var chaseState = new FlyingEnemyChaseState(this, animator, playerDetector.Player, speed, stoppingDistance, rotationSpeed);
             var attackState = new FlyingEnemyAttackState(this, animator, playerDetector.Player, rotationSpeed);
-
+            var dieState = new FlyingEnemyDieState(this, animator); 
+            
+       
             At(wanderState, chaseState, new FuncPredicate(() => playerDetector.CanDetectPlayer()));
             At(chaseState, wanderState, new FuncPredicate(() => !playerDetector.CanDetectPlayer()));
             At(chaseState, attackState, new FuncPredicate(() => playerDetector.CanAttackPlayer()));
             At(attackState, chaseState, new FuncPredicate(() => !playerDetector.CanAttackPlayer()));
+            
+            Any(dieState, new FuncPredicate(() => enemyHealth.currentHealth <= 0));
 
             stateMachine.SetState(wanderState);
+            enemyHealth.OnDeath += () => stateMachine.SetState(dieState);
+
         }
         
         void At(IState from, IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
@@ -53,6 +64,8 @@ namespace Platformer {
         {
             stateMachine.FixedUpdate();
         }
+        
+   
 
         public void Attack()
         {

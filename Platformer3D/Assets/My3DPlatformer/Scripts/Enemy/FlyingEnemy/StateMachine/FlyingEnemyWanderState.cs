@@ -22,7 +22,7 @@ namespace Platformer
         
         public override void OnEnter() 
         {
-            Debug.Log("Wander");
+            //Debug.Log("Wander");
             animator.CrossFade(FlyHash, crossFadeDuration);
         }
 

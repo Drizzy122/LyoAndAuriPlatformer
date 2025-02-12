@@ -65,6 +65,13 @@ MonoBehaviour:
       Data3: -2144817246
       Data4: -94882460
     Path: event:/SFX/Player/PlayerSpin
+  <playerAttack>k__BackingField:
+    Guid:
+      Data1: 1012161633
+      Data2: 1094157052
+      Data3: 648493996
+      Data4: 1858420780
+    Path: event:/SFX/Player/PlayerAttack
   <playerHurt>k__BackingField:
     Guid:
       Data1: -1600822636
@@ -79,13 +86,6 @@ MonoBehaviour:
       Data3: 487985304
       Data4: -1281103311
     Path: event:/SFX/Player/PlayerDeath
-  <enemyFootsteps>k__BackingField:
-    Guid:
-      Data1: 916411653
-      Data2: 1243730254
-      Data3: -1211464050
-      Data4: -1712246864
-    Path: event:/SFX/Enemy/EnemyFootSteps
   <enemyAttack>k__BackingField:
     Guid:
       Data1: -375624245
@@ -107,6 +107,34 @@ MonoBehaviour:
       Data3: -945180273
       Data4: -1650846909
     Path: event:/SFX/Enemy/EnemyDeath
+  <flyingEnemyWings>k__BackingField:
+    Guid:
+      Data1: 1762425133
+      Data2: 1073761384
+      Data3: -139311437
+      Data4: 705961775
+    Path: event:/SFX/Enemy/FlyingAI/FlyingEnemy
+  <flyingEnemyAttack>k__BackingField:
+    Guid:
+      Data1: -375624245
+      Data2: 1261282822
+      Data3: 541623437
+      Data4: 1775225259
+    Path: event:/SFX/Enemy/EnemyAttack
+  <flyingEnemyHurt>k__BackingField:
+    Guid:
+      Data1: -1523671156
+      Data2: 1174197846
+      Data3: 176781246
+      Data4: 277588279
+    Path: event:/SFX/Enemy/FlyingAI/FlyingEnemyHurt
+  <flyingEnemyDeath>k__BackingField:
+    Guid:
+      Data1: 372219380
+      Data2: 1283658168
+      Data3: -658285123
+      Data4: 1173456290
+    Path: event:/SFX/Enemy/FlyingAI/FlyingEnemyDeath
   <music>k__BackingField:
     Guid:
       Data1: 197958543
@@ -137,11 +165,11 @@ MonoBehaviour:
     Path: event:/SFX/Collectables/CoinIdle
   <ui>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1545642054
+      Data2: 1106326596
+      Data3: -71604603
+      Data4: -483362582
+    Path: event:/MenuUI/ButtonClick
 --- !u!1 &5907722147931762815
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +195,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5907722147931762815}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -6.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -188,7 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterVolume: 1
-  musicVolume: 1
+  musicVolume: 0
   ambienceVolume: 1
   SFXVolume: 1
   UIVolume: 1
