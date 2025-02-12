@@ -15,6 +15,7 @@ namespace Platformer
         [SerializeField, Self] GroundChecker groundChecker;
         [SerializeField, Self] Animator animator;
         [SerializeField, Self] FootstepController footstepController;
+        [SerializeField, Self] PlayerHealth playerHealth;
 
         [SerializeField, Anywhere] CinemachineFreeLook freeLookVCam;
         [SerializeField, Anywhere] InputReader input;
@@ -49,6 +50,8 @@ namespace Platformer
         [Header("Attack Settings")] [SerializeField]
         float attackCooldown = 0.5f;
 
+   
+        //[SerializeField] float knockbackForce = 10f;
         [SerializeField] float attackDistance = 1f;
         [SerializeField] int attackDamage = 10;
 
@@ -64,7 +67,8 @@ namespace Platformer
 
         Vector3 movement;
 
-        [Header("Timers, dont touch")] private List<Timer> timers;
+        [Header("Timers, dont touch")] 
+        private List<Timer> timers;
         private CountdownTimer jumpTimer;
         private CountdownTimer jumpCooldownTimer;
         private CountdownTimer glideTimer;
@@ -139,7 +143,7 @@ namespace Platformer
             var glideState = new GlideState(this, animator);
             var dashState = new DashState(this, animator);
             var attackState = new AttackState(this, animator);
-
+            var deathState = new DeathState(this, animator);
 
             // Define transitions
             At(locomotionState, jumpState, new FuncPredicate(() => jumpTimer.IsRunning));
@@ -152,7 +156,9 @@ namespace Platformer
             At(locomotionState, attackState, new FuncPredicate(() => attackTimer.IsRunning));
             At(attackState, locomotionState, new FuncPredicate(() => !attackTimer.IsRunning));
             Any(locomotionState, new FuncPredicate(ReturnToLocomotionState));
-
+            Any(deathState, new FuncPredicate(() => playerHealth.currentHealth <= 0));
+            
+            playerHealth.OnDeath += () => stateMachine.SetState(deathState);
             // Set initial state
             stateMachine.SetState(locomotionState);
         }
@@ -227,10 +233,12 @@ namespace Platformer
 
             foreach (var enemy in hitEnemies)
             {
-                // Debug.Log(enemy.name);
+                //Debug.Log(enemy.name);
                 if (enemy.CompareTag("Enemy"))
                 {
                     enemy.GetComponent<EnemyHealth>().TakeDamage(attackDamage);
+                    // add the knockback
+                    
                 }
             }
         }

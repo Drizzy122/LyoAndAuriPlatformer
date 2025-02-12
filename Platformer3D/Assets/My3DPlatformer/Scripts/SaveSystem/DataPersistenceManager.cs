@@ -185,7 +185,8 @@ namespace Platformer
         {
             return gameData != null;
         }
-
+        
+        
         public Dictionary<string, GameData> GetAllProfilesGameData()
         {
             return dataHandler.LoadAllProfiles();

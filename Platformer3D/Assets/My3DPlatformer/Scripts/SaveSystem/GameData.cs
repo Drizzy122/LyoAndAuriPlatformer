@@ -11,7 +11,7 @@ namespace Platformer
         public int deathCount;
 
         public Vector3 playerPosition;
-        public Vector3 npcPosition;
+        
 
         public SerializableDictionary<string, bool> coinsCollected;
         public SerializableDictionary<string, bool> ecliptiumCollected;
@@ -24,7 +24,6 @@ namespace Platformer
         {
             this.deathCount = 0;
             playerPosition = Vector3.zero;
-            npcPosition = Vector3.zero;
             //for collectables
             coinsCollected = new SerializableDictionary<string, bool>();
             ecliptiumCollected = new SerializableDictionary<string, bool>();

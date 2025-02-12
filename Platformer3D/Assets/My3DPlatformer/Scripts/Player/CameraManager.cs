@@ -17,15 +17,15 @@ namespace Platformer {
         void OnEnable() {
             input.Look += OnLook;
             // Lock and hide the cursor when the component is enabled
-           // Cursor.lockState = CursorLockMode.Locked;
-           // Cursor.visible = false;
+           Cursor.lockState = CursorLockMode.Locked;
+           Cursor.visible = false;
         }
         
         void OnDisable() {
             input.Look -= OnLook;
             // Unlock and show the cursor when the component is disabled
-           // Cursor.lockState = CursorLockMode.None;
-           // Cursor.visible = true;
+           Cursor.lockState = CursorLockMode.None;
+           Cursor.visible = true;
         }
 
         void OnLook(Vector2 cameraMovement, bool isDeviceMouse) {

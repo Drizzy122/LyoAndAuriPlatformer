@@ -7,22 +7,22 @@ namespace Platformer
 {
     public class PlayerHealth : MonoBehaviour
     {
-        [Header("Health")] [SerializeField] private float startingHealth;
+        [Header("Health")]
+        [SerializeField] private float startingHealth;
         public float currentHealth { get; private set; }
         private bool dead;
+        public System.Action OnDeath; // Add a public event to notify death
+
 
         [Header("iFrames")] public bool IsInvulnerable { get; private set; }
 
         [SerializeField] private float iFramesDuration;
         [SerializeField] private int numberOfFlashes;
         public Renderer meshRenderer;
-
-
-        //private Animator animator;
+        
         private void Awake()
         {
             currentHealth = startingHealth;
-            //   animator = GetComponent<Animator>();
             meshRenderer = GetComponent<Renderer>();
         }
 
@@ -55,9 +55,11 @@ namespace Platformer
         {
             if (!dead)
             {
-                //animator.SetTrigger("isDead");
+               
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.playerDeath, this.transform.position);
+                
                 GetComponent<PlayerController>().enabled = false;
+                
                 GameObject cinemachineGameObject = GameObject.Find("FreeLook Camera"); // Adjust the GameObject name
                 if (cinemachineGameObject != null)
                 {
@@ -65,7 +67,10 @@ namespace Platformer
                 }
 
                 dead = true;
-                Invoke(nameof(RestartScene), 5f); // Restart scene after  seconds
+                
+                Invoke(nameof(RestartScene), 2f); // Restart scene after  seconds
+                OnDeath?.Invoke(); // Trigger death event
+                
                 // GameEventsManager.instance.PlayerDeath();
             }
         }
@@ -88,8 +93,7 @@ namespace Platformer
 
         private void RestartScene()
         {
-            SceneManager.LoadScene(
-                "TestingPlayGroundScene"); // Replace "EndScreen" with the name of your end screen scene
+            SceneManager.LoadScene("Game"); // Replace "EndScreen" with the name of your end screen scene
         }
     }
 }

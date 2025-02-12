@@ -7,6 +7,8 @@ TagManager:
   - FxTemporaire
   - Enemy
   - MovingPlatform
+  - Portal1
+  - Portal2
   layers:
   - Default
   - TransparentFX
