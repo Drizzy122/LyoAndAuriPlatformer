@@ -140,6 +140,9 @@ namespace Platformer
             // Declare states
             var locomotionState = new LocomotionState(this, animator);
             var jumpState = new JumpState(this, animator);
+            var doubleJumpState = new DoubleJumpState(this, animator); // Add DoubleJumpState
+
+
             var glideState = new GlideState(this, animator);
             var dashState = new DashState(this, animator);
             var attackState = new AttackState(this, animator);
@@ -151,7 +154,7 @@ namespace Platformer
 
             At(jumpState, glideState, new FuncPredicate(() => glideTimer.IsRunning));
             At(glideState, jumpState, new FuncPredicate(() => !glideTimer.IsRunning));
-
+            
             At(locomotionState, dashState, new FuncPredicate(() => dashTimer.IsRunning));
             At(locomotionState, attackState, new FuncPredicate(() => attackTimer.IsRunning));
             At(attackState, locomotionState, new FuncPredicate(() => !attackTimer.IsRunning));
