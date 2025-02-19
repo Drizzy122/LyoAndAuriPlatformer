@@ -16,6 +16,8 @@ namespace Platformer
         public event UnityAction<bool> Glide = delegate {  }; 
         public event UnityAction<bool> Dash = delegate { };
         
+        public event UnityAction Echo = delegate { };
+        
         public event UnityAction Attack = delegate { };
 
         PlayerInputActions inputActions;
@@ -104,6 +106,18 @@ namespace Platformer
                     break;
                 case InputActionPhase.Canceled:
                     Glide.Invoke(false);
+                    break;
+            }
+        }
+        public void OnEcho(InputAction.CallbackContext context)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Started:
+                    //Echo.Invoke(true);
+                    break;
+                case InputActionPhase.Canceled:
+                   // Echo.Invoke(false);
                     break;
             }
         }

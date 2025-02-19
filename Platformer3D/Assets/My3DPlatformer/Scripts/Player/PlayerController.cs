@@ -140,13 +140,15 @@ namespace Platformer
             // Declare states
             var locomotionState = new LocomotionState(this, animator);
             var jumpState = new JumpState(this, animator);
-            var doubleJumpState = new DoubleJumpState(this, animator); // Add DoubleJumpState
-
-
             var glideState = new GlideState(this, animator);
             var dashState = new DashState(this, animator);
             var attackState = new AttackState(this, animator);
             var deathState = new DeathState(this, animator);
+            
+            // Add new states 
+            var doubleJumpState = new DoubleJumpState(this, animator); // Add DoubleJumpState
+            var echoLocationState = new EcholocationState(this, animator); // Add EcholocationState
+            var wallClimbState = new WallClimbState(this, animator); // Add WallClimbState
 
             // Define transitions
             At(locomotionState, jumpState, new FuncPredicate(() => jumpTimer.IsRunning));
@@ -158,6 +160,13 @@ namespace Platformer
             At(locomotionState, dashState, new FuncPredicate(() => dashTimer.IsRunning));
             At(locomotionState, attackState, new FuncPredicate(() => attackTimer.IsRunning));
             At(attackState, locomotionState, new FuncPredicate(() => !attackTimer.IsRunning));
+
+            // add new transitions
+           
+            
+            
+            
+            
             Any(locomotionState, new FuncPredicate(ReturnToLocomotionState));
             Any(deathState, new FuncPredicate(() => playerHealth.currentHealth <= 0));
             
@@ -210,6 +219,7 @@ namespace Platformer
             input.Dash += OnDash;
             input.Attack += OnAttack;
             input.Glide += OnGlide;
+            input.Echo += OnEcholocation;
         }
 
         void OnDisable()
@@ -218,6 +228,12 @@ namespace Platformer
             input.Dash -= OnDash;
             input.Attack -= OnAttack;
             input.Glide -= OnGlide;
+            input.Echo -= OnEcholocation;
+        }
+
+        void OnEcholocation()
+        {
+            
         }
 
         void OnAttack()
@@ -228,24 +244,6 @@ namespace Platformer
                 attackTimer.Start();
             }
         }
-
-        public void Attack()
-        {
-            Vector3 attackPos = transform.position + transform.forward;
-            Collider[] hitEnemies = Physics.OverlapSphere(attackPos, attackDistance);
-
-            foreach (var enemy in hitEnemies)
-            {
-                //Debug.Log(enemy.name);
-                if (enemy.CompareTag("Enemy"))
-                {
-                    enemy.GetComponent<EnemyHealth>().TakeDamage(attackDamage);
-                    // add the knockback
-                    
-                }
-            }
-        }
-
         void OnJump(bool performed)
         {
             if (performed && groundChecker.IsGrounded)
@@ -311,6 +309,35 @@ namespace Platformer
             }
         }
 
+        public void Echolocation()
+        {
+            // Track enemies location 
+            // Play audio 
+            // VFX 
+        }
+
+        public void WallClimb()
+        {
+            // wall climb and jump off 
+        }
+        
+
+        public void Attack()
+        {
+            Vector3 attackPos = transform.position + transform.forward;
+            Collider[] hitEnemies = Physics.OverlapSphere(attackPos, attackDistance);
+
+            foreach (var enemy in hitEnemies)
+            {
+                //Debug.Log(enemy.name);
+                if (enemy.CompareTag("Enemy"))
+                {
+                    enemy.GetComponent<EnemyHealth>().TakeDamage(attackDamage);
+                    // add the knockback
+                    
+                }
+            }
+        }
         public void HandleJump()
         {
             // If not jumping and grounded, keep jump velocity at 0
