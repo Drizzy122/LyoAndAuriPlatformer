@@ -31,9 +31,11 @@ namespace Platformer
 
         [SerializeField] float jumpDuration = 0.5f;
         [SerializeField] float jumpCooldown = 0f;
-        [SerializeField] float gravityMultiplier = 3f;
-        [SerializeField] private int jumpCount = 2;
+        [SerializeField] private int jumpCount = 2; 
         private int remainingJumps = 2;
+        [SerializeField] float gravityMultiplier = 3f;
+        [SerializeField] private float maxFallSpeed = 10;
+ 
 
         [Header("Glide Settings")] [SerializeField]
         private float glideFallSpeed = 0.1f;
@@ -156,7 +158,14 @@ namespace Platformer
 
             At(jumpState, glideState, new FuncPredicate(() => glideTimer.IsRunning));
             At(glideState, jumpState, new FuncPredicate(() => !glideTimer.IsRunning));
+            At(doubleJumpState, glideState, new FuncPredicate(() => glideTimer.IsRunning));
             
+            At(jumpState, doubleJumpState, new FuncPredicate(() => jumpTimer.IsRunning && remainingJumps <= jumpCount - 2));
+            
+            At(jumpState, dashState, new FuncPredicate(() => dashTimer.IsRunning));
+            At(doubleJumpState, dashState, new FuncPredicate(() => dashTimer.IsRunning));
+            At(dashState, jumpState, new FuncPredicate(() => !dashTimer.IsRunning));
+
             At(locomotionState, dashState, new FuncPredicate(() => dashTimer.IsRunning));
             At(locomotionState, attackState, new FuncPredicate(() => attackTimer.IsRunning));
             At(attackState, locomotionState, new FuncPredicate(() => !attackTimer.IsRunning));
@@ -265,7 +274,7 @@ namespace Platformer
 
         void OnDash(bool performed)
         {
-            if (performed && !dashTimer.IsRunning && !dashCooldownTimer.IsRunning)
+            if (performed && !dashTimer.IsRunning && !dashCooldownTimer.IsRunning && !glideTimer.IsRunning)
             {
                 dashTimer.Start();
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.playerSpin, this.transform.position);
@@ -351,6 +360,7 @@ namespace Platformer
             {
                 // Gravity takes over
                 jumpVelocity += Physics.gravity.y * gravityMultiplier * Time.fixedDeltaTime;
+                jumpVelocity = Mathf.Clamp(jumpVelocity, -maxFallSpeed, maxFallSpeed);
             }
 
             // Apply velocity

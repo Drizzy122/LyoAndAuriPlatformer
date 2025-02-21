@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Platformer
 {
@@ -27,5 +28,6 @@ namespace Platformer
                 platform = null;
             }
         }
+        
     }
 }

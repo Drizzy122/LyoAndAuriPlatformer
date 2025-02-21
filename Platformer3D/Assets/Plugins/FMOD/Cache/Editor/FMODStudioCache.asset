@@ -19,8 +19,8 @@ MonoBehaviour:
     Data3: -71604603
     Data4: -483362582
   Banks:
-  - {fileID: -1193120755417481347}
   - {fileID: 4692167704546982273}
+  - {fileID: -1193120755417481347}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -178,7 +178,7 @@ MonoBehaviour:
   Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/Level 1.bank
   Name: Level 1
   StudioPath: bank:/Level 1
-  lastModified: 638744834016323537
+  lastModified: 638757444030803208
   FileSizes:
   - Name: Desktop
     Value: 6954624
@@ -332,7 +332,7 @@ MonoBehaviour:
   Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638744834016617333
+  lastModified: 638757444032667409
   FileSizes:
   - Name: Desktop
     Value: 670080
@@ -381,7 +381,7 @@ MonoBehaviour:
   - {fileID: 6155442199699966018}
   StringsBanks:
   - {fileID: 7828782676984614360}
-  cacheTime: 638745748477499563
+  cacheTime: 638757444032667409
   cacheVersion: 131622
 --- !u!114 &1225820080050802219
 MonoBehaviour:
@@ -557,7 +557,7 @@ MonoBehaviour:
   Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638745748477499563
+  lastModified: 638757444032393816
   FileSizes:
   - Name: Desktop
     Value: 138336
@@ -632,7 +632,7 @@ MonoBehaviour:
   Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638745740562300905
+  lastModified: 638757444030900135
   FileSizes:
   - Name: Desktop
     Value: 1632
@@ -680,7 +680,7 @@ MonoBehaviour:
   Path: Assets/My3DPlatformer/FmodAssesment/MyFMODAssesment/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638745740562326551
+  lastModified: 638757444030932275
   FileSizes:
   - Name: Desktop
     Value: 2018
