@@ -264,10 +264,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7912806941493053544}
+  - component: {fileID: 4297843635353311862}
   - component: {fileID: 6273999840894361239}
   - component: {fileID: 3458534470649745497}
   - component: {fileID: 4360047689593423972}
-  - component: {fileID: 4297843635353311862}
   - component: {fileID: 6756785061464696386}
   - component: {fileID: 8638561401132686003}
   - component: {fileID: 4518776480523648038}
@@ -297,6 +297,49 @@ Transform:
   - {fileID: 6002318073525118645}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &4297843635353311862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680253391461749731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2441b031e244e039ac50d513e48b0ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 3458534470649745497}
+  groundChecker: {fileID: 6756785061464696386}
+  animator: {fileID: 6273999840894361239}
+  footstepController: {fileID: 2124689276835977062}
+  playerHealth: {fileID: 4518776480523648038}
+  freeLookVCam: {fileID: 0}
+  input: {fileID: 11400000, guid: a8b544a30f0134243aa0d9f3bd828d5a, type: 2}
+  moveSpeed: 300
+  rotationSpeed: 1000
+  smoothTime: 0.2
+  jumpForce: 10
+  jumpDuration: 0.5
+  jumpCooldown: 0
+  jumpCount: 2
+  gravityMultiplier: 5
+  maxFallSpeed: 10
+  glideFallSpeed: 0
+  glideBoost: 1
+  glideTime: 10
+  dashForce: 3
+  dashDuration: 0.3
+  dashCooldown: 2
+  attackCooldown: 0.5
+  attackDistance: 1
+  attackDamage: 1
+  interactDistance: 5
+  wallCheckDist: 1.5
+  wallClimbLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  isTeleporting: 0
 --- !u!95 &6273999840894361239
 Animator:
   serializedVersion: 7
@@ -369,42 +412,6 @@ CapsuleCollider:
   m_Height: 2.5743852
   m_Direction: 1
   m_Center: {x: 0, y: 1.27, z: 0}
---- !u!114 &4297843635353311862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1680253391461749731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2441b031e244e039ac50d513e48b0ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 3458534470649745497}
-  groundChecker: {fileID: 6756785061464696386}
-  animator: {fileID: 6273999840894361239}
-  footstepController: {fileID: 2124689276835977062}
-  playerHealth: {fileID: 4518776480523648038}
-  freeLookVCam: {fileID: 0}
-  input: {fileID: 11400000, guid: a8b544a30f0134243aa0d9f3bd828d5a, type: 2}
-  moveSpeed: 300
-  rotationSpeed: 1000
-  smoothTime: 0.2
-  jumpForce: 10
-  jumpDuration: 0.5
-  jumpCooldown: 0
-  jumpCount: 2
-  gravityMultiplier: 5
-  maxFallSpeed: 10
-  glideFallSpeed: 0
-  glideTime: 10
-  dashForce: 3
-  dashDuration: 0.3
-  dashCooldown: 2
-  attackCooldown: 0.5
-  attackDistance: 1
-  attackDamage: 1
 --- !u!114 &6756785061464696386
 MonoBehaviour:
   m_ObjectHideFlags: 0

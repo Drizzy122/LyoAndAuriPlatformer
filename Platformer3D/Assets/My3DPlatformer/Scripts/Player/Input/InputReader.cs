@@ -15,7 +15,8 @@ namespace Platformer
         public event UnityAction<bool> Jump = delegate { };
         public event UnityAction<bool> Glide = delegate {  }; 
         public event UnityAction<bool> Dash = delegate { };
-        
+        public event UnityAction<bool> interact = delegate {  }; 
+
         public event UnityAction Echo = delegate { };
         
         public event UnityAction Attack = delegate { };
@@ -93,6 +94,19 @@ namespace Platformer
                     break;
                 case InputActionPhase.Canceled:
                     Jump.Invoke(false);
+                    break;
+            }
+        }
+
+        public void OnInteract(InputAction.CallbackContext context)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Started:
+                    interact.Invoke(true);
+                    break;
+                case InputActionPhase.Canceled:
+                    interact.Invoke(false);
                     break;
             }
         }

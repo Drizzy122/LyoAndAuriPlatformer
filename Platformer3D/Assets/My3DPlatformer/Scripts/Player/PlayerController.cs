@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cinemachine;
 using KBCore.Refs;
 using UnityEngine;
@@ -37,8 +38,10 @@ namespace Platformer
         [SerializeField] private float maxFallSpeed = 10;
  
 
-        [Header("Glide Settings")] [SerializeField]
-        private float glideFallSpeed = 0.1f;
+        [Header("Glide Settings")] 
+        [SerializeField] private float glideFallSpeed = 0.1f;
+        public float glideBoost = 1;
+        private float glideBoostDecayRate = 0.02f;
 
         [SerializeField] private float glideTime = 3;
 
@@ -57,6 +60,12 @@ namespace Platformer
         [SerializeField] float attackDistance = 1f;
         [SerializeField] int attackDamage = 10;
 
+        [Header("Interact")] 
+        [SerializeField] private float interactDistance = 5;
+
+        [Header("WallCLimb")] 
+        [SerializeField] private float wallCheckDist = 1f;
+        [SerializeField] private LayerMask wallClimbLayer;
 
         const float ZeroF = 0f;
 
@@ -78,7 +87,9 @@ namespace Platformer
         private CountdownTimer dashCooldownTimer;
         private CountdownTimer attackTimer;
 
-        StateMachine stateMachine;
+        public bool isTeleporting;
+
+        public StateMachine stateMachine;
 
         //Audio
         private EventInstance playerFootsteps;
@@ -146,6 +157,7 @@ namespace Platformer
             var dashState = new DashState(this, animator);
             var attackState = new AttackState(this, animator);
             var deathState = new DeathState(this, animator);
+            var teleportState = new TeleportState(this, animator);
             
             // Add new states 
             var doubleJumpState = new DoubleJumpState(this, animator); // Add DoubleJumpState
@@ -169,13 +181,11 @@ namespace Platformer
             At(locomotionState, dashState, new FuncPredicate(() => dashTimer.IsRunning));
             At(locomotionState, attackState, new FuncPredicate(() => attackTimer.IsRunning));
             At(attackState, locomotionState, new FuncPredicate(() => !attackTimer.IsRunning));
+            
+            At(teleportState, locomotionState, new FuncPredicate(() => !isTeleporting));
 
             // add new transitions
-           
-            
-            
-            
-            
+            Any(teleportState, new FuncPredicate(() => isTeleporting));
             Any(locomotionState, new FuncPredicate(ReturnToLocomotionState));
             Any(deathState, new FuncPredicate(() => playerHealth.currentHealth <= 0));
             
@@ -190,7 +200,8 @@ namespace Platformer
                    && !attackTimer.IsRunning
                    && !jumpTimer.IsRunning
                    && !dashTimer.IsRunning
-                   && !glideTimer.IsRunning;
+                   && !glideTimer.IsRunning
+                   && !isTeleporting;
         }
 
         void SetupTimers()
@@ -229,6 +240,7 @@ namespace Platformer
             input.Attack += OnAttack;
             input.Glide += OnGlide;
             input.Echo += OnEcholocation;
+            input.interact += OnInteract;
         }
 
         void OnDisable()
@@ -290,11 +302,11 @@ namespace Platformer
             if (performed)
             {
 
-                if (!glideTimer.IsRunning //&& jumpTimer.IsRunning
-                    && !groundChecker.IsGrounded)
+                if (!glideTimer.IsRunning && !groundChecker.IsGrounded)
                 {
                     //print("Glide Started");
                     glideTimer.Start();
+                    glideBoost = 0;
                     jumpTimer.Stop();
                 }
             }
@@ -302,6 +314,23 @@ namespace Platformer
             {
                 //print("Glide Stopped");
                 glideTimer.Stop();
+            }
+        }
+
+        void OnInteract(bool performed)
+        {
+            if(performed)
+            {
+                Debug.Log("Trying to interact");
+                
+                foreach (var interactable in FindObjectsByType<Interactable>(FindObjectsSortMode.InstanceID))
+                {
+                    if (Vector3.Distance(transform.position, interactable.transform.position) < interactDistance)
+                    {
+                        interactable.Interact();
+                        break;
+                    }
+                }
             }
         }
 
@@ -369,7 +398,16 @@ namespace Platformer
 
         public void HandleGlide()
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, -glideFallSpeed, rb.linearVelocity.z);
+            if (glideBoost > 1)
+            {
+                glideBoost -= glideBoostDecayRate;
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x * glideBoost, -glideFallSpeed, rb.linearVelocity.z * glideBoost);
+            }
+            else
+            {
+                glideBoost = 1;
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, -glideFallSpeed, rb.linearVelocity.z);
+            }
 
             if (groundChecker.IsGrounded) glideTimer.Stop();
         }
@@ -382,7 +420,7 @@ namespace Platformer
             if (adjustedDirection.magnitude > ZeroF)
             {
                 HandleRotation(adjustedDirection);
-                HandleHorizontalMovement(adjustedDirection);
+                HandleHorizontalMovement(adjustedDirection * glideBoost);
                 SmoothSpeed(adjustedDirection.magnitude);
 
             }
@@ -449,6 +487,34 @@ namespace Platformer
             {
                 playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
             }
+        }
+
+        bool WallClimbCheck()
+        {
+            if (Physics.SphereCastAll(transform.position + transform.forward * wallCheckDist + transform.up,
+                    1,
+                    transform.forward,
+                    0.1f,
+                    wallClimbLayer).Length > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (Application.isPlaying)
+            {
+                Gizmos.color = Color.grey;
+                if(WallClimbCheck()) Gizmos.color = Color.yellow;
+            
+                Gizmos.DrawSphere(transform.position + transform.forward * wallCheckDist + transform.up, 1);
+            }
+
         }
     }
 }
