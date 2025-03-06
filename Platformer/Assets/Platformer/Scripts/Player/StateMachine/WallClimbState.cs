@@ -12,11 +12,18 @@ namespace Platformer
         public override void OnEnter()
         {
             Debug.Log("Player is now entered the Climbing State");
-            animator.CrossFade(WallclimbHash, crossFadeDuration);
+            animator.CrossFade(SpinAttackHash, crossFadeDuration);
+            player.wallClimbPos = player.transform.position;
         }
-        public override void Update()
+        public override void FixedUpdate()
         {
-            
+            player.HandleWallClimb();
+        }
+
+        public override void OnExit()
+        {
+            player.wallClimbPos = Vector3.zero;
+            player.wallClimbimg = false;
         }
     }
 }

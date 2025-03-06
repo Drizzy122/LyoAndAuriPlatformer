@@ -62,10 +62,17 @@ namespace Platformer
         
         [Header("Interact")] 
         [SerializeField] private float interactDistance = 5;
-        
-        [Header("Wall Climb Settings")]
+
+        [Header("Wall Climb Settings")] 
+  
         [SerializeField] private float wallCheckDist = 1f;
         [SerializeField] private LayerMask wallClimbLayer;
+        
+        public bool wallClimbimg;
+        bool[] wallClimbChecks;
+        private Vector3 wallClimbNormal;
+        private Vector3 wallClimbTargetPos;
+        public Vector3 wallClimbPos;
 
         const float ZeroF = 0f;
 
@@ -131,6 +138,7 @@ namespace Platformer
         void FixedUpdate()
         {
             stateMachine.FixedUpdate();
+            WallClimbCheck();
         }
         void UpdateAnimator()
         {
@@ -198,6 +206,11 @@ namespace Platformer
             // Define transitions for glide
             At(jumpState, glideState, new FuncPredicate(() => glideTimer.IsRunning));
             At(glideState, jumpState, new FuncPredicate(() => !glideTimer.IsRunning));
+            
+            // Define transitions for wall climb
+            At(jumpState, wallClimbState, new FuncPredicate(() => wallClimbimg));
+            At(doubleJumpState, wallClimbState, new FuncPredicate(() => wallClimbimg));
+            At(wallClimbState, doubleJumpState, new FuncPredicate(() => !wallClimbimg));
             
             // Definne transition for teleportation
              At(teleportState, locomotionState, new FuncPredicate(() => !isTeleporting));
@@ -308,27 +321,107 @@ namespace Platformer
         
         void OnWallClimb(bool performed)
         {
-
+            if (performed)
+            {
+                if (wallClimbimg)
+                {
+                    wallClimbimg = false;
+                    if(remainingJumps > 0) {OnJump(true);}
+                }
+                else
+                {
+                    if (wallClimbChecks[5])
+                    {
+                        wallClimbimg = true;
+                    }
+                }
+            }
         }
 
-        void HandleWallClimb()
+        public void HandleWallClimb()
         {
+            //movement = new Vector3(input.Direction.x, 0f, input.Direction.y);
 
+            rb.velocity = Vector3.zero;
+            transform.position = wallClimbPos;
+
+            transform.LookAt(transform.position - wallClimbNormal);
+            transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+            
+            if (movement.magnitude > 0)
+            {
+                
+            }
         }
         
-        bool WallClimbCheck()
+        void WallClimbCheck()
         {
-            if (Physics.SphereCastAll(transform.position + transform.forward * wallCheckDist + transform.up,
-                    1,
-                    transform.forward,
-                    0.1f,
-                    wallClimbLayer).Length > 0)
+            wallClimbChecks = new bool[6];
+            for (int i = 0; i < wallClimbChecks.Length; i++)
             {
-                return true;
+                wallClimbChecks[i] = false;
+            }
+
+            wallClimbChecks[0] = (Physics.SphereCastAll(
+                transform.position + transform.forward * wallCheckDist + transform.up, 
+                0.5f,
+                transform.forward,
+                0.1f,
+                wallClimbLayer).Length > 0);
+
+            wallClimbChecks[1] = Physics.Raycast(transform.position + transform.up * 2, transform.forward, 1, wallClimbLayer);
+            wallClimbChecks[2] = Physics.Raycast(transform.position - transform.up * 1, transform.forward, 1, wallClimbLayer);
+            
+            wallClimbChecks[3] = Physics.Raycast(transform.position + transform.right * 1 + transform.up * 0.5f, transform.forward, 1, wallClimbLayer);
+            wallClimbChecks[4] = Physics.Raycast(transform.position - transform.right * 1 + transform.up * 0.5f, transform.forward, 1, wallClimbLayer);
+
+            if (wallClimbChecks[0])
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position + transform.up * 0.5f, transform.forward, out hit, 1, wallClimbLayer))
+                {
+                    wallClimbChecks[5] = true;
+                    wallClimbTargetPos = hit.point;
+                    wallClimbNormal = hit.normal;
+                }
+       
             }
             else
             {
-                return false;
+                wallClimbNormal = Vector3.zero;
+                wallClimbTargetPos = Vector3.zero;
+            }
+        }
+        
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, detectionRadius);
+            
+            if (Application.isPlaying)
+            {
+                Gizmos.color = Color.grey;
+                if(wallClimbChecks[0]) Gizmos.color = Color.green;
+                Gizmos.DrawSphere(transform.position + transform.forward * wallCheckDist + transform.up, 0.5f);
+                
+                Gizmos.color = Color.yellow;
+                if(wallClimbChecks[1]) Gizmos.color = Color.green;
+                Gizmos.DrawRay(transform.position + transform.up * 2, transform.forward * 1);
+                
+                Gizmos.color = Color.yellow;
+                if(wallClimbChecks[2]) Gizmos.color = Color.green;
+                Gizmos.DrawRay(transform.position - transform.up * 1, transform.forward * 1);
+                
+                Gizmos.color = Color.yellow;
+                if(wallClimbChecks[3]) Gizmos.color = Color.green;
+                Gizmos.DrawRay(transform.position + transform.right * 1 + transform.up * 0.5f, transform.forward);
+                
+                Gizmos.color = Color.yellow;
+                if(wallClimbChecks[4]) Gizmos.color = Color.green;
+                Gizmos.DrawRay(transform.position - transform.right * 1 + transform.up * 0.5f, transform.forward);
+                
+                Gizmos.color = Color.magenta;
+                if(wallClimbNormal != Vector3.zero) Gizmos.DrawRay(wallClimbTargetPos, wallClimbNormal);
             }
         }
         
@@ -456,6 +549,12 @@ namespace Platformer
 
         void OnJump(bool performed)
         {
+            if (wallClimbimg)
+            {
+                OnWallClimb(true);
+                return;
+            }
+            
             if (performed && groundChecker.IsGrounded)
             {
                 remainingJumps = jumpCount;
@@ -568,18 +667,7 @@ namespace Platformer
                 playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
             }
         }
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, detectionRadius);
-            if (Application.isPlaying)
-            {
-                Gizmos.color = Color.grey;
-                if(WallClimbCheck()) Gizmos.color = Color.green;
-    
-                Gizmos.DrawSphere(transform.position + transform.forward * wallCheckDist + transform.up, 1);
-            }
-        }
+
         void OnEnable()
         {
             input.Jump += OnJump;
