@@ -52,7 +52,6 @@ namespace Platformer
             randomDirection += startPoint;
             randomDirection.y = Mathf.Clamp(randomDirection.y, 1f, 10f); // Restrict height if needed
             return randomDirection;
-            
         }
     }
 }

@@ -311,7 +311,7 @@ namespace Platformer
             var targetRotation = Quaternion.LookRotation(adjustedDirection);
             transform.rotation =
                 Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            transform.LookAt(transform.position + adjustedDirection);
+           // transform.LookAt(transform.position + adjustedDirection);
         }
 
         void SmoothSpeed(float value)
@@ -540,10 +540,12 @@ namespace Platformer
             if (performed && !dashTimer.IsRunning && !dashCooldownTimer.IsRunning && !glideTimer.IsRunning)
             {
                 dashTimer.Start();
+                glideStamina.StartGlide();
             }
             else if (!performed && dashTimer.IsRunning)
             {
                 dashTimer.Stop();
+                glideStamina?.StopGlide();
             }
         }
 

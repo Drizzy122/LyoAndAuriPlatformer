@@ -45,7 +45,7 @@ namespace Platformer
         {
             collected = true;
             gameObject.SetActive(false);
-            GameEventsManager.instance.LuminCollected();
+            GameEventsManager.instance.miscEvents.LuminCollected();
         }
     }
 }

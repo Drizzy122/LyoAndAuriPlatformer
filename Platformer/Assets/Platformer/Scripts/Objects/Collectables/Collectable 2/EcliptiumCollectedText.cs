@@ -16,7 +16,7 @@ namespace Platformer
 
         private void Start()
         {
-            GameEventsManager.instance.onEcliptiumCollected += OnEcliptiumCollected;
+            GameEventsManager.instance.miscEvents.onEcliptiumCollected += OnEcliptiumCollected;
         }
         public void LoadData(GameData data)
         {
@@ -35,7 +35,7 @@ namespace Platformer
         
         private void OnDestroy()
         {
-            GameEventsManager.instance.onEcliptiumCollected -= OnEcliptiumCollected;
+            GameEventsManager.instance.miscEvents.onEcliptiumCollected -= OnEcliptiumCollected;
         }
 
         private void OnEcliptiumCollected()

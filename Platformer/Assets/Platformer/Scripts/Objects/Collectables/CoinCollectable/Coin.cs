@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using FMODUnity;
 
@@ -6,6 +5,7 @@ namespace Platformer
 { 
     public class Coin : MonoBehaviour, IDataPersistence
     {
+        [Header("Config")]
         [SerializeField] private string id;
         [SerializeField] private bool collected = false;
         [ContextMenu("Generate guid for id")]
@@ -14,12 +14,6 @@ namespace Platformer
         {
             GenerateGuid();
         }
-
-        private void Start()
-        {
-            
-        }
-
         private void GenerateGuid()
         {
             id = System.Guid.NewGuid().ToString();
@@ -40,21 +34,20 @@ namespace Platformer
             }
             data.coinsCollected.Add(id, collected);
         }
-
-        private void OnTriggerEnter()
-        {
-            if (!collected)
-            {
-                CollectCoin();
-            }
-            
-        }
         private void CollectCoin()
         {
             collected = true;
             gameObject.SetActive(false);
+            GameEventsManager.instance.miscEvents.CoinCollected();
             AudioManager.instance.PlayOneShot(FMODEvents.instance.coinCollected, this.transform.position);
-            GameEventsManager.instance.CoinCollected();
+            
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                CollectCoin();
+            }
         }
     }
 }

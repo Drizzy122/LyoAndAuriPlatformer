@@ -40,7 +40,7 @@ namespace Platformer
         {
             collected = true;
             gameObject.SetActive(false);
-            GameEventsManager.instance.EcliptiumCollected();
+            GameEventsManager.instance.miscEvents.EcliptiumCollected();
         }
     }
 }

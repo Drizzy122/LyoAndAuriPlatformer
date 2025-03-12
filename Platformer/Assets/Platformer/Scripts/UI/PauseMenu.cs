@@ -50,14 +50,14 @@ namespace Platformer
         {
             Time.timeScale = 0;
             pauseUI.SetActive(true);
-            //Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = CursorLockMode.None;
         }
         public void DeactivateMenu()
         {
             Time.timeScale = 1;
             pauseUI.SetActive(false);
             isPaused = false;
-            //Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }

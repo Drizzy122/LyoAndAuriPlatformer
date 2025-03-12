@@ -20,7 +20,7 @@ namespace Platformer
 
         private void Start()
         {
-            GameEventsManager.instance.onLuminCollected += OnLuminCollected;
+            GameEventsManager.instance.miscEvents.onLuminCollected += OnLuminCollected;
         }
         
         public void LoadData(GameData data)
@@ -41,7 +41,7 @@ namespace Platformer
         private void OnDestroy()
         {
             // unsubscribe from events
-            GameEventsManager.instance.onLuminCollected -= OnLuminCollected;
+            GameEventsManager.instance.miscEvents.onLuminCollected -= OnLuminCollected;
         }
         
         private void OnLuminCollected()

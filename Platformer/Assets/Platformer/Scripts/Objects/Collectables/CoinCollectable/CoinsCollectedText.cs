@@ -20,7 +20,7 @@ namespace Platformer
         private void Start()
         {
             // subscribe to events
-            GameEventsManager.instance.onCoinCollected += OnCoinCollected;
+            GameEventsManager.instance.miscEvents.OnCoinCollected += OnCoinCollected;
         }
         public void LoadData(GameData data)
         {
@@ -39,7 +39,7 @@ namespace Platformer
         private void OnDestroy()
         {
             // unsubscribe from events
-            GameEventsManager.instance.onCoinCollected -= OnCoinCollected;
+            GameEventsManager.instance.miscEvents.OnCoinCollected -= OnCoinCollected;
         }
         private void OnCoinCollected()
         {
