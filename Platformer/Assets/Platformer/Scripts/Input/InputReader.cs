@@ -19,8 +19,11 @@ namespace Platformer
         public event UnityAction<bool> Glide = delegate { };
         public event UnityAction Attack = delegate { };
         public event UnityAction SpinAttack = delegate { };
-        public event UnityAction<bool> interact = delegate {  }; 
+        public event UnityAction<bool> interact = delegate { };
         
+        public event UnityAction<bool> submit = delegate { }; 
+
+
         PlayerInputActions inputActions;
         public Vector3 Direction => inputActions.Player.Move.ReadValue<Vector2>();
 
@@ -37,7 +40,7 @@ namespace Platformer
         {
             inputActions.Enable();
         }
-        
+
         public void OnInteract(InputAction.CallbackContext context)
         {
             switch (context.phase)
@@ -50,7 +53,7 @@ namespace Platformer
                     break;
             }
         }
-        
+
         public void OnMove(InputAction.CallbackContext context)
         {
             Move.Invoke(context.ReadValue<Vector2>());
@@ -60,10 +63,12 @@ namespace Platformer
         {
             Look.Invoke(context.ReadValue<Vector2>(), IsDeviceMouse(context));
         }
+
         bool IsDeviceMouse(InputAction.CallbackContext context)
         {
             return context.control.device.name == "Mouse";
         }
+
         public void OnAttack(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Started)
@@ -71,7 +76,7 @@ namespace Platformer
                 Attack.Invoke();
             }
         }
-        
+
         public void OnSpinAttack(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Started)
@@ -98,7 +103,7 @@ namespace Platformer
             switch (context.phase)
             {
                 case InputActionPhase.Started:
-                Jump.Invoke(true);
+                    Jump.Invoke(true);
                     break;
                 case InputActionPhase.Canceled:
                     Jump.Invoke(false);
@@ -118,6 +123,7 @@ namespace Platformer
                     break;
             }
         }
+
         public void OnEcho(InputAction.CallbackContext context)
         {
             switch (context.phase)
@@ -143,7 +149,6 @@ namespace Platformer
                     break;
             }
         }
-
         public void OnGlide(InputAction.CallbackContext context)
         {
             switch (context.phase)
@@ -153,6 +158,19 @@ namespace Platformer
                     break;
                 case InputActionPhase.Canceled:
                     Glide.Invoke(false);
+                    break;
+            }
+        }
+
+        public void OnSubmit(InputAction.CallbackContext context)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Started:
+                    submit.Invoke(true);
+                    break;
+                case InputActionPhase.Canceled:
+                    submit.Invoke(false);
                     break;
             }
         }

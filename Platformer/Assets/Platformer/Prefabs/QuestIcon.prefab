@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3331578565921386952}
   - component: {fileID: 1010302535735383897}
   - component: {fileID: 7022338721163785419}
+  - component: {fileID: 8814454370108217836}
   m_Layer: 0
   m_Name: Question
   m_TagString: Untagged
@@ -84,6 +85,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8814454370108217836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328545937776053400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c034684f0fa22f478dac85b1a8c8c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 50
 --- !u!1 &1545285503149012657
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,6 +109,7 @@ GameObject:
   - component: {fileID: 3644211245345656992}
   - component: {fileID: 5116997197659585528}
   - component: {fileID: 4551804496086458247}
+  - component: {fileID: 4869270764815068568}
   m_Layer: 0
   m_Name: QuestionGray
   m_TagString: Untagged
@@ -168,6 +183,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4869270764815068568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545285503149012657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c034684f0fa22f478dac85b1a8c8c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 50
 --- !u!1 &2406446691854244470
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,6 +259,7 @@ GameObject:
   - component: {fileID: 956199586184807655}
   - component: {fileID: 8565622966038498436}
   - component: {fileID: 6887172712529792254}
+  - component: {fileID: 7479013236031205357}
   m_Layer: 0
   m_Name: Exclamation
   m_TagString: Untagged
@@ -304,6 +333,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7479013236031205357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165567733950913081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c034684f0fa22f478dac85b1a8c8c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 50
 --- !u!1 &7337712399103518291
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +357,7 @@ GameObject:
   - component: {fileID: 802468599326707853}
   - component: {fileID: 4433008110532261246}
   - component: {fileID: 3317664911949437340}
+  - component: {fileID: 4488722533794074178}
   m_Layer: 0
   m_Name: ExclamationGray
   m_TagString: Untagged
@@ -388,3 +431,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4488722533794074178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7337712399103518291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c034684f0fa22f478dac85b1a8c8c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 50

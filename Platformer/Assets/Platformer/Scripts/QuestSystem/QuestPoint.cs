@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Platformer
@@ -14,30 +11,27 @@ namespace Platformer
         [Header("Configuration")]
         [SerializeField] private bool startPoint = true;
         [SerializeField] private bool finishPoint = true;
-
+        
         private bool playerIsNear = false;
         private string questId;
         private QuestState currentQuestState;
         private QuestIcon questIcon;
-
         private void Awake()
         {
             questId = questInfoForPoint.id;
             questIcon = GetComponentInChildren<QuestIcon>();
         }
-
         private void OnEnable()
-        {
+        { 
             GameEventsManager.instance.questEvents.onQuestStateChange += QuestStateChange;
-            //TODO - Find a way to interact with the collider like press e to interact
         }
 
         private void OnDisable()
-        {
+        { 
             GameEventsManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
         }
-
-        private void SubmitPressed()
+        
+        public void IsSubmitPressed()
         {
             if (!playerIsNear)
             {
@@ -59,6 +53,7 @@ namespace Platformer
            {
                currentQuestState = quest.state;
                questIcon.SetState(currentQuestState, startPoint, finishPoint);
+               Debug.Log("Quest with id: " + questId + " update to state: " + currentQuestState );
            }
         }
         private void OnTriggerEnter(Collider other)
@@ -66,9 +61,9 @@ namespace Platformer
             if (other.CompareTag("Player"))
             {
                 playerIsNear = true;
+                IsSubmitPressed();
             }
         }
-
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("Player"))

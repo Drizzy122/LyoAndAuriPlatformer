@@ -6,6 +6,8 @@ using UnityEngine;
 using Utilities;
 using UnityEngine.Rendering.Universal;
 using FMOD.Studio;
+using Unity.VisualScripting;
+using Timer = Utilities.Timer;
 
 namespace Platformer
 {
@@ -124,6 +126,7 @@ namespace Platformer
         {
             playerFootsteps = AudioManager.instance.CreateEventInstance(FMODEvents.instance.playerFootsteps);
             input.EnablePlayerActions();
+            
         }
         void Update()
         {
@@ -670,6 +673,10 @@ namespace Platformer
             }
         }
 
+        
+
+        
+      
         void OnEnable()
         {
             input.Jump += OnJump;
@@ -680,6 +687,7 @@ namespace Platformer
             input.Attack += OnAttack;
             input.SpinAttack += OnSpinAttack;
             input.interact += OnInteract;
+            
         }
 
         void OnDisable()
@@ -691,6 +699,8 @@ namespace Platformer
             input.Glide -= OnGlide;
             input.Attack -= OnAttack;
             input.SpinAttack -= OnSpinAttack;
+            input.interact -= OnInteract;
+            
         }
     }
 }

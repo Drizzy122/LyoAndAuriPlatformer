@@ -112,12 +112,13 @@ namespace Platformer
             Quest quest = GetQuestById(id);
             quest.InstantiateCurrentQuestStep(this.transform);
             ChangedQuestState(quest.info.id, QuestState.IN_PROGRESS);
+            Debug.Log("Start Quest:" + id);
         }
         
         private void AdvanceQuest(string id)
         {
             Quest quest = GetQuestById(id);
-            
+            Debug.Log("Advance Quest:" + id);
             // move on to the next step
             quest.MoveToNextStep();
             
@@ -135,6 +136,7 @@ namespace Platformer
         
         private void FinishQuest(string id)
         {
+            Debug.Log("finish Quest:" + id);
             Quest quest = GetQuestById(id);
             ClaimRewards(quest);
             ChangedQuestState(quest.info.id, QuestState.FINISHED);

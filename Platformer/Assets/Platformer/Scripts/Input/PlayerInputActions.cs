@@ -125,6 +125,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Submit"",
+                    ""type"": ""Button"",
+                    ""id"": ""e9bb024e-ac34-440d-b50f-67dc1af372ca"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -493,23 +502,23 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9a13f6e1-4745-4d54-a001-602753eb78f2"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""f821d462-d4dc-401d-865c-543f978e25fb"",
                     ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9e54843-ecd9-40c1-bcd9-7448e6600a10"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1147,6 +1156,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Wallclimb = m_Player.FindAction("Wallclimb", throwIfNotFound: true);
         m_Player_Glide = m_Player.FindAction("Glide", throwIfNotFound: true);
         m_Player_interact = m_Player.FindAction("interact", throwIfNotFound: true);
+        m_Player_Submit = m_Player.FindAction("Submit", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1241,6 +1251,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Wallclimb;
     private readonly InputAction m_Player_Glide;
     private readonly InputAction m_Player_interact;
+    private readonly InputAction m_Player_Submit;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1256,6 +1267,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Wallclimb => m_Wrapper.m_Player_Wallclimb;
         public InputAction @Glide => m_Wrapper.m_Player_Glide;
         public InputAction @interact => m_Wrapper.m_Player_interact;
+        public InputAction @Submit => m_Wrapper.m_Player_Submit;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1298,6 +1310,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @interact.started += instance.OnInteract;
             @interact.performed += instance.OnInteract;
             @interact.canceled += instance.OnInteract;
+            @Submit.started += instance.OnSubmit;
+            @Submit.performed += instance.OnSubmit;
+            @Submit.canceled += instance.OnSubmit;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1335,6 +1350,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @interact.started -= instance.OnInteract;
             @interact.performed -= instance.OnInteract;
             @interact.canceled -= instance.OnInteract;
+            @Submit.started -= instance.OnSubmit;
+            @Submit.performed -= instance.OnSubmit;
+            @Submit.canceled -= instance.OnSubmit;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1574,6 +1592,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnWallclimb(InputAction.CallbackContext context);
         void OnGlide(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnSubmit(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
