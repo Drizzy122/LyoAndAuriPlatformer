@@ -14,8 +14,8 @@ public class PlayerLevelUI : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEventsManager.instance.playerEvents.onPlayerExperienceChange += PlayerExperienceChange;
-        GameEventsManager.instance.playerEvents.onPlayerLevelChange += PlayerLevelChange;
+       GameEventsManager.instance.playerEvents.onPlayerExperienceChange += PlayerExperienceChange; 
+       GameEventsManager.instance.playerEvents.onPlayerLevelChange += PlayerLevelChange;
         
     }
 

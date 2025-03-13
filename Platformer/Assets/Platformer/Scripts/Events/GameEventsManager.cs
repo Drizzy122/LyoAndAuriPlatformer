@@ -9,11 +9,8 @@ namespace Platformer
         
         public MiscEvents miscEvents;
         public PlayerEvents playerEvents;
-        
-        public event Action onEnemyDeath;
-
-        
-
+        public QuestEvents questEvents;
+      
         private void Awake()
         {
             if (instance != null)
@@ -23,19 +20,14 @@ namespace Platformer
 
             instance = this;
             
-            
             miscEvents = new MiscEvents();
             playerEvents = new PlayerEvents();
+            questEvents = new QuestEvents();
         }
         
         // lines of code below needs to be moved
         
-        
-        
-      
-
-       
-        
+        public event Action onEnemyDeath;
         public void EnemyDeath()
         {
             if (onEnemyDeath != null)

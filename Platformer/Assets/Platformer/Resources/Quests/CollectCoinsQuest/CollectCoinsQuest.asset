@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44787a8ef57d3544a94507398c0c147d, type: 3}
   m_Name: CollectCoinsQuest
   m_EditorClassIdentifier: 
-  <id>k__BackingField: CollectCoinQuest
+  <id>k__BackingField: CollectCoinsQuest
   displayName: Collect the coins!
   levelRequirement: 1
   questPrerequisites: []

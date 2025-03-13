@@ -5,14 +5,14 @@ namespace Platformer
     public class PlayerEvents
     {
         public event Action<int> onExperienceGained;
-        public void ExperienceGained(int experience) 
+        public void ExperienceGained(int experience)
         {
-            if (onExperienceGained != null) 
+            if (onExperienceGained != null)
             {
                 onExperienceGained(experience);
             }
         }
-
+        
         public event Action<int> onPlayerLevelChange;
         public void PlayerLevelChange(int level) 
         {
@@ -30,5 +30,6 @@ namespace Platformer
                 onPlayerExperienceChange(experience);
             }
         }
+        
     }
 }
