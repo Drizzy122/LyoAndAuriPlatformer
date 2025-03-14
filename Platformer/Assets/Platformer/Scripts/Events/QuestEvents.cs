@@ -5,7 +5,7 @@ namespace Platformer
     public class QuestEvents
     {
         public event Action<string> onStartQuest;
-        
+
         public void StartQuest(string id)
         {
             if (onStartQuest != null)
@@ -23,9 +23,9 @@ namespace Platformer
                 onAdvanceQuest(id);
             }
         }
-
-        public event Action<string> onFinishQuest;
         
+        public event Action<string> onFinishQuest;
+
         public void FinishQuest(string id)
         {
             if (onFinishQuest != null)
@@ -33,9 +33,9 @@ namespace Platformer
                 onFinishQuest(id);
             }
         }
-        
+
         public event Action<Quest> onQuestStateChange;
-        
+
         public void QuestStateChange(Quest quest)
         {
             if (onQuestStateChange != null)
@@ -45,7 +45,6 @@ namespace Platformer
         }
         
         public event Action<string, int, QuestStepState> onQuestStepStateChange;
-        
         public void QuestStepStateChange(string id, int stepIndex, QuestStepState questStepState)
         {
             if (onQuestStepStateChange != null)

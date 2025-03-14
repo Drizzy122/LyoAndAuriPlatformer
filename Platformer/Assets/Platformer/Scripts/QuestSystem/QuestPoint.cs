@@ -2,13 +2,12 @@ using UnityEngine;
 
 namespace Platformer
 {
-    [RequireComponent(typeof(SphereCollider))]
     public class QuestPoint : MonoBehaviour
     {
-        [Header( "Quest" )]
+        [Header("Quest")]
         [SerializeField] private QuestInfoSO questInfoForPoint;
         
-        [Header("Configuration")]
+        [Header("Config")]
         [SerializeField] private bool startPoint = true;
         [SerializeField] private bool finishPoint = true;
         
@@ -16,57 +15,60 @@ namespace Platformer
         private string questId;
         private QuestState currentQuestState;
         private QuestIcon questIcon;
+
         private void Awake()
         {
             questId = questInfoForPoint.id;
             questIcon = GetComponentInChildren<QuestIcon>();
         }
+
         private void OnEnable()
-        { 
+        {
             GameEventsManager.instance.questEvents.onQuestStateChange += QuestStateChange;
+            GameEventsManager.instance.inputEvents.onSubmitPressed += SubmitPressed;
         }
 
         private void OnDisable()
-        { 
-            GameEventsManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
-        }
-        
-        public void IsSubmitPressed()
         {
-            if (!playerIsNear)
+            GameEventsManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
+            GameEventsManager.instance.inputEvents.onSubmitPressed -= SubmitPressed;
+        }
+
+        private void SubmitPressed(InputEventContext inputEventContext)
+        {
+            if (!playerIsNear || !inputEventContext.Equals(InputEventContext.DEFAULT))
             {
                 return;
             }
-            if(currentQuestState.Equals(QuestState.CAN_START) && startPoint)
+            if (currentQuestState.Equals(QuestState.CAN_START) && startPoint)
             {
                 GameEventsManager.instance.questEvents.StartQuest(questId);
             }
-            else if(currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint)
+            else if (currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint)
             {
                 GameEventsManager.instance.questEvents.FinishQuest(questId);
             }
         }
+
         private void QuestStateChange(Quest quest)
         {
-           // only update the quest state if this point has the corresponding quest
-           if (quest.info.id.Equals(questId))
-           {
-               currentQuestState = quest.state;
-               questIcon.SetState(currentQuestState, startPoint, finishPoint);
-               Debug.Log("Quest with id: " + questId + " update to state: " + currentQuestState );
-           }
-        }
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Player"))
+            if (quest.info.id.Equals(questId))
             {
-                playerIsNear = true;
-                IsSubmitPressed();
+                currentQuestState = quest.state;
+                questIcon.SetState(currentQuestState, startPoint, finishPoint);
             }
         }
-        private void OnTriggerExit(Collider other)
+        private void OnTriggerEnter(Collider otherCollider)
         {
-            if (other.CompareTag("Player"))
+            if (otherCollider.CompareTag("Player"))
+            {
+                playerIsNear = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider otherCollider)
+        {
+            if (otherCollider.CompareTag("Player"))
             {
                 playerIsNear = false;
             }

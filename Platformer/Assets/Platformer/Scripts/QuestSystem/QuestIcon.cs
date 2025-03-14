@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 namespace Platformer
@@ -21,7 +20,7 @@ namespace Platformer
             // set the appropriate one to active based on the new state
             switch (newState)
             {
-                case QuestState.REQUIREMENT_NOT_MET:
+                case QuestState.REQUIREMENTS_NOT_MET:
                     if (startPoint)
                     {
                         requirementsNotMetToStartIcon.SetActive(true);

@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace Platformer
-{ 
+{
     public class CollectCoinsQuestStep : QuestStep
     {
         private int coinsCollected = 0;
@@ -18,7 +14,7 @@ namespace Platformer
         {
             GameEventsManager.instance.miscEvents.OnCoinCollected -= CoinCollected;
         }
-
+        
         private void CoinCollected()
         {
             if (coinsCollected < coinsToComplete)
@@ -32,7 +28,7 @@ namespace Platformer
                 FinishQuestStep();
             }
         }
-
+        
         private void UpdateState()
         {
             string state = coinsCollected.ToString();

@@ -1,56 +1,58 @@
-using System.Collections;
 using UnityEngine;
 
 namespace Platformer
-{
+{ 
     public class Quest 
     {
         // static info
+        
         public QuestInfoSO info;
-
+        
         // state info
         public QuestState state;
 
         private int currentQuestStepIndex;
         
         private QuestStepState[] questStepStates;
+
         public Quest(QuestInfoSO questInfo)
         {
             this.info = questInfo;
-            this.state = QuestState.REQUIREMENT_NOT_MET;
+            this.state = QuestState.REQUIREMENTS_NOT_MET;
             this.currentQuestStepIndex = 0;
-            this.questStepStates = new QuestStepState[info.questStepPrefab.Length];
+            this.questStepStates = new QuestStepState[info.questStepPrefabs.Length];
             for (int i = 0; i < questStepStates.Length; i++)
             {
                 questStepStates[i] = new QuestStepState();
             }
         }
-
+        
         public Quest(QuestInfoSO questInfo, QuestState questState, int currentQuestStepIndex, QuestStepState[] questStepStates)
         {
             this.info = questInfo;
             this.state = questState;
             this.currentQuestStepIndex = currentQuestStepIndex;
             this.questStepStates = questStepStates;
-            
-            // if the quest step state and prefabs are different leghts,
-            // something has changed during development and the save data is out of sync.
-            if (this.questStepStates.Length != this.info.questStepPrefab.Length)
+
+            // if the quest step states and prefabs are different lengths,
+            // something has changed during development and the saved data is out of sync.
+            if (this.questStepStates.Length != this.info.questStepPrefabs.Length)
             {
-                Debug.LogError("Quest step prefabs and quest step state are"
-                               + "of different leghts. this indicates something changed "
-                               + "with the questInfo and the save data is now out of sync."
-                               + "Reset your data- as this might cause issues. QuestId: " + this.info.id);
+                Debug.LogWarning("Quest Step Prefabs and Quest Step States are "
+                                 + "of different lengths. This indicates something changed "
+                                 + "with the QuestInfo and the saved data is now out of sync. "
+                                 + "Reset your data - as this might cause issues. QuestId: " + this.info.id);
             }
         }
+        
         public void MoveToNextStep()
         {
             currentQuestStepIndex++;
         }
 
-        public bool CurrentStepExist()
+        public bool CurrentStepExists()
         {
-            return (currentQuestStepIndex < info.questStepPrefab.Length);
+            return (currentQuestStepIndex < info.questStepPrefabs.Length);
         }
 
         public void InstantiateCurrentQuestStep(Transform parentTransform)
@@ -58,22 +60,23 @@ namespace Platformer
             GameObject questStepPrefab = GetCurrentQuestStepPrefab();
             if (questStepPrefab != null)
             {
-                QuestStep questStep = Object.Instantiate<GameObject>(questStepPrefab,parentTransform).GetComponent<QuestStep>();
-                questStep.InitializeQuestStep(info.id , currentQuestStepIndex, questStepStates[currentQuestStepIndex].state);
+                QuestStep questStep = Object.Instantiate<GameObject>(questStepPrefab, parentTransform)
+                    .GetComponent<QuestStep>();
+                questStep.InitializeQuestStep(info.id, currentQuestStepIndex, questStepStates[currentQuestStepIndex].state);
             }
         }
-        
+
         private GameObject GetCurrentQuestStepPrefab()
         {
             GameObject questStepPrefab = null;
-            if (CurrentStepExist())
+            if (CurrentStepExists())
             {
-                questStepPrefab = info.questStepPrefab[currentQuestStepIndex];
+                questStepPrefab = info.questStepPrefabs[currentQuestStepIndex];
             }
             else
             {
-                Debug.LogWarning("Tried to get quest step prefab, but stepIndex was out of range indicating that "
-                    + "there's no current step: QuestId=" + info.id + ", stepIndex=" + currentQuestStepIndex);
+                Debug.LogWarning("Tried to get quest step prefab, but stepIndex was out of range indicating that"
+                + " there's no current step: QuestId= " + info.id +", stepIndex= " + currentQuestStepIndex);
             }
             return questStepPrefab;
         }
@@ -84,16 +87,16 @@ namespace Platformer
             {
                 questStepStates[stepIndex].state = questStepState.state;
             }
-            else
+            else 
             {
-                Debug.LogWarning("Tried to access quest step data, but stepIndex was out of range:" 
-                                 + "Quest id = "+ info.id + ", step Index = " + stepIndex);
+                Debug.LogWarning("Tried to access quest step data, but stepIndex was out of range: "
+                                 + "Quest Id = " + info.id + ", Step Index = " + stepIndex);
             }
         }
-
         public QuestData GetQuestData()
         {
             return new QuestData(state, currentQuestStepIndex, questStepStates);
         }
     }
+    
 }

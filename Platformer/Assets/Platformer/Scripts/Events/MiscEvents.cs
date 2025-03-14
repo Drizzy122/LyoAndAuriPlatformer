@@ -30,5 +30,14 @@ namespace Platformer
                 onLuminCollected();
             }
         }
+        
+        public event Action onXPCollected;
+        public void XPCollected() 
+        {
+            if (onXPCollected != null) 
+            {
+                onXPCollected();
+            }
+        }
     }
 }

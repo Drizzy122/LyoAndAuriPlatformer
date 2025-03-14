@@ -164,15 +164,7 @@ namespace Platformer
 
         public void OnSubmit(InputAction.CallbackContext context)
         {
-            switch (context.phase)
-            {
-                case InputActionPhase.Started:
-                    submit.Invoke(true);
-                    break;
-                case InputActionPhase.Canceled:
-                    submit.Invoke(false);
-                    break;
-            }
+            // do nothing
         }
     }
 }

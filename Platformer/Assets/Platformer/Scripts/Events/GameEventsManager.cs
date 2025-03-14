@@ -11,6 +11,7 @@ namespace Platformer
         public PlayerEvents playerEvents;
         public QuestEvents questEvents;
         public InputEvents inputEvents;
+        
       
         private void Awake()
         {
@@ -25,7 +26,6 @@ namespace Platformer
             playerEvents = new PlayerEvents();
             questEvents = new QuestEvents();
             inputEvents = new InputEvents();
-        
         }
         
         // lines of code below needs to be moved

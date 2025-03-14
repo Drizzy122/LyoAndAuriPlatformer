@@ -2,27 +2,26 @@ using UnityEngine;
 
 namespace Platformer
 {
-    [CreateAssetMenu(fileName = "QuestInfoSO", menuName = "Platformer/QuestInfoSO")]
+    [CreateAssetMenu(fileName = "QuestInfoSO", menuName = "ScriptableObjects/QuestInfoSO", order = 1)]
     public class QuestInfoSO : ScriptableObject
     {
         [field: SerializeField] public string id { get; private set; }
-        
-        [Header("General")]
+
+        [Header("General")] 
         public string displayName;
-        
-        [Header("Requirements")]
+
+        [Header("Requirements")] 
         public int levelRequirement;
         public QuestInfoSO[] questPrerequisites;
-        
-        [Header("Steps")]
-        public GameObject[] questStepPrefab;
-        
-        [Header("Rewards")]
+
+        [Header("Steps")] 
+        public GameObject[] questStepPrefabs;
+
+        [Header("Rewards")] 
         public int goldReward;
         public int experienceReward;
-        public int itemRewards;
-        
-        // ensure the id is always the name of the scriptable pbject assset
+
+        // ensure the id is always the name of the Scriptable Object asset
         private void OnValidate()
         {
             #if UNITY_EDITOR
@@ -30,6 +29,5 @@ namespace Platformer
             UnityEditor.EditorUtility.SetDirty(this);
             #endif
         }
-        
     }
 }
