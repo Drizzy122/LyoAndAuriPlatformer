@@ -5,8 +5,6 @@ namespace Platformer
     public class MiscEvents
     {
         public event Action OnCoinCollected;
-        public event Action onEcliptiumCollected;
-        public event Action onLuminCollected;
         public void CoinCollected()
         {
             if (OnCoinCollected != null)
@@ -15,6 +13,7 @@ namespace Platformer
             }
         }
         
+        public event Action onEcliptiumCollected;
         public void EcliptiumCollected()
         {
             if (onEcliptiumCollected != null)
@@ -22,7 +21,7 @@ namespace Platformer
                 onEcliptiumCollected();
             }
         }
-
+        public event Action onLuminCollected;
         public void LuminCollected()
         {
             if (onLuminCollected != null)
@@ -30,7 +29,6 @@ namespace Platformer
                 onLuminCollected();
             }
         }
-        
         public event Action onXPCollected;
         public void XPCollected() 
         {

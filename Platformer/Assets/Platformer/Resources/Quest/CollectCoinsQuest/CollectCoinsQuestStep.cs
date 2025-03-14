@@ -5,9 +5,14 @@ namespace Platformer
         private int coinsCollected = 0;
         private int coinsToComplete = 5;
 
+        private void Start()
+        {
+            UpdateState();
+        }
         private void OnEnable()
         {
             GameEventsManager.instance.miscEvents.OnCoinCollected += CoinCollected;
+          
         }
 
         private void OnDisable()
@@ -32,7 +37,8 @@ namespace Platformer
         private void UpdateState()
         {
             string state = coinsCollected.ToString();
-            ChangeState(state);
+            string status = "Collected" + coinsCollected + " / " + coinsToComplete + "coins.";
+            ChangeState(state, status);
         }
         
         protected override void SetQuestStepState(string state)

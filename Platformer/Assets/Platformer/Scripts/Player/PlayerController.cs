@@ -11,7 +11,7 @@ using Timer = Utilities.Timer;
 
 namespace Platformer
 {
-    public class PlayerController : ValidatedMonoBehaviour, IDataPersistence
+    public class PlayerController : ValidatedMonoBehaviour
     {
         [Header("References")] 
         [SerializeField, Self] Rigidbody rb;
@@ -27,7 +27,7 @@ namespace Platformer
         [SerializeField] float moveSpeed = 6f;
         [SerializeField] float rotationSpeed = 15f;
         [SerializeField] float smoothTime = 0.2f;
-
+        
         [Header("Jump Settings")] 
         [SerializeField] float jumpForce = 10f;
         [SerializeField] float jumpDuration = 0.5f;
@@ -148,15 +148,7 @@ namespace Platformer
             animator.SetFloat(Speed, currentSpeed);
         }
 
-        public void LoadData(GameData data)
-        {
-            this.transform.position = data.playerPosition;
-        }
-
-        public void SaveData(GameData data)
-        {
-            data.playerPosition = this.transform.position;
-        }
+       
 
         private void SetupStateMachine()
         {

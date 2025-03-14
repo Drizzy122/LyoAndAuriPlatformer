@@ -11,6 +11,7 @@ namespace Platformer
         public System.Action OnDeath; // Add a public event to notify death
 
         [SerializeField] private GameObject healthPrefab;
+        [SerializeField] private GameObject XPOrbPrefab;
         [SerializeField] private int dropCount = 5; // Number of prefabs to spawn
         [SerializeField] private float spawnRadius = 1f; // 
 
@@ -41,7 +42,7 @@ namespace Platformer
         {
             // Trigger death event
             OnDeath?.Invoke(); 
-            GameEventsManager.instance.EnemyDeath();
+            GameEventsManager.instance.enemyEvents.EnemyDeath();
             // Drop the prefab
             // Spawn multiple prefabs
             if (healthPrefab != null && dropCount > 0)
@@ -55,11 +56,10 @@ namespace Platformer
 
                     // Instantiate the prefab at the random position
                     Instantiate(healthPrefab, spawnPosition, Quaternion.identity);
+                    Instantiate(XPOrbPrefab, spawnPosition, Quaternion.identity);
                 }
             }
 
         }
-
-        
     }
 }

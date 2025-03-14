@@ -27,7 +27,7 @@
                     "name": "QuestLogToggle",
                     "type": "Button",
                     "id": "401826fc-ba80-46d5-a856-aa9f53a0f853",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -169,7 +169,7 @@
                 {
                     "name": "",
                     "id": "89ff7116-85b8-4dd8-85f3-6acce7256002",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

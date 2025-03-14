@@ -13,5 +13,13 @@ namespace Platformer
                 GameEventsManager.instance.inputEvents.SubmitPressed();
             }
         }
+
+        public void QuestLogTogglePressed(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                GameEventsManager.instance.inputEvents.QuestLogTogglePressed();
+            }
+        }
     }
 }

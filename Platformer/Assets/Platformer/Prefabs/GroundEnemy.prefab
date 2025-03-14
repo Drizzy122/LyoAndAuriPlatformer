@@ -1602,7 +1602,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.005
-  m_Speed: 2
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1626,9 +1626,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ef1d4de3a9e7141882f9e7af0fe002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionAngle: 60
+  detectionAngle: 140.7
   detectionRadius: 10
-  innerDetectionRadius: 5
+  innerDetectionRadius: 6.25
   detectionCooldown: 1
   attackRange: 2
 --- !u!114 &2139980130219434840
@@ -1645,6 +1645,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 2
   healthPrefab: {fileID: 2405522073640296435, guid: 6347b6d280d5f2d44974a084aaa8bb37,
+    type: 3}
+  XPOrbPrefab: {fileID: 9185204307891060596, guid: 17c1bca52026a0a4fad5a79234e3cf35,
     type: 3}
   dropCount: 5
   spawnRadius: 1
@@ -1665,7 +1667,7 @@ MonoBehaviour:
   animator: {fileID: 8795461653603286821}
   wanderRadius: 10
   timeBetweenAttacks: 5
-  damageAmount: 1
+  damageAmount: 10
 --- !u!1 &6487057777491836793
 GameObject:
   m_ObjectHideFlags: 0

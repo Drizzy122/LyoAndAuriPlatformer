@@ -28,14 +28,14 @@ namespace Platformer
         {
             // subscribe to events
             //GameEventsManager.instance.onPlayerDeath += OnPlayerDeath;
-            GameEventsManager.instance.onEnemyDeath += OnEnemyDeath;
+            GameEventsManager.instance.enemyEvents.onEnemyDeath += OnEnemyDeath;
         }
 
         private void OnDestroy()
         {
             // unsubscribe from events
             ///GameEventsManager.instance.onPlayerDeath -= OnPlayerDeath;
-            GameEventsManager.instance.onEnemyDeath -= OnEnemyDeath;
+            GameEventsManager.instance.enemyEvents.onEnemyDeath -= OnEnemyDeath;
         }
 
         private void OnPlayerDeath()

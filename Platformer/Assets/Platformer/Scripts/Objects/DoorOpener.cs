@@ -21,13 +21,13 @@ namespace Platformer
             doorStartPosition = door.transform.position;
 
             // Subscribe to the onEnemyDeath event
-            GameEventsManager.instance.onEnemyDeath += OnEnemyDeath;
+            GameEventsManager.instance.enemyEvents.onEnemyDeath += OnEnemyDeath;
         }
 
         private void OnDestroy()
         {
             // Unsubscribe from the onEnemyDeath event when the object is destroyed
-            GameEventsManager.instance.onEnemyDeath -= OnEnemyDeath;
+            GameEventsManager.instance.enemyEvents.onEnemyDeath -= OnEnemyDeath;
         }
 
         private void Update()
