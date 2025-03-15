@@ -3,8 +3,8 @@ EXTERNAL StartQuest(questId)
 EXTERNAL AdvanceQuest(questId)
 EXTERNAL FinishQuest(questId)
 
-// quest ids (questId + "State for variable name)
-VAR CollectCoinsQuestId = "REQUIREMENTS_NOT_MET"
+// quest ids (questId + "Id for variable name)
+VAR CollectCoinsQuestId = "CollectCoinsQuest"
 
 // quest states (questId + "State" for variable name
 VAR CollectCoinsQuestState = "REQUIREMENTS_NOT_MET"

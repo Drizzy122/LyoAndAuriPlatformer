@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,7 +7,8 @@ namespace Platformer
 {
     public class DialogueChoiceButton : MonoBehaviour, ISelectHandler
     {
-        [Header("Component")] [SerializeField] private Button button;
+        [Header("Component")]
+        [SerializeField] private Button button;
         [SerializeField] private TextMeshProUGUI choiceText;
 
         private int choiceIndex = -1;

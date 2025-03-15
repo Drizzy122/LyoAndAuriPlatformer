@@ -5,7 +5,8 @@ namespace Platformer
 {
    public class DialogueManager : MonoBehaviour
    {
-      [Header("Ink Story")] [SerializeField] private TextAsset inkjson;
+      [Header("Ink Story")] 
+      [SerializeField] private TextAsset inkjson;
 
       private Story story;
 
@@ -75,7 +76,6 @@ namespace Platformer
          {
             return;
          }
-
          ContinueOrExitStory();
       }
 
@@ -85,7 +85,7 @@ namespace Platformer
          {
             return;
          }
-
+         
          dialoguePlaying = true;
 
          // inform other parts of our system that we've started dialogue

@@ -44,7 +44,7 @@ namespace Platformer
                 return;
             }
             
-            // of we have a knot name defined, try to start dialogue with it
+            // if we have a knot name defined, try to start dialogue with it
             if (!dialogueKnotName.Equals(""))
             {
                 GameEventsManager.instance.dialogueEvents.EnterDialogue(dialogueKnotName);

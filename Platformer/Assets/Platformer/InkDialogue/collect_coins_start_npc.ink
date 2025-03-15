@@ -1,4 +1,4 @@
-== collectCoinsStart ===
+=== collectCoinsStart ===
 { CollectCoinsQuestState :
     - "REQUIREMENTS_NOT_MET": -> requirementsNotMet
     - "CAN_START": -> canStart
@@ -7,7 +7,7 @@
     - "FINISHED": ->  finished
     - else: -> END
 }
-
+            
 = requirementsNotMet
 // not possible for this quest, but putting something here anyways
 Come back once you've leveled up a bit more.
@@ -19,7 +19,7 @@ Will you collect 5 coins and bring them to my friend over there ?
     ~StartQuest("CollectCoinsQuest")
     Great!
 *[No]
-    oh, ok then. go fuck your self.
+    oh, ok then. Come Back if you change your mind.
 - -> END
 
 = inProgress

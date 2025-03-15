@@ -1,7 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Ink.Runtime;
+using UnityEngine;
 
 namespace Platformer
 {
@@ -16,7 +15,7 @@ namespace Platformer
             {
                 Ink.Runtime.Object value = story.variablesState.GetVariableWithName(name);
                 variables.Add(name, value);
-                //Debug.Log("Initialized global dialogue variable: " + name + " = " + value);
+                //Debug.Log("Initialized global dialogue variables: " + name + " = " + value);
             }
         }
         
@@ -40,7 +39,7 @@ namespace Platformer
                 return; 
             }
             variables[name] = value;
-             //Debug.Log("Updated dialogue variable: " + name + " = " + value);
+            //Debug.Log("Updated dialogue variable: " + name + " = " + value);
         }
 
         private void SyncVariablesToStory(Story story)
