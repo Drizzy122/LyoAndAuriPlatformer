@@ -12,6 +12,7 @@ namespace Platformer
         public QuestEvents questEvents;
         public InputEvents inputEvents;
         public EnemyEvents enemyEvents;
+        public DialogueEvents dialogueEvents;
       
         private void Awake()
         {
@@ -27,6 +28,7 @@ namespace Platformer
             questEvents = new QuestEvents();
             inputEvents = new InputEvents();
             enemyEvents = new EnemyEvents();
+            dialogueEvents = new DialogueEvents();
         }
     }
 }

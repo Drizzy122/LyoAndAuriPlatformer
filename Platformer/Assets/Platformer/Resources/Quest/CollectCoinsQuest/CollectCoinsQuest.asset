@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: CollectCoinsQuest
   displayName: Collect the Coins!
-  levelRequirement: 2
+  levelRequirement: 1
   questPrerequisites: []
   questStepPrefabs:
   - {fileID: 6810405000030755154, guid: 90e24f9cb443ab241bbfaddf9e87f5c9, type: 3}
