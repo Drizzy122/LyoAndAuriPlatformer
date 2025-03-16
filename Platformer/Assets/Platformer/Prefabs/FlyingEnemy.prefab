@@ -787,6 +787,8 @@ MonoBehaviour:
   startingHealth: 2
   healthPrefab: {fileID: 2405522073640296435, guid: 6347b6d280d5f2d44974a084aaa8bb37,
     type: 3}
+  XPOrbPrefab: {fileID: 9185204307891060596, guid: 17c1bca52026a0a4fad5a79234e3cf35,
+    type: 3}
   dropCount: 5
   spawnRadius: 1
 --- !u!114 &6783812202820797639

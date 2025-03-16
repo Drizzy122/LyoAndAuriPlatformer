@@ -16,6 +16,8 @@ namespace Platformer {
         public override void OnEnter() {
            // Debug.Log("Wander");
             animator.CrossFade(WalkHash, crossFadeDuration);
+            agent.speed = 2f; // Slow speed for wandering
+
         }
 
         public override void Update() {
@@ -27,6 +29,11 @@ namespace Platformer {
                 var finalPosition = hit.position;
                 
                 agent.SetDestination(finalPosition);
+                // Rotate smoothly towards the new direction
+                Vector3 direction = (finalPosition - enemy.transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+                enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, lookRotation, Time.deltaTime * enemy.rotationSpeed);
+
             }
         }
         

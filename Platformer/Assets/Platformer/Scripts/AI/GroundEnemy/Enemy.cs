@@ -15,7 +15,11 @@ namespace Platformer {
         [SerializeField] float wanderRadius = 10f;
         [SerializeField] float timeBetweenAttacks = 1f;
         [SerializeField] float damageAmount = 10f;
+        [SerializeField] public float rotationSpeed = 5f; // Adjust this in the Inspector
         
+        [SerializeField] public float RunSpeed = 6f; // You can adjust this in the Inspector
+        
+
         StateMachine stateMachine;
         private EnemyHealth enemyHealth;
         CountdownTimer attackTimer;
