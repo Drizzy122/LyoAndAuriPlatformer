@@ -11,13 +11,13 @@ namespace Platformer
         }
         private void OnEnable()
         {
-            GameEventsManager.instance.miscEvents.OnCoinCollected += CoinCollected;
+            GameEventsManager.instance.miscEvents.onLuminCollected += CoinCollected;
           
         }
 
         private void OnDisable()
         {
-            GameEventsManager.instance.miscEvents.OnCoinCollected -= CoinCollected;
+            GameEventsManager.instance.miscEvents.onLuminCollected -= CoinCollected;
         }
         
         private void CoinCollected()

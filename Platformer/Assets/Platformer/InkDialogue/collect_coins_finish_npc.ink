@@ -15,5 +15,5 @@ Hm? What do you want?
 
 * { CollectCoinsQuestState == "CAN_FINISH"} [here are some coins.]
     ~ FinishQuest(CollectCoinsQuestId)
-    Oh? these coins are for me? thank you!
+    Oh? these Elumin Orbs are for me? thank you!
 -> END

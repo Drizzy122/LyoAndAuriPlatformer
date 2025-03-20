@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c034684f0fa22f478dac85b1a8c8c29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationAxis: {x: 0, y: 1, z: 0}
+  rotationAxis: {x: 0, y: 50, z: 0}
   rotationSpeed: 50
 --- !u!114 &9139533240780252516
 MonoBehaviour:
@@ -182,4 +182,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8410b99b2beb47e48a1e895a50cb52e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experienceGained: 100
+  experienceGained: 4

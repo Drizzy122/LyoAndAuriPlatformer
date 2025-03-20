@@ -14,7 +14,7 @@ Come back once you've leveled up a bit more.
 -> END
 
 = canStart
-Will you collect 5 coins and bring them to my friend over there ?
+Will you collect 5 Elumin Orbs and bring them to my friend over there ?
 *[Yes]
     ~StartQuest("CollectCoinsQuest")
     Great!
@@ -23,13 +23,13 @@ Will you collect 5 coins and bring them to my friend over there ?
 - -> END
 
 = inProgress
-How is collecting those coins going?
+How is the hunt for those Elumin Orbs going?
 -> END
 
 = canFinish
-oh? You collected the coins? Go give them to my friend over there and he'll give you a reward!
+oh? You collected the Elumin Orbs? Go give them to my friend over there and he'll give you a reward!
 -> END
 
 = finished
-Thanks for collecting those coins!
+Thanks for collecting those Elumin Orbs!
 -> END

@@ -62,6 +62,7 @@ namespace Platformer
         [SerializeField] int attackDamage = 10;
         [SerializeField] int spinAttackDamage = 20;
         
+        //portal
         [Header("Interact")] 
         [SerializeField] private float interactDistance = 5;
 
@@ -147,9 +148,10 @@ namespace Platformer
         {
             animator.SetFloat(Speed, currentSpeed);
         }
-
+        
        
 
+      
         private void SetupStateMachine()
         {
             // State Machine
@@ -191,8 +193,8 @@ namespace Platformer
             At(spinAttackState, locomotionState, new FuncPredicate(() => !spinAttackTimer.IsRunning));
             
             // Enable Spin Attack while jumping
-           // At(jumpState, spinAttackState, new FuncPredicate(() => spinAttackTimer.IsRunning));
-           // At(spinAttackState, jumpState, new FuncPredicate(() => !spinAttackTimer.IsRunning || jumpTimer.IsRunning));
+            At(jumpState, spinAttackState, new FuncPredicate(() => spinAttackTimer.IsRunning));
+            At(spinAttackState, jumpState, new FuncPredicate(() => !spinAttackTimer.IsRunning || jumpTimer.IsRunning));
 
             // Define transitions to echo state
             At(locomotionState, echoLocationState, new FuncPredicate(() => echoTimer.IsRunning));
