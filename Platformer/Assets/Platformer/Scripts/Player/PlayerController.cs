@@ -61,6 +61,7 @@ namespace Platformer
         [SerializeField] float attackDistance = 1f;
         [SerializeField] int attackDamage = 10;
         [SerializeField] int spinAttackDamage = 20;
+        [SerializeField] private float knockbackTime = 0.5f;
         
         //portal
         [Header("Interact")] 
@@ -189,9 +190,10 @@ namespace Platformer
 
             // Define transitions for Dash 
             At(locomotionState, dashState, new FuncPredicate(() => dashTimer.IsRunning));
+            At(glideState, dashState, new FuncPredicate(() => dashTimer.IsRunning));
             At(jumpState, dashState, new FuncPredicate(() => dashTimer.IsRunning));
             At(dashState, jumpState, new FuncPredicate(() => !dashTimer.IsRunning));
-
+            
             // Define transitions for attack
             At(locomotionState, attackState, new FuncPredicate(() => attackTimer.IsRunning));
             At(attackState, locomotionState, new FuncPredicate(() => !attackTimer.IsRunning));
@@ -209,6 +211,7 @@ namespace Platformer
 
             // Define transitions for glide
             At(jumpState, glideState, new FuncPredicate(() => glideTimer.IsRunning));
+            At(dashState, glideState, new FuncPredicate(() => glideTimer.IsRunning));
             At(glideState, jumpState, new FuncPredicate(() => !glideTimer.IsRunning));
             
             // Define transitions for wall climb
@@ -321,7 +324,15 @@ namespace Platformer
                 if (wallClimbimg)
                 {
                     wallClimbimg = false;
-                    if(remainingJumps > 0) {OnJump(true);}
+                    if (remainingJumps > 0)
+                    {
+                        OnJump(true);
+                    }
+                    else
+                    {
+                        remainingJumps++;
+                        OnJump(true);
+                    }
                 }
                 else
                 {
@@ -341,37 +352,26 @@ namespace Platformer
 
             transform.LookAt(transform.position - wallClimbNormal);
             transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
-            
-            float movementSpeed = 0f;
 
-     
             if (movement.magnitude > 0)
             {
                 if (movement.z > 0)
                 {
                     wallClimbPos += transform.up * 0.01f * wallClimbMoveSpeed;
-                    movementSpeed = wallClimbMoveSpeed; // Forward climbing
-
                 }
                 else if (movement.z < 0)
                 {
                     wallClimbPos -= transform.up * 0.01f * wallClimbMoveSpeed;
-                    movementSpeed = wallClimbMoveSpeed; // Backward climbing
-
                 }
          
                 if (movement.x > 0)
                 {
                     wallClimbPos += transform.right * 0.01f * wallClimbMoveSpeed;
                     wallClimbPos += transform.right * 0.01f * wallClimbMoveSpeed;
-                    movementSpeed = wallClimbMoveSpeed; // Moving right
-
                 }
                 else if (movement.x < 0)
                 {
                     wallClimbPos -= transform.right * 0.01f * wallClimbMoveSpeed;
-                    movementSpeed = wallClimbMoveSpeed; // Moving left
-
                 }
 
                 if (!wallClimbChecks[5] && ! wallClimbChecks[2])
@@ -380,9 +380,7 @@ namespace Platformer
                 }
             }
 
-            
-            // Update the Animator's speed parameter
-            animator.SetFloat(Speed, movementSpeed);
+            currentSpeed = movement.magnitude;
         }
         /// <summary>
         /// Wallclimb Checks go in this order:
@@ -494,7 +492,7 @@ namespace Platformer
             {
                 if (enemy.CompareTag("Enemy"))
                 {
-                    enemy.GetComponent<EnemyHealth>().TakeDamage(attackDamage);
+                    enemy.GetComponent<EnemyHealth>().TakeDamage(attackDamage, knockbackTime);
                 }
             }
         }
@@ -514,7 +512,7 @@ namespace Platformer
             {
                 if (enemy.CompareTag("Enemy"))
                 {
-                    enemy.GetComponent<EnemyHealth>().TakeDamage(spinAttackDamage);
+                    enemy.GetComponent<EnemyHealth>().TakeDamage(spinAttackDamage, knockbackTime);
                 }
             }
         }

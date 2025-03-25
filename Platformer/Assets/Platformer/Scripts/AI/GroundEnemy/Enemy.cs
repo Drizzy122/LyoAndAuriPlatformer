@@ -1,4 +1,6 @@
-﻿using KBCore.Refs;
+﻿using System;
+using KBCore.Refs;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using Utilities;
@@ -19,6 +21,11 @@ namespace Platformer {
         
         [SerializeField] public float RunSpeed = 6f; // You can adjust this in the Inspector
         
+        public float knockbackTimer;
+        public float knockbackSpeed = 2f;
+        public Vector3 knockBackDirection;
+        public float turnSpeedToReturnTo;
+        public float accelerationToReturnTo;
 
         StateMachine stateMachine;
         private EnemyHealth enemyHealth;
@@ -34,16 +41,23 @@ namespace Platformer {
             var wanderState = new EnemyWanderState(this, animator, agent, wanderRadius);
             var chaseState = new EnemyChaseState(this, animator, agent, playerDetector.Player);
             var attackState = new EnemyAttackState(this, animator, agent, playerDetector.Player);
-            var dieState = new  EnemyDieState(this, animator); 
+            var dieState = new  EnemyDieState(this, animator);
+            var knockbackState = new EnemyKnockbackState(this, animator, agent, playerDetector.Player);
             
             At(wanderState, chaseState, new FuncPredicate(() => playerDetector.CanDetectPlayer()));
             At(chaseState, wanderState, new FuncPredicate(() => !playerDetector.CanDetectPlayer()));
             At(chaseState, attackState, new FuncPredicate(() => playerDetector.CanAttackPlayer()));
             At(attackState, chaseState, new FuncPredicate(() => !playerDetector.CanAttackPlayer()));
+            At(knockbackState, chaseState, new FuncPredicate(() => knockbackTimer <= 0));
+            
+            Any(knockbackState, new FuncPredicate(() => enemyHealth.currentHealth > 0 && knockbackTimer > 0));
             Any(dieState, new FuncPredicate(() => enemyHealth.currentHealth <= 0));
             
             stateMachine.SetState(wanderState);
             enemyHealth.OnDeath += () => stateMachine.SetState(dieState);
+
+            accelerationToReturnTo = agent.acceleration;
+            turnSpeedToReturnTo = agent.angularSpeed;
         }
         
         void At(IState from, IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
@@ -56,6 +70,11 @@ namespace Platformer {
         
         void FixedUpdate() {
             stateMachine.FixedUpdate();
+
+            if (knockbackTimer > 0)
+            {
+                knockbackTimer -= Time.fixedDeltaTime;
+            }
         }
         
         public void Attack() {
@@ -73,6 +92,15 @@ namespace Platformer {
                 }
             } else {
                 Debug.LogWarning("PlayerHealth component not found on the player!");
+            }
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (knockBackDirection != Vector3.zero)
+            {
+                Gizmos.color = Color.magenta;
+                Gizmos.DrawLine(transform.position, transform.position + knockBackDirection);
             }
         }
     }

@@ -20,12 +20,12 @@ namespace Platformer
             currentHealth = startingHealth;
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, float knockBackTime)
         {
             currentHealth = Mathf.Clamp(currentHealth - damage, 0, startingHealth);
             if (currentHealth > 0)
             {
-                
+                GetComponent<Enemy>().knockbackTimer = knockBackTime;
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.enemyHurt, this.transform.position);
             }
             else
