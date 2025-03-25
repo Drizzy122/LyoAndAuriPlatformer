@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 3389786278663760700}
   - component: {fileID: 2423797738532294380}
   - component: {fileID: 8389054290352167700}
-  - component: {fileID: 2885422583200240846}
   - component: {fileID: 7568840587616074407}
   - component: {fileID: 4047831435013265011}
-  m_Layer: 0
+  - component: {fileID: 4812874532995857258}
+  m_Layer: 8
   m_Name: Coin
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 211.37, y: 211.37, z: 211.37}
+  m_LocalScale: {x: 191.23882, y: 191.23882, z: 191.23882}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -108,20 +108,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0032115998, y: 0.0032133886, z: 0.0008134382}
   m_Center: {x: 0.000009929005, y: 0.000043494045, z: -0.0000010468211}
---- !u!114 &2885422583200240846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5631258302630574252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d63d2556ef4c1a449b220096365c28a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 
-  collected: 0
 --- !u!114 &7568840587616074407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c034684f0fa22f478dac85b1a8c8c29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationAxis: {x: 0, y: 1, z: 0}
   rotationSpeed: 50
 --- !u!114 &4047831435013265011
 MonoBehaviour:
@@ -154,3 +141,16 @@ MonoBehaviour:
   m_IgnoreFromBuild: 1
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!114 &4812874532995857258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5631258302630574252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63d2556ef4c1a449b220096365c28a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 

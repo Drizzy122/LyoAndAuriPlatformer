@@ -5098,6 +5098,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7366958702711747946, guid: c23dbdbbdf4aaec4dbe810451e8150e7,
+        type: 3}
+      propertyPath: initializeDataIfNull
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366958702711747946, guid: c23dbdbbdf4aaec4dbe810451e8150e7,
+        type: 3}
+      propertyPath: disableDataPersistence
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366958702711747946, guid: c23dbdbbdf4aaec4dbe810451e8150e7,
+        type: 3}
+      propertyPath: overrideSelectedProfileId
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8060136433370468250, guid: c23dbdbbdf4aaec4dbe810451e8150e7,
         type: 3}
       propertyPath: m_Name
@@ -5320,7 +5335,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.5
+  m_fontSize: 24.85
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7378,7 +7393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   profileId: Save 0
   noDataContent: {fileID: 6276326789021757223}
-  HasDataContent: {fileID: 6389193209521393836}
+  hasDataContent: {fileID: 6389193209521393836}
   percentageCompleteText: {fileID: 5024951871501567609}
   deathCountText: {fileID: 4116963525920566416}
   clearButton: {fileID: 2219941365728354603}
@@ -8009,7 +8024,7 @@ MonoBehaviour:
   firstSelected: {fileID: 3471115074040630}
   mainMenu: {fileID: 8775327968041454337}
   backButton: {fileID: 5068439534544255464}
-  confirmPopUpMenu: {fileID: 6855084426592865149}
+  confirmationPopupMenu: {fileID: 6855084426592865149}
 --- !u!114 &6273131927171113132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8845,7 +8860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstSelected: {fileID: 7977829044779925504}
-  DisplayText: {fileID: 9119207061718295917}
+  displayText: {fileID: 9119207061718295917}
   confirmButton: {fileID: 8436903154770003594}
   cancelButton: {fileID: 7977829044779925504}
 --- !u!224 &6877923940537315010
@@ -11145,7 +11160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstSelected: {fileID: 4392962798086631254}
-  saveSlotMenu: {fileID: 6261061876659867418}
+  saveSlotsMenu: {fileID: 6261061876659867418}
   newGameButton: {fileID: 4392962798086631254}
   continueGameButton: {fileID: 1028392117811875165}
   loadGameButton: {fileID: 20503019692816440}

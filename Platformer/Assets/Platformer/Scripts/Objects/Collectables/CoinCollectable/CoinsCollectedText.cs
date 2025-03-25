@@ -14,13 +14,11 @@ namespace Platformer
         private void Awake()
         {
             coinsCollectedText = this.GetComponent<TextMeshProUGUI>();
-     
-          
         }
         private void Start()
         {
             // subscribe to events
-            GameEventsManager.instance.miscEvents.OnCoinCollected += OnCoinCollected;
+            GameEventsManager.instance.miscEvents.onCoinCollected += OnCoinCollected;
         }
         public void LoadData(GameData data)
         {
@@ -39,7 +37,7 @@ namespace Platformer
         private void OnDestroy()
         {
             // unsubscribe from events
-            GameEventsManager.instance.miscEvents.OnCoinCollected -= OnCoinCollected;
+            GameEventsManager.instance.miscEvents.onCoinCollected -= OnCoinCollected;
         }
         private void OnCoinCollected()
         {

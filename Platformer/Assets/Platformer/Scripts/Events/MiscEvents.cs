@@ -4,12 +4,12 @@ namespace Platformer
 {
     public class MiscEvents
     {
-        public event Action OnCoinCollected;
+        public event Action onCoinCollected;
         public void CoinCollected()
         {
-            if (OnCoinCollected != null)
+            if (onCoinCollected != null)
             {
-                OnCoinCollected();
+                onCoinCollected();
             }
         }
         

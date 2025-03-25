@@ -13,9 +13,11 @@ namespace Platformer {
         [SerializeField] float speed = 5f; // Flying speed
         [SerializeField] float stoppingDistance = 1f;
 
-        [SerializeField] float wanderRadius = 10f;
+        
         [SerializeField] float timeBetweenAttacks = 1f;
         [SerializeField] float damageAmount = 10f;
+        
+        [SerializeField] private Transform[] waypoints; // Array of waypoints
         
         private EnemyHealth enemyHealth;
         StateMachine stateMachine;
@@ -34,7 +36,7 @@ namespace Platformer {
             stateMachine = new StateMachine();
             
             
-            var wanderState = new FlyingEnemyWanderState(this, animator, wanderRadius, speed, rotationSpeed);
+            var wanderState = new FlyingEnemyWanderState(this, animator, waypoints, speed, rotationSpeed);
             var chaseState = new FlyingEnemyChaseState(this, animator, playerDetector.Player, speed, stoppingDistance, rotationSpeed);
             var attackState = new FlyingEnemyAttackState(this, animator, playerDetector.Player, rotationSpeed);
             var dieState = new FlyingEnemyDieState(this, animator); 

@@ -3,37 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Platformer
 {
     public class DataPersistenceManager : MonoBehaviour
     {
-        [Header("Debugging")] [SerializeField] private bool disableDataPersistence = false;
+        [Header("Debugging")] 
+        [SerializeField] private bool disableDataPersistence = false;
         [SerializeField] private bool initializeDataIfNull = false;
         [SerializeField] private bool overrideSelectedProfileId = false;
-        [SerializeField] private string TestSelectedProfileId = "test";
+        [SerializeField] private string testSelectedProfileId = "test";
 
-
-        [Header("File Storage Config")] [SerializeField]
-        private string fileName;
+        [Header("File Storage Config")] 
+        [SerializeField] private string fileName;
 
         [SerializeField] private bool useEncryption;
 
-        [Header("Auto Saving configuration")] [SerializeField]
-        private float autoSaveTimeSeconds = 60f;
+        [Header("Auto Saving Configuration")]
+        [SerializeField] private float autoSaveTimeSeconds = 60f;
 
         private GameData gameData;
         private List<IDataPersistence> dataPersistenceObjects;
         private FileDataHandler dataHandler;
+
         private string selectedProfileId = "";
+
         private Coroutine autoSaveCoroutine;
+
         public static DataPersistenceManager instance { get; private set; }
 
         private void Awake()
         {
             if (instance != null)
             {
-                Debug.Log("Found more than one DataPersistenceManager in the scene. Destroying the newest.");
+                Debug.Log("Found more than one Data Persistence Manager in the scene. Destroying the newest one.");
                 Destroy(this.gameObject);
                 return;
             }
@@ -43,7 +47,7 @@ namespace Platformer
 
             if (disableDataPersistence)
             {
-                Debug.Log("Data persistence is currently disabled!");
+                Debug.LogWarning("Data Persistence is currently disabled!");
             }
 
             this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
@@ -77,7 +81,7 @@ namespace Platformer
 
         public void ChangeSelectedProfileId(string newProfileId)
         {
-            // Update the profile to use for savinfg and loading
+            // update the profile to use for saving and loading
             this.selectedProfileId = newProfileId;
             // load the game, which will use that profile, updating our game data accordingly
             LoadGame();
@@ -85,11 +89,11 @@ namespace Platformer
 
         public void DeleteProfileData(string profileId)
         {
-            // delte the data for this profileId
+            // delete the data for this profile id
             dataHandler.Delete(profileId);
-            // Initialize the selected profile id
+            // initialize the selected profile id
             InitializeSelectedProfileId();
-            // Reload the game so that our data matches the newly selected profile id
+            // reload the game so that our data matches the newly selected profile id
             LoadGame();
         }
 
@@ -98,8 +102,8 @@ namespace Platformer
             this.selectedProfileId = dataHandler.GetMostRecentlyUpdatedProfileId();
             if (overrideSelectedProfileId)
             {
-                this.selectedProfileId = TestSelectedProfileId;
-                Debug.LogWarning("Overrode selected profile id with test id: " + TestSelectedProfileId);
+                this.selectedProfileId = testSelectedProfileId;
+                Debug.LogWarning("Overrode selected profile id with test id: " + testSelectedProfileId);
             }
         }
 
@@ -116,19 +120,19 @@ namespace Platformer
                 return;
             }
 
-            // Load any saved data from a file using the data handler
+            // load any saved data from a file using the data handler
             this.gameData = dataHandler.Load(selectedProfileId);
 
-            // start a new game if the data is null and we're configured to initialize data for debugging purpose
+            // start a new game if the data is null and we're configured to initialize data for debugging purposes
             if (this.gameData == null && initializeDataIfNull)
             {
                 NewGame();
             }
 
-            // if no data can be loaded don't continue
+            // if no data can be loaded, don't continue
             if (this.gameData == null)
             {
-                Debug.Log("No game data found, Initializing data to defaults.");
+                Debug.Log("No data was found. A New Game needs to be started before data can be loaded.");
                 return;
             }
 
@@ -150,7 +154,7 @@ namespace Platformer
             // if we don't have any data to save, log a warning here
             if (this.gameData == null)
             {
-                Debug.LogWarning("No data found. A New Game needs to be started before data can be saved.");
+                Debug.LogWarning("No data was found. A New Game needs to be started before data can be saved.");
                 return;
             }
 
@@ -174,7 +178,7 @@ namespace Platformer
 
         private List<IDataPersistence> FindAllDataPersistenceObjects()
         {
-            // FindObjectofType takes in an optional boolean to include inactive gameObjects
+            // FindObjectsofType takes in an optional boolean to include inactive gameobjects
             IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>(true)
                 .OfType<IDataPersistence>();
 
@@ -185,8 +189,7 @@ namespace Platformer
         {
             return gameData != null;
         }
-        
-        
+
         public Dictionary<string, GameData> GetAllProfilesGameData()
         {
             return dataHandler.LoadAllProfiles();
@@ -198,7 +201,7 @@ namespace Platformer
             {
                 yield return new WaitForSeconds(autoSaveTimeSeconds);
                 SaveGame();
-                Debug.Log("Auto saved Game");
+                Debug.Log("Auto Saved Game");
             }
         }
     }

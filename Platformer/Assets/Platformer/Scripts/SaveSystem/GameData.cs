@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Platformer
@@ -7,9 +9,8 @@ namespace Platformer
     {
         public long lastUpdated;
         public int deathCount;
-
         public Vector3 playerPosition;
-        
+        // collectables 
         public SerializableDictionary<string, bool> coinsCollected;
         public SerializableDictionary<string, bool> ecliptiumCollected;
         public SerializableDictionary<string, bool> luminCollected;
@@ -29,16 +30,16 @@ namespace Platformer
 
         public int GetPercentageComplete()
         {
-            // figure out how manu coins we've collected
+            // figure out how many coins we've collected
             int totalCollected = 0;
-            ;
-            foreach (bool collected in coinsCollected.Values)
+            foreach (bool collected in coinsCollected.Values) 
             {
-                if (collected)
+                if (collected) 
                 {
                     totalCollected++;
                 }
             }
+
             
             int totalCollected2 = 0;
             foreach (bool collected2 in ecliptiumCollected.Values)
@@ -59,23 +60,23 @@ namespace Platformer
             }
 
             // ensure we don't divide by 0 when calculating the percentage
-            int percentageComplete = -1;
+            int percentageCompleted = -1;
             if (coinsCollected.Count != 0)
             {
-                percentageComplete = (totalCollected * 100 / coinsCollected.Count);
+                percentageCompleted = (totalCollected * 100 / coinsCollected.Count);
             }
-
+            
             if (ecliptiumCollected.Count != 0)
             {
-                percentageComplete = (totalCollected2 * 100 / ecliptiumCollected.Count);
+                percentageCompleted = (totalCollected2 * 100 / ecliptiumCollected.Count);
             }
 
             if (luminCollected.Count != 0)
             {
-                percentageComplete = (totalCollected3 * 100 / luminCollected.Count);
+                percentageCompleted = (totalCollected3 * 100 / luminCollected.Count);
             }
 
-            return percentageComplete;
+            return percentageCompleted;
         }
     }
 }

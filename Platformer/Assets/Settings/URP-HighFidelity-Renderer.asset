@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6584767962620694322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69a19d29ef66464ea0afc7cd84fd6c2, type: 3}
+  m_Name: VolumetricFogRendererFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  downsampleDepthShader: {fileID: 4800000, guid: cffeaeec0396a2c4dad475266cc8dfeb,
+    type: 3}
+  volumetricFogShader: {fileID: 4800000, guid: 08f816187f9af0244a95556ee0cab83f, type: 3}
 --- !u!114 &-1878332245247344467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
   m_Name: RenderObjects
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   settings:
     passTag: RenderObjects
     Event: 300
@@ -97,7 +113,8 @@ MonoBehaviour:
   - {fileID: -1878332245247344467}
   - {fileID: 357076108006307278}
   - {fileID: -1147227368362959084}
-  m_RendererFeatureMap: adc0de57c6d2eee5ceb57e0fd496f404149f1e68c93a14f0
+  - {fileID: -6584767962620694322}
+  m_RendererFeatureMap: adc0de57c6d2eee5ceb57e0fd496f404149f1e68c93a14f0cef09ef36c349ea4
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -162,7 +179,7 @@ MonoBehaviour:
         serializedVersion: 2
         m_Bits: 320
       PassNames: []
-    overrideMaterial: {fileID: 2100000, guid: 6f1d7a7839266ff4794e8aa7e82bc06b, type: 2}
+    overrideMaterial: {fileID: 2100000, guid: d2d5ef1c483f66a47a12f9080166cf23, type: 2}
     overrideMaterialPassIndex: 0
     overrideShader: {fileID: 0}
     overrideShaderPassIndex: 0

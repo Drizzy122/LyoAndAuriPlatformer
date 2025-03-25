@@ -47,7 +47,7 @@ MonoBehaviour:
   disableDataPersistence: 0
   initializeDataIfNull: 0
   overrideSelectedProfileId: 0
-  TestSelectedProfileId: ' MyPlatformerGame'
-  fileName: MyPlatformer.Json
+  testSelectedProfileId: test
+  fileName: MyPlatformer.game
   useEncryption: 0
-  autoSaveTimeSeconds: 300
+  autoSaveTimeSeconds: 60

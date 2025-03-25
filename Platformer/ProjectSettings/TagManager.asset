@@ -16,11 +16,11 @@ TagManager:
   - Ground
   - Water
   - UI
-  - Enemy
+  - Ground Enemy
   - Player
   - Collectables
   - Wall
-  - 
+  - Flying Enemy
   - 
   - 
   - 

@@ -6,12 +6,11 @@ using UnityEngine;
 using Utilities;
 using UnityEngine.Rendering.Universal;
 using FMOD.Studio;
-using Unity.VisualScripting;
 using Timer = Utilities.Timer;
 
 namespace Platformer
 {
-    public class PlayerController : ValidatedMonoBehaviour
+    public class PlayerController : ValidatedMonoBehaviour , IDataPersistence
     {
         [Header("References")] 
         [SerializeField, Self] Rigidbody rb;
@@ -49,6 +48,7 @@ namespace Platformer
         [SerializeField] ParticleSystem detectionParticle;
         public ScriptableRendererFeature echoRendererFeature; // Reference to your custom RenderObjects renderer feature
         private ScriptableRendererData rendererData;
+      
         
         [Header("Glide Settings")] 
         public float glideBoost = 1;
@@ -67,8 +67,8 @@ namespace Platformer
         [SerializeField] private float interactDistance = 5;
 
         [Header("Wall Climb Settings")] 
-  
         [SerializeField] private float wallCheckDist = 1f;
+        [SerializeField] private float wallClimbMoveSpeed = 5f;
         [SerializeField] private LayerMask wallClimbLayer;
         
         public bool wallClimbimg;
@@ -122,6 +122,16 @@ namespace Platformer
             SetupTimers();
             SetupStateMachine();
         }
+        
+        public void LoadData(GameData data) 
+        {
+            this.transform.position = data.playerPosition;
+        }
+
+        public void SaveData(GameData data) 
+        {
+            data.playerPosition = this.transform.position;
+        }
 
         void Start()
         {
@@ -149,9 +159,6 @@ namespace Platformer
             animator.SetFloat(Speed, currentSpeed);
         }
         
-       
-
-      
         private void SetupStateMachine()
         {
             // State Machine
@@ -233,7 +240,6 @@ namespace Platformer
                    && !isTeleporting;
 
         }
-
         void At(IState from, IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
         void Any(IState to, IPredicate condition) => stateMachine.AddAnyTransition(to, condition);
 
@@ -244,7 +250,6 @@ namespace Platformer
                 timer.Tick(Time.deltaTime);
             }
         }
-
         void SetupTimers()
         {
             // Setup timers
@@ -272,9 +277,6 @@ namespace Platformer
             timers = new List<Timer>(8)
                 { jumpTimer, jumpCooldownTimer, dashTimer, dashCooldownTimer, attackTimer,spinAttackTimer, echoTimer, glideTimer };
         }
-        
-        
-        
         public void HandleMovement()
         {
             // Rotate movement direction to match camera rotation
@@ -294,14 +296,12 @@ namespace Platformer
                 rb.velocity = new Vector3(ZeroF, rb.velocity.y, ZeroF);
             }
         }
-
         void HandleHorizontalMovement(Vector3 adjustedDirection)
         {
             // Move player
             Vector3 velocity = adjustedDirection * (moveSpeed * dashVelocity * Time.fixedDeltaTime);
             rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
         }
-
         void HandleRotation(Vector3 adjustedDirection)
         {
             // Adjust rotation to match movement Direction
@@ -310,12 +310,10 @@ namespace Platformer
                 Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
            // transform.LookAt(transform.position + adjustedDirection);
         }
-
         void SmoothSpeed(float value)
         {
             currentSpeed = Mathf.SmoothDamp(currentSpeed, value, ref velocity, smoothTime);
         }
-        
         void OnWallClimb(bool performed)
         {
             if (performed)
@@ -334,7 +332,6 @@ namespace Platformer
                 }
             }
         }
-
         public void HandleWallClimb()
         {
             //movement = new Vector3(input.Direction.x, 0f, input.Direction.y);
@@ -345,12 +342,57 @@ namespace Platformer
             transform.LookAt(transform.position - wallClimbNormal);
             transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
             
+            float movementSpeed = 0f;
+
+     
             if (movement.magnitude > 0)
             {
-                
+                if (movement.z > 0)
+                {
+                    wallClimbPos += transform.up * 0.01f * wallClimbMoveSpeed;
+                    movementSpeed = wallClimbMoveSpeed; // Forward climbing
+
+                }
+                else if (movement.z < 0)
+                {
+                    wallClimbPos -= transform.up * 0.01f * wallClimbMoveSpeed;
+                    movementSpeed = wallClimbMoveSpeed; // Backward climbing
+
+                }
+         
+                if (movement.x > 0)
+                {
+                    wallClimbPos += transform.right * 0.01f * wallClimbMoveSpeed;
+                    wallClimbPos += transform.right * 0.01f * wallClimbMoveSpeed;
+                    movementSpeed = wallClimbMoveSpeed; // Moving right
+
+                }
+                else if (movement.x < 0)
+                {
+                    wallClimbPos -= transform.right * 0.01f * wallClimbMoveSpeed;
+                    movementSpeed = wallClimbMoveSpeed; // Moving left
+
+                }
+
+                if (!wallClimbChecks[5] && ! wallClimbChecks[2])
+                {
+                    wallClimbimg = false;
+                }
             }
+
+            
+            // Update the Animator's speed parameter
+            animator.SetFloat(Speed, movementSpeed);
         }
-        
+        /// <summary>
+        /// Wallclimb Checks go in this order:
+        /// 0 = spherecast in front to see if wallclimbing can be triggered
+        /// 1 = above
+        /// 2 = below
+        /// 3 = right
+        /// 4 = left
+        /// 5 = raycast to find normal of wall found in check #0
+        /// </summary>
         void WallClimbCheck()
         {
             wallClimbChecks = new bool[6];
@@ -367,8 +409,8 @@ namespace Platformer
                 wallClimbLayer).Length > 0);
 
             wallClimbChecks[1] = Physics.Raycast(transform.position + transform.up * 2, transform.forward, 1, wallClimbLayer);
-            wallClimbChecks[2] = Physics.Raycast(transform.position - transform.up * 1, transform.forward, 1, wallClimbLayer);
-            
+            wallClimbChecks[2] = Physics.Raycast(transform.position - transform.up * 0.6f, transform.forward, 1, wallClimbLayer);
+    
             wallClimbChecks[3] = Physics.Raycast(transform.position + transform.right * 1 + transform.up * 0.5f, transform.forward, 1, wallClimbLayer);
             wallClimbChecks[4] = Physics.Raycast(transform.position - transform.right * 1 + transform.up * 0.5f, transform.forward, 1, wallClimbLayer);
 
@@ -389,39 +431,37 @@ namespace Platformer
                 wallClimbTargetPos = Vector3.zero;
             }
         }
-        
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, detectionRadius);
-            
+     
             if (Application.isPlaying)
             {
                 Gizmos.color = Color.grey;
                 if(wallClimbChecks[0]) Gizmos.color = Color.green;
                 Gizmos.DrawSphere(transform.position + transform.forward * wallCheckDist + transform.up, 0.5f);
-                
+         
                 Gizmos.color = Color.yellow;
                 if(wallClimbChecks[1]) Gizmos.color = Color.green;
                 Gizmos.DrawRay(transform.position + transform.up * 2, transform.forward * 1);
-                
+         
                 Gizmos.color = Color.yellow;
                 if(wallClimbChecks[2]) Gizmos.color = Color.green;
-                Gizmos.DrawRay(transform.position - transform.up * 1, transform.forward * 1);
-                
+                Gizmos.DrawRay(transform.position - transform.up * 0.6f, transform.forward * 1);
+         
                 Gizmos.color = Color.yellow;
                 if(wallClimbChecks[3]) Gizmos.color = Color.green;
                 Gizmos.DrawRay(transform.position + transform.right * 1 + transform.up * 0.5f, transform.forward);
-                
+         
                 Gizmos.color = Color.yellow;
                 if(wallClimbChecks[4]) Gizmos.color = Color.green;
                 Gizmos.DrawRay(transform.position - transform.right * 1 + transform.up * 0.5f, transform.forward);
-                
+         
                 Gizmos.color = Color.magenta;
                 if(wallClimbNormal != Vector3.zero) Gizmos.DrawRay(wallClimbTargetPos, wallClimbNormal);
             }
         }
-        
         void OnInteract(bool performed)
         {
             if(performed)
@@ -458,7 +498,6 @@ namespace Platformer
                 }
             }
         }
-       
         void OnSpinAttack()
         {
             if (!spinAttackTimer.IsRunning)
@@ -466,7 +505,6 @@ namespace Platformer
                 spinAttackTimer.Start();
             }
         }
-
         public void SpinAttack()
         {
             Vector3 attackPos = transform.position + transform.forward;
@@ -480,8 +518,6 @@ namespace Platformer
                 }
             }
         }
-        
-        
         void OnEcho(bool performed)
         {
             if (!echoTimer.IsRunning)
@@ -503,19 +539,14 @@ namespace Platformer
                     {
                         // Dynamically enable the render feature for the duration of the echo
                         EnableEchoEffect(true);
-                        Debug.Log($"Enemy detected: {collider.name}");
-                    }
-                    else if (collider.CompareTag("Collectible"))
+                    } 
+                    if (collider.CompareTag("Collectible"))
                     {
-                        Debug.Log($"Collectible detected: {collider.name}");
-                        //(collider.gameObject);
+                        EnableEchoEffect(true);
                     }
                 }
-                
-
                 // Disable the effect after a delay (e.g., for a short duration)
                 Invoke(nameof(DisableEchoEffect), 5f); // Adjust time if needed
-                
             }
         } 
         private void EnableEchoEffect(bool state)
@@ -523,15 +554,12 @@ namespace Platformer
             if (echoRendererFeature != null)
             {
                 echoRendererFeature.SetActive(state);
-                
             }
         }
-
         private void DisableEchoEffect()
         {
             EnableEchoEffect(false);
         }
-        
         void OnDash(bool performed)
         {
             if (performed && !dashTimer.IsRunning && !dashCooldownTimer.IsRunning && !glideTimer.IsRunning)
@@ -545,7 +573,6 @@ namespace Platformer
                 glideStamina?.StopGlide();
             }
         }
-
         void OnJump(bool performed)
         {
             if (wallClimbimg)
@@ -570,7 +597,6 @@ namespace Platformer
                 jumpTimer.Stop();
             }
         }
-
         public void HandleJump()
         {
             // if not jumping and grounded, keep jump velocity at 0
@@ -592,9 +618,6 @@ namespace Platformer
             // Apply velocity
             rb.velocity = new Vector3(rb.velocity.x, jumpVelocity, rb.velocity.z);
         }
-
-
-        
         public void OnGlide(bool performed)
         {
             if (performed)
@@ -613,7 +636,6 @@ namespace Platformer
                 glideTimer.Stop();
             }
         }
-
         public void HandleGlide()
         {
             if (glideBoost > 1)
@@ -646,7 +668,6 @@ namespace Platformer
                 }
             }
         }
-        
         void UpdateSound()
         {
             // start footsteps event if the player has an x velocity and is on the ground
@@ -666,11 +687,6 @@ namespace Platformer
                 playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
             }
         }
-
-        
-
-        
-      
         void OnEnable()
         {
             input.Jump += OnJump;
@@ -683,7 +699,6 @@ namespace Platformer
             input.interact += OnInteract;
             
         }
-
         void OnDisable()
         {
             input.Jump -= OnJump;

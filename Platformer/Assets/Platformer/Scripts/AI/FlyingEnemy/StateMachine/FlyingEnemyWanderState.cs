@@ -4,54 +4,60 @@ namespace Platformer
 {
     public class FlyingEnemyWanderState : FlyingEnemyBaseState
     {
-        readonly Vector3 startPoint;
-        readonly float wanderRadius; 
-        readonly float speed;
-        readonly float rotationSpeed;
-        
-        Vector3 destination;
-        
-        public FlyingEnemyWanderState(FlyingEnemy flyingEnemy, Animator animator, float wanderRadius, float speed, float rotationSpeed) : base(flyingEnemy, animator)
+        private readonly Transform[] waypoints;
+        private readonly float speed;
+        private readonly float rotationSpeed;
+
+        private int currentWaypointIndex;
+
+        public FlyingEnemyWanderState(FlyingEnemy flyingEnemy, Animator animator, Transform[] waypoints, float speed, float rotationSpeed)
+            : base(flyingEnemy, animator)
         {
-            this.startPoint = flyingEnemy.transform.position;
-            this.wanderRadius = wanderRadius;
+            this.waypoints = waypoints;
             this.speed = speed;
             this.rotationSpeed = rotationSpeed;
-            this.destination = GetRandomPoint();
+            this.currentWaypointIndex = 0; // Start at the first waypoint
         }
-        
+
         public override void OnEnter() 
         {
-            //Debug.Log("Wander");
             animator.CrossFade(FlyHash, crossFadeDuration);
         }
 
         public override void Update()
         {
-            
-            RotateTowards(destination);
-            
-            // Move towards destination
-            flyingEnemy.transform.position = Vector3.MoveTowards(flyingEnemy.transform.position, destination, speed * Time.deltaTime);
+            if (waypoints.Length == 0) return; // No waypoints to follow
 
-            // If destination is reached, find a new random point
-            if (Vector3.Distance(flyingEnemy.transform.position, destination) < 0.1f)
+            // Get the current waypoint
+            Vector3 targetPosition = waypoints[currentWaypointIndex].position;
+
+            // Rotate towards the current waypoint
+            RotateTowards(targetPosition);
+            
+            // Move towards the current waypoint
+            flyingEnemy.transform.position = Vector3.MoveTowards(
+                flyingEnemy.transform.position, 
+                targetPosition, 
+                speed * Time.deltaTime
+            );
+
+            // Check if the enemy is close enough to the waypoint
+            if (Vector3.Distance(flyingEnemy.transform.position, targetPosition) < 0.1f)
             {
-                destination = GetRandomPoint();
+                // Move to the next waypoint, looping back to the start if at the end
+                currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
             }
         }
-        void RotateTowards(Vector3 target)
+
+        private void RotateTowards(Vector3 target)
         {
             Vector3 direction = (target - flyingEnemy.transform.position).normalized; // Direction to face
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            flyingEnemy.transform.rotation = Quaternion.Slerp(flyingEnemy.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
-        Vector3 GetRandomPoint()
-        {
-            Vector3 randomDirection = Random.insideUnitSphere * wanderRadius;
-            randomDirection += startPoint;
-            randomDirection.y = Mathf.Clamp(randomDirection.y, 1f, 10f); // Restrict height if needed
-            return randomDirection;
+            flyingEnemy.transform.rotation = Quaternion.Slerp(
+                flyingEnemy.transform.rotation, 
+                targetRotation, 
+                rotationSpeed * Time.deltaTime
+            );
         }
     }
 }

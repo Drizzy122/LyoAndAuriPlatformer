@@ -762,7 +762,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4573206327646174916}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32ef1d4de3a9e7141882f9e7af0fe002, type: 3}
   m_Name: 
@@ -784,7 +784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b29bd78f4e4b6f4d9b80f9c290bbb21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 2
+  startingHealth: 100
   healthPrefab: {fileID: 2405522073640296435, guid: 6347b6d280d5f2d44974a084aaa8bb37,
     type: 3}
   XPOrbPrefab: {fileID: 9185204307891060596, guid: 17c1bca52026a0a4fad5a79234e3cf35,
@@ -798,7 +798,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4573206327646174916}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: faa36763e1eda2946ba09696ebe33e8e, type: 3}
   m_Name: 
@@ -807,9 +807,11 @@ MonoBehaviour:
   animator: {fileID: 1724947287058624335}
   speed: 5
   stoppingDistance: 1
-  wanderRadius: 10
   timeBetweenAttacks: 5
   damageAmount: 1
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &4845177539867759848
 GameObject:
   m_ObjectHideFlags: 0

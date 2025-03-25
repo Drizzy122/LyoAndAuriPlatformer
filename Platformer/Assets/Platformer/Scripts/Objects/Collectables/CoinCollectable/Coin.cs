@@ -1,32 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using FMODUnity;
 
 namespace Platformer
 { 
     public class Coin : MonoBehaviour, IDataPersistence
     {
-        [Header("Config")]
         [SerializeField] private string id;
-        [SerializeField] private bool collected = false;
-        [ContextMenu("Generate guid for id")]
 
-        void Awake()
-        {
-            GenerateGuid();
-        }
-        private void GenerateGuid()
+        [ContextMenu("Generate guid for id")]
+        private void GenerateGuid() 
         {
             id = System.Guid.NewGuid().ToString();
         }
-        public void LoadData(GameData data)
+        
+        private MeshRenderer visual;
+       
+        private bool collected = false;
+        
+        private void Awake() 
+        {
+            visual = this.GetComponent<MeshRenderer>();
+        }
+        
+        public void LoadData(GameData data) 
         {
             data.coinsCollected.TryGetValue(id, out collected);
-            if (collected)
+            if (collected) 
             {
-                gameObject.SetActive(false);
+                visual.gameObject.SetActive(false);
+                Destroy();
             }
         }
-        public void SaveData(GameData data)
+
+        public void SaveData(GameData data) 
         {
             if (data.coinsCollected.ContainsKey(id))
             {
@@ -34,20 +41,26 @@ namespace Platformer
             }
             data.coinsCollected.Add(id, collected);
         }
+       
+        private void OnTriggerEnter()
+        {
+            if (!collected)
+            {
+                CollectCoin();
+            }
+        }
         private void CollectCoin()
         {
             collected = true;
-            gameObject.SetActive(false);
+            visual.gameObject.SetActive(false);
             GameEventsManager.instance.miscEvents.CoinCollected();
             AudioManager.instance.PlayOneShot(FMODEvents.instance.coinCollected, this.transform.position);
             
         }
-        private void OnTriggerEnter(Collider other)
+        
+        private void Destroy() 
         {
-            if (other.CompareTag("Player"))
-            {
-                CollectCoin();
-            }
+            Destroy(this.gameObject);
         }
     }
 }

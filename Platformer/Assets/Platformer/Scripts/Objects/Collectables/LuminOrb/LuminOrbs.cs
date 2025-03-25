@@ -1,25 +1,27 @@
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Platformer
 {
     public class LuminOrbs : MonoBehaviour, IDataPersistence
     {
-        [SerializeField] private string id;
-        [SerializeField] private bool collected = false;
-
         [ContextMenu("Generate guid for id")]
-
         private void GenerateGuid()
         {
             id = System.Guid.NewGuid().ToString();
         }
+        
+        [SerializeField] private VisualEffect visual;
+        [SerializeField] private string id;
+        [SerializeField] private bool collected = false;
 
         public void LoadData(GameData data)
         {
             data.luminCollected.TryGetValue(id, out collected);
             if (collected)
             {
-                gameObject.SetActive(false);
+                visual.gameObject.SetActive(false);
+                Destroy();
             }
         }
 
@@ -44,8 +46,15 @@ namespace Platformer
         private void LuminCollected()
         {
             collected = true;
-            gameObject.SetActive(false);
+            visual.gameObject.SetActive(false);
             GameEventsManager.instance.miscEvents.LuminCollected();
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.coinCollected, this.transform.position);
+           
+        }
+        
+        private void Destroy() 
+        {
+            Destroy(this.gameObject);
         }
     }
 }

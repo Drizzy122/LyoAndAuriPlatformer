@@ -7,6 +7,7 @@ namespace Platformer
         public GameObject door;
         public float doorOpenDuration = 2f;
         public Vector3 doorOpenVector = new Vector3(0, -9, 0);
+        
 
         private bool isOpening = false;
         private bool isFullyOpen = false;
