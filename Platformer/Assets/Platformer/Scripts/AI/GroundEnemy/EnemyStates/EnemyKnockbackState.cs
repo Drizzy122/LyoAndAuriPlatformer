@@ -20,7 +20,7 @@ namespace Platformer {
 
             knockbackTargetPosition = (enemy.transform.position - player.transform.position).normalized * 3;
             
-            animator.CrossFade(IdleHash, crossFadeDuration);
+            animator.CrossFade(KnockBackHash, crossFadeDuration);
             enemy.knockBackDirection = knockbackTargetPosition;
         }
 
