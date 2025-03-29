@@ -15,8 +15,7 @@ MonoBehaviour:
   <id>k__BackingField: KillEnemiesQuest
   displayName: Kill Enemies!
   levelRequirement: 1
-  questPrerequisites:
-  - {fileID: 11400000, guid: d787a6c7d2a896643af0d476f0e939e0, type: 2}
+  questPrerequisites: []
   questStepPrefabs:
   - {fileID: 7793835321670792836, guid: 63cd20ed35685ea4491395073fc379c0, type: 3}
   goldReward: 200

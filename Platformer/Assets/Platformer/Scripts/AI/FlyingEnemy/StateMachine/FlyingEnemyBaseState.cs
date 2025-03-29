@@ -11,6 +11,7 @@ namespace Platformer
         protected static readonly int FlyHash = Animator.StringToHash("FlyingMove");
         protected static readonly int AttackHash = Animator.StringToHash("FlyingAttack");
         protected static readonly int DieHash = Animator.StringToHash("Die");
+        protected static readonly int KnockBackHash = Animator.StringToHash("KnockBack");
         
         protected const float crossFadeDuration = 0.1f;
 

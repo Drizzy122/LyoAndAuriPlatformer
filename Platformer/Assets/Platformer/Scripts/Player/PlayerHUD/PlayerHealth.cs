@@ -13,15 +13,18 @@ namespace Platformer
         private bool dead;
         public System.Action OnDeath; // Add a public event to notify death
         public bool IsInvulnerable { get; private set; }
-        //[Header("iFrames")] 
-        //[SerializeField] private float iFramesDuration;
-       // [SerializeField] private int numberOfFlashes;
-       // public Renderer meshRenderer;
+        
+        [Header("iFrames")] 
+        [SerializeField] private float iFramesDuration;
+        [SerializeField] private int numberOfFlashes;
+        public Renderer meshRenderer;
+        public Material flashMaterial;
         
         private void Awake()
         {
             currentHealth = startingHealth;
-          //  meshRenderer = GetComponent<Renderer>();
+            flashMaterial = GetComponent<Material>();
+            meshRenderer = GetComponentInChildren<Renderer>();
         }
 
         public void TakeDamage(float damage)
@@ -30,7 +33,7 @@ namespace Platformer
             if (currentHealth > 0)
             {
                 HandleDamage();
-                //StartCoroutine(Invunerability());
+                StartCoroutine(Invunerability());
             }
             else
             {
@@ -72,11 +75,11 @@ namespace Platformer
             }
         }
         
-        /*
+        
         private IEnumerator Invunerability()
         {
             IsInvulnerable = true;
-            Physics.IgnoreLayerCollision(10, 11, true); // Adjust layer numbers as needed
+            Physics.IgnoreLayerCollision(6, 7, true); // Adjust layer numbers as needed
             for (int i = 0; i < numberOfFlashes; i++)
             {
                 meshRenderer.material.color = new Color(1, 0, 0, 0.5f);
@@ -85,10 +88,10 @@ namespace Platformer
                 yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
             }
 
-            Physics.IgnoreLayerCollision(10, 11, false);
+            Physics.IgnoreLayerCollision(6, 7, false);
             IsInvulnerable = false;
         }
-        */
+        
 
         private void RestartScene()
         {

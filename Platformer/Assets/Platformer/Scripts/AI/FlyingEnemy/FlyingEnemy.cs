@@ -1,5 +1,6 @@
 using UnityEngine;
 using KBCore.Refs;
+using MyNamespace;
 using Utilities;
 
 namespace Platformer {
@@ -19,6 +20,12 @@ namespace Platformer {
         
         [SerializeField] private Transform[] waypoints; // Array of waypoints
         
+        public float knockbackTimer;
+        public float knockbackSpeed = 2f;
+        public Vector3 knockBackDirection;
+        public float turnSpeedToReturnTo;
+        public float accelerationToReturnTo;
+        
         private EnemyHealth enemyHealth;
         StateMachine stateMachine;
         CountdownTimer attackTimer;
@@ -28,8 +35,6 @@ namespace Platformer {
         void Start()
         {
             float rotationSpeed = 3f; // Adjust rotation speed here
-           
-
             
             enemyHealth = GetComponent<EnemyHealth>();
             attackTimer = new CountdownTimer(timeBetweenAttacks);
@@ -40,13 +45,16 @@ namespace Platformer {
             var chaseState = new FlyingEnemyChaseState(this, animator, playerDetector.Player, speed, stoppingDistance, rotationSpeed);
             var attackState = new FlyingEnemyAttackState(this, animator, playerDetector.Player, rotationSpeed);
             var dieState = new FlyingEnemyDieState(this, animator); 
+            var knockBackState = new FlyingEnemyKnockbackState(this, animator, playerDetector.Player);
             
        
             At(wanderState, chaseState, new FuncPredicate(() => playerDetector.CanDetectPlayer()));
             At(chaseState, wanderState, new FuncPredicate(() => !playerDetector.CanDetectPlayer()));
             At(chaseState, attackState, new FuncPredicate(() => playerDetector.CanAttackPlayer()));
             At(attackState, chaseState, new FuncPredicate(() => !playerDetector.CanAttackPlayer()));
+            At(knockBackState, chaseState, new FuncPredicate(() => knockbackTimer <= 0));
             
+            Any(knockBackState, new FuncPredicate(() => enemyHealth.currentHealth > 0 && knockbackTimer > 0));
             Any(dieState, new FuncPredicate(() => enemyHealth.currentHealth <= 0));
 
             stateMachine.SetState(wanderState);
