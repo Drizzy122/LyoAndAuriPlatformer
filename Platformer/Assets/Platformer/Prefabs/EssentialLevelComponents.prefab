@@ -17108,7 +17108,8 @@ MonoBehaviour:
   glideFallSpeed: 1
   glideTime: 3
   attackCoolDown: 0.5
-  attackDistance: 5
+  attackDistance: 2
+  spinAttackDistance: 3
   attackDamage: 5
   spinAttackDamage: 10
   knockbackTime: 0.2

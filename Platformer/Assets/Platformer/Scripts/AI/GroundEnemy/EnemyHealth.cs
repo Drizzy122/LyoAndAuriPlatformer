@@ -25,7 +25,15 @@ namespace Platformer
             currentHealth = Mathf.Clamp(currentHealth - damage, 0, startingHealth);
             if (currentHealth > 0)
             {
-                GetComponent<Enemy>().knockbackTimer = knockBackTime;
+                if (TryGetComponent(out Enemy enemy))
+                {
+                    enemy.knockbackTimer = knockBackTime;
+                }
+                else if(TryGetComponent(out FlyingEnemy flyingEnemy))
+                {
+                    flyingEnemy.knockbackTimer = knockBackTime;
+                }
+
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.enemyHurt, this.transform.position);
             }
             else

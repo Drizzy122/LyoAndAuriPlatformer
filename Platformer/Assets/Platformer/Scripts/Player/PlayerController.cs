@@ -59,6 +59,7 @@ namespace Platformer
         [Header("Attack Settings")]
         [SerializeField] float attackCoolDown = 0.5f;
         [SerializeField] float attackDistance = 1f;
+        [SerializeField] private float spinAttackDistance = 5f;
         [SerializeField] int attackDamage = 10;
         [SerializeField] int spinAttackDamage = 20;
         [SerializeField] private float knockbackTime = 0.5f;
@@ -409,8 +410,8 @@ namespace Platformer
             wallClimbChecks[1] = Physics.Raycast(transform.position + transform.up * 2, transform.forward, 1, wallClimbLayer);
             wallClimbChecks[2] = Physics.Raycast(transform.position - transform.up * 0.6f, transform.forward, 1, wallClimbLayer);
     
-            wallClimbChecks[3] = Physics.Raycast(transform.position + transform.right * 1 + transform.up * 0.5f, transform.forward, 1, wallClimbLayer);
-            wallClimbChecks[4] = Physics.Raycast(transform.position - transform.right * 1 + transform.up * 0.5f, transform.forward, 1, wallClimbLayer);
+            //wallClimbChecks[3] = Physics.Raycast(transform.position + transform.right * 1 + transform.up * 0.5f, transform.forward, 1, wallClimbLayer);
+            //wallClimbChecks[4] = Physics.Raycast(transform.position - transform.right * 1 + transform.up * 0.5f, transform.forward, 1, wallClimbLayer);
 
             if (wallClimbChecks[0])
             {
@@ -433,6 +434,12 @@ namespace Platformer
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, detectionRadius);
+            
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position + transform.forward * attackDistance, attackDistance);
+            
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(transform.position, spinAttackDistance);
      
             if (Application.isPlaying)
             {
@@ -444,6 +451,7 @@ namespace Platformer
                 if(wallClimbChecks[1]) Gizmos.color = Color.green;
                 Gizmos.DrawRay(transform.position + transform.up * 2, transform.forward * 1);
          
+                /*
                 Gizmos.color = Color.yellow;
                 if(wallClimbChecks[2]) Gizmos.color = Color.green;
                 Gizmos.DrawRay(transform.position - transform.up * 0.6f, transform.forward * 1);
@@ -451,13 +459,16 @@ namespace Platformer
                 Gizmos.color = Color.yellow;
                 if(wallClimbChecks[3]) Gizmos.color = Color.green;
                 Gizmos.DrawRay(transform.position + transform.right * 1 + transform.up * 0.5f, transform.forward);
-         
+                */
+                
                 Gizmos.color = Color.yellow;
                 if(wallClimbChecks[4]) Gizmos.color = Color.green;
                 Gizmos.DrawRay(transform.position - transform.right * 1 + transform.up * 0.5f, transform.forward);
          
                 Gizmos.color = Color.magenta;
                 if(wallClimbNormal != Vector3.zero) Gizmos.DrawRay(wallClimbTargetPos, wallClimbNormal);
+                
+   
             }
         }
         void OnInteract(bool performed)
@@ -485,7 +496,7 @@ namespace Platformer
         }
         public void Attack()
         {
-            Vector3 attackPos = transform.position + transform.forward;
+            Vector3 attackPos = transform.position + transform.forward * attackDistance;
             Collider[] hitEnemies = Physics.OverlapSphere(attackPos, attackDistance);
             AudioManager.instance.PlayOneShot(FMODEvents.instance.playerAttack, this.transform.position);
             foreach (var enemy in hitEnemies)
@@ -505,8 +516,8 @@ namespace Platformer
         }
         public void SpinAttack()
         {
-            Vector3 attackPos = transform.position + transform.forward;
-            Collider[] hitEnemies = Physics.OverlapSphere(attackPos, attackDistance);
+            Vector3 attackPos = transform.position;
+            Collider[] hitEnemies = Physics.OverlapSphere(attackPos, spinAttackDistance);
             AudioManager.instance.PlayOneShot(FMODEvents.instance.playerAttack, this.transform.position);
             foreach (var enemy in hitEnemies)
             {

@@ -45,14 +45,14 @@ namespace Platformer {
             var chaseState = new FlyingEnemyChaseState(this, animator, playerDetector.Player, speed, stoppingDistance, rotationSpeed);
             var attackState = new FlyingEnemyAttackState(this, animator, playerDetector.Player, rotationSpeed);
             var dieState = new FlyingEnemyDieState(this, animator); 
-            var knockBackState = new FlyingEnemyKnockbackState(this, animator, playerDetector.Player);
+            var knockBackState = new FlyingEnemyKnockbackState(this, animator, playerDetector.Player, speed, rotationSpeed);
             
        
             At(wanderState, chaseState, new FuncPredicate(() => playerDetector.CanDetectPlayer()));
             At(chaseState, wanderState, new FuncPredicate(() => !playerDetector.CanDetectPlayer()));
             At(chaseState, attackState, new FuncPredicate(() => playerDetector.CanAttackPlayer()));
             At(attackState, chaseState, new FuncPredicate(() => !playerDetector.CanAttackPlayer()));
-            At(knockBackState, chaseState, new FuncPredicate(() => knockbackTimer <= 0));
+            At(knockBackState, wanderState, new FuncPredicate(() => knockbackTimer <= 0));
             
             Any(knockBackState, new FuncPredicate(() => enemyHealth.currentHealth > 0 && knockbackTimer > 0));
             Any(dieState, new FuncPredicate(() => enemyHealth.currentHealth <= 0));
@@ -73,6 +73,11 @@ namespace Platformer {
         void FixedUpdate() 
         {
             stateMachine.FixedUpdate();
+
+            if (knockbackTimer > 0)
+            {
+                knockbackTimer -= Time.fixedDeltaTime;
+            }
         }
         
    
