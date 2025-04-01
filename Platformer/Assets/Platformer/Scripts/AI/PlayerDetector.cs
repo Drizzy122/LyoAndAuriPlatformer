@@ -45,6 +45,7 @@ namespace Platformer {
             // Draw a spheres for the radii
             Gizmos.DrawWireSphere(transform.position, detectionRadius);
             Gizmos.DrawWireSphere(transform.position, innerDetectionRadius);
+            Gizmos.DrawWireSphere(transform.position, attackRange);
 
             // Calculate our cone directions
             Vector3 forwardConeDirection = Quaternion.Euler(0, detectionAngle / 2, 0) * transform.forward * detectionRadius;

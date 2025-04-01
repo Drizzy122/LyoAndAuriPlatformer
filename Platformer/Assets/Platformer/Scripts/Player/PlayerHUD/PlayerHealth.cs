@@ -18,12 +18,9 @@ namespace Platformer
         [SerializeField] private float iFramesDuration;
         [SerializeField] private int numberOfFlashes;
         public Renderer meshRenderer;
-        public Material flashMaterial;
-        
         private void Awake()
         {
             currentHealth = startingHealth;
-            flashMaterial = GetComponent<Material>();
             meshRenderer = GetComponentInChildren<Renderer>();
         }
 
@@ -82,7 +79,7 @@ namespace Platformer
             Physics.IgnoreLayerCollision(6, 7, true); // Adjust layer numbers as needed
             for (int i = 0; i < numberOfFlashes; i++)
             {
-                meshRenderer.material.color = new Color(1, 0, 0, 0.5f);
+                meshRenderer.material.color = new Color(1, 0, 0, 0.1f);
                 yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
                 meshRenderer.material.color = Color.white;
                 yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
@@ -95,7 +92,7 @@ namespace Platformer
 
         private void RestartScene()
         {
-            SceneManager.LoadScene("DeathScene"); // Replace "EndScreen" with the name of your end screen scene
+            SceneManager.LoadScene("Game"); // Replace "EndScreen" with the name of your end screen scene
         }
     }
 }

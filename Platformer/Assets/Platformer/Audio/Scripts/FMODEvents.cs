@@ -37,7 +37,7 @@ namespace Platformer
         //[field: SerializeField] public EventReference ChestIdle { get; private set; }
         
         [field: Header("UI")]
-         //[field: SerializeField] public EventReference ui { get; private set; }
+        [field: SerializeField] public EventReference ui { get; private set; }
         public static FMODEvents instance { get; private set; }
         private void Awake()
         {

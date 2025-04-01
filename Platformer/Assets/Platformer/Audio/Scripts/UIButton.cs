@@ -9,9 +9,7 @@ namespace Platformer
         private StudioEventEmitter emitter;
         private void Start()
         {
-           
-         //   emitter = AudioManager.instance.InitializeEventEmitter(FMODEvents.instance.ui, this.gameObject);
-            //emitter.Play();
+            emitter = AudioManager.instance.InitializeEventEmitter(FMODEvents.instance.ui, this.gameObject);
         }
     }
 }

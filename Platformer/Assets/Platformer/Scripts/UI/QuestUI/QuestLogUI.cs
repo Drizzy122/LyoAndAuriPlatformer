@@ -75,6 +75,11 @@ namespace Platformer
             {
                 firstSelectedButton.Select();
             }
+            else
+            {
+                Debug.LogWarning("No first selected button was set.");
+            }
+            Time.timeScale = 0;
         }
         private void HideUI()
         {
@@ -91,6 +96,7 @@ namespace Platformer
             }
 
             EventSystem.current.SetSelectedGameObject(null);
+            Time.timeScale = 1;
         }
         
         private void QuestStateChange(Quest quest)

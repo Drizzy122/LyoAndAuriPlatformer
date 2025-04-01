@@ -42,10 +42,10 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638788988256952583
+  lastModified: 638790480367683284
   FileSizes:
   - Name: Desktop
-    Value: 494
+    Value: 10048
   Exists: 1
 --- !u!114 &-5684119154390222371
 MonoBehaviour:
@@ -72,6 +72,7 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters:
   - {fileID: -1674594016779280686}
+  - {fileID: 4625662502971957415}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -90,10 +91,10 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/Level 1.bank
   Name: Level 1
   StudioPath: bank:/Level 1
-  lastModified: 638788988255655949
+  lastModified: 638790500085744968
   FileSizes:
   - Name: Desktop
-    Value: 1577856
+    Value: 6142432
   Exists: 1
 --- !u!114 &-2253986011995685342
 MonoBehaviour:
@@ -110,7 +111,7 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638788988255721803
+  lastModified: 638790500085886792
   FileSizes:
   - Name: Desktop
     Value: 1632
@@ -171,12 +172,13 @@ MonoBehaviour:
   - {fileID: 4252190539194279846}
   - {fileID: -8413032008957213125}
   - {fileID: 1128427096154961733}
+  - {fileID: 3887025718446572576}
   EditorParameters: []
   MasterBanks:
   - {fileID: -2253986011995685342}
   StringsBanks:
   - {fileID: 404127982105630655}
-  cacheTime: 638788988256952583
+  cacheTime: 638790500085902984
   cacheVersion: 131622
 --- !u!114 &404127982105630655
 MonoBehaviour:
@@ -193,10 +195,10 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638788988255751892
+  lastModified: 638790500085902984
   FileSizes:
   - Name: Desktop
-    Value: 1592
+    Value: 1700
   Exists: 1
 --- !u!114 &669220214532968943
 MonoBehaviour:
@@ -377,6 +379,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2077
+--- !u!114 &3887025718446572576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MenuUI/Button Select
+  m_EditorClassIdentifier: 
+  Path: event:/MenuUI/Button Select
+  Guid:
+    Data1: 1718617974
+    Data2: 1122828885
+    Data3: 1228371845
+    Data4: 1118289004
+  Banks:
+  - {fileID: -7893012431308121750}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 350
 --- !u!114 &4252190539194279846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,6 +433,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 889
+--- !u!114 &4625662502971957415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level1Music/MusciIntensity
+  m_EditorClassIdentifier: 
+  Name: MusciIntensity
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 548792983
+    data2: 4184825027
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &6112958943305407984
 MonoBehaviour:
   m_ObjectHideFlags: 0

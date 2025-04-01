@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
@@ -82,6 +81,11 @@ namespace Platformer
         public void SetMusicArea(MusicArea area)
         {
             musicEventInstance.setParameterByName("Area", (float)area);
+        }
+        
+        public void SetMusicParameter(string parameterName, float parameterValue)
+        {
+            musicEventInstance.setParameterByName(parameterName, parameterValue);
         }
         public void PlayOneShot(EventReference sound, Vector3 worldPos)
         {
