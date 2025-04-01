@@ -15,12 +15,14 @@ namespace Platformer
         }
         
         private MeshRenderer visual;
-       
+        private ParticleSystem collectParticle;
         private bool collected = false;
         
         private void Awake() 
         {
-            visual = this.GetComponent<MeshRenderer>();
+            visual = this.GetComponentInChildren<MeshRenderer>();
+            collectParticle = this.GetComponentInChildren<ParticleSystem>();
+            collectParticle.Stop();
         }
         
         public void LoadData(GameData data) 
@@ -29,7 +31,7 @@ namespace Platformer
             if (collected) 
             {
                 visual.gameObject.SetActive(false);
-                Destroy();
+                Destroy(gameObject, 0.5f);
             }
         }
 
@@ -46,6 +48,7 @@ namespace Platformer
         {
             if (!collected)
             {
+                collectParticle.Play();
                 CollectCoin();
             }
         }

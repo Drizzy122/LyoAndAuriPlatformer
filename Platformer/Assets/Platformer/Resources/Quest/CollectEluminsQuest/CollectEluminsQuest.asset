@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: CollectEluminsQuest
   displayName: Collect the Elumin Orbs!!
-  levelRequirement: 1
+  levelRequirement: 0
   questPrerequisites: []
   questStepPrefabs:
   - {fileID: 6810405000030755154, guid: 90e24f9cb443ab241bbfaddf9e87f5c9, type: 3}
   goldReward: 0
-  experienceReward: 10000
+  experienceReward: 300

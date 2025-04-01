@@ -1643,7 +1643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b29bd78f4e4b6f4d9b80f9c290bbb21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 100
+  startingHealth: 20
   healthPrefab: {fileID: 2405522073640296435, guid: 6347b6d280d5f2d44974a084aaa8bb37,
     type: 3}
   XPOrbPrefab: {fileID: 9185204307891060596, guid: 17c1bca52026a0a4fad5a79234e3cf35,
@@ -1667,9 +1667,14 @@ MonoBehaviour:
   animator: {fileID: 8795461653603286821}
   wanderRadius: 10
   timeBetweenAttacks: 1
-  damageAmount: 5
+  damageAmount: 15
   rotationSpeed: 1
   RunSpeed: 6
+  knockbackTimer: 2
+  knockbackSpeed: 2
+  knockBackDirection: {x: 0, y: 0, z: 0}
+  turnSpeedToReturnTo: 0
+  accelerationToReturnTo: 0
 --- !u!1 &6487057777491836793
 GameObject:
   m_ObjectHideFlags: 0

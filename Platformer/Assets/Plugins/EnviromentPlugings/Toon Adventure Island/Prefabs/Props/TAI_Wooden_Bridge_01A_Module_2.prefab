@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3267389693173614928}
   - component: {fileID: 3267389693197218320}
   - component: {fileID: 3267389693183015990}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TAI_Wooden_Bridge_01A_Module_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,6 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3267389693183113872}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,11 +35,10 @@ Transform:
   - {fileID: 3267389693183141554}
   - {fileID: 3267389693183141556}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3267389693173614928
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -55,7 +55,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!205 &3267389693197218320
 LODGroup:
   m_ObjectHideFlags: 0
@@ -87,9 +88,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3267389693183113872}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 3.9656925, y: 0.17322421, z: 2.0043335}
   m_Center: {x: 0.008822441, y: -0.040446877, z: -0.005508423}
 --- !u!1 &3267389693183113874
@@ -103,7 +112,7 @@ GameObject:
   - component: {fileID: 3267389693183141554}
   - component: {fileID: 3267389693179750032}
   - component: {fileID: 3267389693180847184}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TAI_Wooden_Bridge_01A_Module_2_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,13 +126,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3267389693183113874}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3267389693183141552}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3267389693179750032
 MeshFilter:
@@ -186,7 +195,7 @@ GameObject:
   - component: {fileID: 3267389693183141556}
   - component: {fileID: 3267389693179750034}
   - component: {fileID: 3267389693180847186}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TAI_Wooden_Bridge_01A_Module_2_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,13 +209,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3267389693183113876}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3267389693183141552}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3267389693179750034
 MeshFilter:

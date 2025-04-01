@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visual: {fileID: 2246364881960451131}
-  id: 2e34bd76-0c80-45c9-99cf-f0c31ee2159e
+  id: 
   collected: 0
 --- !u!114 &8015796063702183338
 MonoBehaviour:

@@ -808,8 +808,12 @@ MonoBehaviour:
   speed: 5
   stoppingDistance: 1
   timeBetweenAttacks: 5
-  damageAmount: 1
+  damageAmount: 30
   waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   knockbackTimer: 0

@@ -84,15 +84,13 @@ namespace Platformer {
 
             // Access PlayerHealth and apply damage only if the player is not invulnerable
             var playerHealth = playerDetector.Player.GetComponent<PlayerHealth>();
-            if (playerHealth != null) {
-                if (!playerHealth.IsInvulnerable) { // Assuming you add a public IsInvulnerable property
+            if (playerHealth != null) 
+            {
+                if (!playerHealth.IsInvulnerable) 
+                { 
                     playerHealth.TakeDamage(damageAmount);
-                } else {
-                    Debug.Log("Player is invulnerable. Attack did no damage.");
-                }
-            } else {
-                Debug.LogWarning("PlayerHealth component not found on the player!");
-            }
+                } 
+            } 
         }
 
         private void OnDrawGizmosSelected()
