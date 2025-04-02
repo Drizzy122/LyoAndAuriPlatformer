@@ -2,9 +2,8 @@ using System.Collections;
 using UnityEngine;
 
 namespace Platformer
-{
-    
-    public class UIOnScreen : MonoBehaviour
+{ 
+    public class EcliptiumUIAnimation : MonoBehaviour
     {
         private Animator animator;
         bool collected = false;
@@ -13,22 +12,20 @@ namespace Platformer
         private void Awake()
         {
             animator = GetComponentInChildren<Animator>();
-        
+
         }
 
         private void OnEnable()
         {
-            GameEventsManager.instance.miscEvents.onLuminCollected += LuminCollected;
-            
+            GameEventsManager.instance.miscEvents.onEcliptiumCollected += Collected;
         }
 
         private void OnDisable()
         {
-            GameEventsManager.instance.miscEvents.onLuminCollected -= LuminCollected;
-            
+            GameEventsManager.instance.miscEvents.onEcliptiumCollected -= Collected;
         }
 
-        private void LuminCollected()
+        private void Collected()
         {
             if (!collected)
             {
@@ -37,7 +34,7 @@ namespace Platformer
                 StartCoroutine(ResetCollected());
             }
         }
-        
+
         private IEnumerator ResetCollected()
         {
             yield return new WaitForSeconds(duration); // Adjust the delay to match your animation length

@@ -11,4 +11,4 @@ VAR CollectEluminsQuestState = "REQUIREMENTS_NOT_MET"
 
 // ink files
 INCLUDE collect_elumins_start_npc.ink
-INCLUDE collect_elumins_finish_npc.ink
+//INCLUDE collect_elumins_finish_npc.ink

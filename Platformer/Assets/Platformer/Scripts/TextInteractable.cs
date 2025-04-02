@@ -1,33 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using TMPro;
 
-public class TextInteractable : MonoBehaviour
+namespace Platformer
 {
-    [SerializeField] private TextMeshProUGUI text; // Assign a TextMeshProUGUI GameObject in the Inspector
-  
-    void Start()
+    public class TextInteractable : MonoBehaviour
     {
-        if (text != null)
-        {
-            text.gameObject.SetActive(false); // Ensure the text starts as inactive
-        }
-    }
+        public GameObject gameObject;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && text != null)
+        private void Awake()
         {
-            text.gameObject.SetActive(true); // Enable the text when the player enters the trigger
+            gameObject.SetActive(false);
         }
-    }
+        
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player") && text != null)
+        private void OnTriggerEnter(Collider other)
         {
-            text.gameObject.SetActive(false); // Disable the text when the player exits the trigger
+            if (other.CompareTag("Player"))
+            {
+                gameObject.SetActive(true);
+                
+            }
         }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                gameObject.SetActive(false);
+            }
+        }
+        
+        
     }
 }

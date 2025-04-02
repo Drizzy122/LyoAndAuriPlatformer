@@ -10,26 +10,45 @@
             
 = requirementsNotMet
 // not possible for this quest, but putting something here anyways
-Come back once you've leveled up a bit more.
+You’re not quite ready for this task. Come back after you’ve gained a bit more experience.
 -> END
 
 = canStart
-Will you collect 1 Elumin Orbs and bring them to my friend over there ?
-*[Yes]
+Hey, traveler! Could I ask a favor?
+
+My lantern's almost out, and I need an *Elumin Orb* to recharge it. They're rare crystals that glow with natural energy—really handy in dark places like the caverns nearby.
+
+* [What is this Elumin Orb, exactly?]
+    They're found deep underground and radiate a steady light. We use them to power lanterns in the tunnels. Without them, things get... dangerous.
+    -> canStart
+
+* [Sure, I can get one for you.]
     ~StartQuest("CollectEluminsQuest")
-    Great!
-*[No]
-    oh, ok then. Come Back if you change your mind.
-- -> END
+    Amazing! Bring it back when you find one.
+
+* [Not right now.]
+    No worries. Come back if you change your mind.
+--> END
 
 = inProgress
 How is the hunt for those Elumin Orbs going?
 -> END
 
 = canFinish
-oh? You collected the Elumin Orbs? Go give them to my friend over there and he'll give you a reward!
+You found an Elumin Orb? Incredible—thank you!
+
+* [Here you go.]
+    ~FinishQuest(CollectEluminsQuestId)
+    It's still glowing! This will keep my lantern lit for days.
+
+    You’ve probably saved someone’s life down in those tunnels.
 -> END
 
 = finished
-Thanks for collecting those Elumin Orbs!
+Thanks again for your help! That orb made a real difference.
+-> END
+
+* { CollectEluminsQuestState == "CAN_FINISH"} [here are some coins.]
+    ~ FinishQuest(CollectEluminsQuestId)
+    Oh? these Elumin Orbs are for me? thank you!
 -> END

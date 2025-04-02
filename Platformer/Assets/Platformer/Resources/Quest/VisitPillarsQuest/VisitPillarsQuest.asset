@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: VisitPillarsQuest
   m_EditorClassIdentifier: 
   <id>k__BackingField: VisitPillarsQuest
-  displayName: Visit the pillars!
+  displayName: Visit The Light Beans!
   levelRequirement: 0
   questPrerequisites: []
   questStepPrefabs:
-  - {fileID: 4320806539227324880, guid: 65e649a357af7b8499aa2a2f2b70c31a, type: 3}
-  - {fileID: 6500746228508944842, guid: 27ae839a783b245418e29dd5b23ff31a, type: 3}
-  - {fileID: 7177649868807129887, guid: 6896683bc7cd94641a05e5be9237a6cc, type: 3}
+  - {fileID: 3957762664546177097, guid: 65e649a357af7b8499aa2a2f2b70c31a, type: 3}
+  - {fileID: 3957762664546177097, guid: 2656e36a37ab92346b75d07ea42b1e76, type: 3}
+  - {fileID: 3957762664546177097, guid: f8a8bcac30093fe4fb03cf83723be9ff, type: 3}
   goldReward: 0
-  experienceReward: 100
+  experienceReward: 0

@@ -1,11 +1,12 @@
 using UnityEngine;
+using System.Collections;
 
 namespace Platformer
 {
     public class VisitPillarsQuestStep : QuestStep
     {
         [SerializeField] private Animator animator;
-        [SerializeField] private float delayBeforeFinish = 100f; // Time in seconds before calling FinishQuestStep
+        [SerializeField] private float delayBeforeFinish = 2f; // Time in seconds before calling FinishQuestStep
         private void Start()
         {
             animator = GetComponent<Animator>();
@@ -21,7 +22,7 @@ namespace Platformer
             }
         }
         
-        private System.Collections.IEnumerator DelayedFinishQuestStep()
+        private IEnumerator DelayedFinishQuestStep()
         {
             
             yield return new WaitForSeconds(delayBeforeFinish); // Wait for the specified delay

@@ -475,7 +475,7 @@ namespace Platformer
         {
             if(performed)
             {
-                Debug.Log("Trying to interact");
+                //Debug.Log("Trying to interact");
         
                 foreach (var interactable in FindObjectsByType<Interactable>(FindObjectsSortMode.InstanceID))
                 {
