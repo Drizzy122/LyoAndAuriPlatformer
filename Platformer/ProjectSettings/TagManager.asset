@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Collectible
   - LightBean
+  - Grass
+  - Stone
   layers:
   - Default
   - TransparentFX

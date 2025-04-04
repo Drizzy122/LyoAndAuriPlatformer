@@ -106,6 +106,8 @@ namespace Platformer
         //Audio
         private EventInstance playerFootsteps;
         
+        
+        
         // Animator parameter
         static readonly int Speed = Animator.StringToHash("Speed");
 
@@ -149,12 +151,13 @@ namespace Platformer
             HandleTimers();
             TriggerFootstepEvents();
             UpdateAnimator();
-            UpdateSound();
+       
         }
         void FixedUpdate()
         {
             stateMachine.FixedUpdate();
             WallClimbCheck();
+          
         }
         void UpdateAnimator()
         {
@@ -299,6 +302,7 @@ namespace Platformer
                 // Reset horizontal velocity for a snappy stop
                 rb.velocity = new Vector3(ZeroF, rb.velocity.y, ZeroF);
             }
+            UpdateSound();
         }
         void HandleHorizontalMovement(Vector3 adjustedDirection)
         {
@@ -532,6 +536,7 @@ namespace Platformer
             if (!echoTimer.IsRunning)
             {
                 echoTimer.Start();
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.playerEcolocation, this.transform.position);
             }
         }
 
@@ -581,6 +586,11 @@ namespace Platformer
                 dashTimer.Stop();
                 glideStamina?.StopGlide();
             }
+            else
+            {
+                playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+            }
+            
         }
         void OnJump(bool performed)
         {
@@ -662,6 +672,7 @@ namespace Platformer
                 glideTimer.Stop();
                 glideStamina?.StopGlide();
             }
+           
         }
         void TriggerFootstepEvents()
         {
@@ -679,23 +690,25 @@ namespace Platformer
         }
         void UpdateSound()
         {
-            // start footsteps event if the player has an x velocity and is on the ground
             if (rb.velocity.x != 0 && groundChecker.IsGrounded)
             {
-                // get the playback state
                 PLAYBACK_STATE playbackState;
                 playerFootsteps.getPlaybackState(out playbackState);
+
                 if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
                 {
                     playerFootsteps.start();
                 }
+
+                // Adjust the sound properties based on movement speed
+                playerFootsteps.setParameterByName("moveSpeed", moveSpeed);
             }
-            // otherwise, stop the footstep event
             else
             {
                 playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
             }
         }
+
         void OnEnable()
         {
             input.Jump += OnJump;

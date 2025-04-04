@@ -52,6 +52,9 @@ namespace Platformer
             Cursor.lockState = CursorLockMode.None;
             AudioManager.instance.SetMusicParameter(parameterName, pausedValue);
             AudioManager.instance.SetAmbienceParameter(parameterName, pausedValue);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.uiopen, this.transform.position);
+           // LeanTween.scale(pauseUI, new Vector3(1, 1, 1), 0.5f).setEase(LeanTweenType.easeOutBack);
+
         }
         public void DeactivateMenu()
         {
@@ -61,6 +64,9 @@ namespace Platformer
             Cursor.lockState = CursorLockMode.Locked;
             AudioManager.instance.SetMusicParameter(parameterName, parameterValue);
             AudioManager.instance.SetAmbienceParameter(parameterName, parameterValue);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.uiclose, this.transform.position);
+           // LeanTween.scale(pauseUI, new Vector3(0, 0, 0), 0.5f).setEase(LeanTweenType.easeOutBack);
+   
         }
         
         void Start()

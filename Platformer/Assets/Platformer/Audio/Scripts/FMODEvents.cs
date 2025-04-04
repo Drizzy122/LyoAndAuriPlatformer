@@ -11,6 +11,9 @@ namespace Platformer
         [field: SerializeField] public EventReference playerAttack { get; private set; }
         [field: SerializeField] public EventReference playerHurt { get; private set; }
         [field: SerializeField] public EventReference playerDeath { get; private set; }
+        [field: SerializeField] public EventReference playerEcolocation { get; private set; }
+        
+        
         
         [field:Header("Ground Enemy SFX")]
         
@@ -37,6 +40,8 @@ namespace Platformer
         //[field: SerializeField] public EventReference ChestIdle { get; private set; }
         
         [field: Header("UI")]
+        [field: SerializeField] public EventReference uiopen { get; private set; }
+        [field: SerializeField] public EventReference uiclose { get; private set; }
         [field: SerializeField] public EventReference ui { get; private set; }
         public static FMODEvents instance { get; private set; }
         private void Awake()

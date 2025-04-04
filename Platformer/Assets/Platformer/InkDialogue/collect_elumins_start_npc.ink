@@ -16,10 +16,11 @@ You’re not quite ready for this task. Come back after you’ve gained a bit mo
 = canStart
 Hey, traveler! Could I ask a favor?
 
-My lantern's almost out, and I need an *Elumin Orb* to recharge it. They're rare crystals that glow with natural energy—really handy in dark places like the caverns nearby.
+Can You find an Elumin orb dor me please.
 
 * [What is this Elumin Orb, exactly?]
-    They're found deep underground and radiate a steady light. We use them to power lanterns in the tunnels. Without them, things get... dangerous.
+    They are these specials orbs that allows us to live.
+-> END
     -> canStart
 
 * [Sure, I can get one for you.]

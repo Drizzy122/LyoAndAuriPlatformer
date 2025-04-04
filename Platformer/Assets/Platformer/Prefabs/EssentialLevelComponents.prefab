@@ -4328,6 +4328,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba042f552755c439d58c26ac7d7b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayOnAwake: 0
 --- !u!1 &1575252664497325428
 GameObject:
   m_ObjectHideFlags: 0
@@ -6957,6 +6965,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba042f552755c439d58c26ac7d7b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayOnAwake: 0
 --- !u!1 &2586348441606592922
 GameObject:
   m_ObjectHideFlags: 0
@@ -9937,6 +9953,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba042f552755c439d58c26ac7d7b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayOnAwake: 0
 --- !u!1 &3411142685342250609
 GameObject:
   m_ObjectHideFlags: 0
@@ -10361,6 +10385,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba042f552755c439d58c26ac7d7b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayOnAwake: 0
 --- !u!1 &3517104609874097514
 GameObject:
   m_ObjectHideFlags: 0
@@ -10527,6 +10559,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba042f552755c439d58c26ac7d7b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayOnAwake: 0
 --- !u!1 &3525204591051136412
 GameObject:
   m_ObjectHideFlags: 0
@@ -11094,6 +11134,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba042f552755c439d58c26ac7d7b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayOnAwake: 0
 --- !u!1 &3659289396516527323
 GameObject:
   m_ObjectHideFlags: 0
@@ -12200,6 +12248,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba042f552755c439d58c26ac7d7b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayOnAwake: 0
 --- !u!1 &3947810670907969450
 GameObject:
   m_ObjectHideFlags: 0
@@ -12943,6 +12999,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba042f552755c439d58c26ac7d7b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayOnAwake: 0
 --- !u!1 &4395435655480972215
 GameObject:
   m_ObjectHideFlags: 0
@@ -18668,6 +18732,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba042f552755c439d58c26ac7d7b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayOnAwake: 0
 --- !u!1 &6706945515910633843
 GameObject:
   m_ObjectHideFlags: 0
@@ -27076,6 +27148,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba042f552755c439d58c26ac7d7b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayOnAwake: 0
 --- !u!1 &7730181274393074448
 GameObject:
   m_ObjectHideFlags: 0
@@ -27823,6 +27903,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba042f552755c439d58c26ac7d7b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayOnAwake: 0
 --- !u!1 &8021726472326068398
 GameObject:
   m_ObjectHideFlags: 0
@@ -31441,6 +31529,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba042f552755c439d58c26ac7d7b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayOnAwake: 0
 --- !u!1 &9208110192386118051
 GameObject:
   m_ObjectHideFlags: 0
@@ -32914,10 +33010,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <playerFootsteps>k__BackingField:
     Guid:
-      Data1: -1193263774
-      Data2: 1332644133
-      Data3: -1346871670
-      Data4: -1470356426
+      Data1: 1848330593
+      Data2: 1114907066
+      Data3: 409057177
+      Data4: 639152132
     Path: event:/SFX/Player/FootSteps
   <playerJump>k__BackingField:
     Guid:
@@ -32932,7 +33028,7 @@ MonoBehaviour:
       Data2: 1278339354
       Data3: -537519446
       Data4: 452027480
-    Path: event:/SFX/Player/SwordSwoosh
+    Path: event:/SFX/Player/Melee
   <playerHurt>k__BackingField:
     Guid:
       Data1: 226996630
@@ -32947,6 +33043,13 @@ MonoBehaviour:
       Data3: 1949892796
       Data4: -1917541404
     Path: event:/SFX/Player/Death
+  <playerEcolocation>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   <enemyAttack>k__BackingField:
     Guid:
       Data1: 1941733783
@@ -32989,13 +33092,27 @@ MonoBehaviour:
       Data3: 424110736
       Data4: 1922516948
     Path: event:/SFX/Collectables/Coin
+  <uiopen>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <uiclose>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   <ui>k__BackingField:
     Guid:
       Data1: 1718617974
       Data2: 1122828885
       Data3: 1228371845
       Data4: 1118289004
-    Path: event:/MenuUI/Button Select
+    Path: event:/MenuUI/UIButton
 --- !u!1 &8554524595429866616 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5417516904746173881, guid: 69992dec77f65544da8e6698995d1f0e,

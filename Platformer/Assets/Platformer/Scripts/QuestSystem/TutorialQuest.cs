@@ -12,7 +12,7 @@ namespace Platformer
         [SerializeField] private bool startPoint = true;
         [SerializeField] private bool finishPoint = true;
         
-        private bool playerIsNear = false;
+    
         private string questId;
         private QuestState currentQuestState;
         private QuestIcon questIcon;
@@ -47,7 +47,7 @@ namespace Platformer
         {
             if (otherCollider.CompareTag("Player"))
             {
-                playerIsNear = true;
+                
                 // start or finish quest
                 if (currentQuestState.Equals(QuestState.CAN_START) && startPoint)
                 {
@@ -64,7 +64,7 @@ namespace Platformer
         {
             if (otherCollider.CompareTag("Player"))
             {
-                playerIsNear = false;
+                
             }
         }
     }

@@ -29,7 +29,5 @@ namespace Platformer
                 gameObject.SetActive(false);
             }
         }
-        
-        
     }
 }
