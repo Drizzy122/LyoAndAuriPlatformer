@@ -21,7 +21,7 @@ GameObject:
   m_TagString: LightBean
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &770788095560993309
 Transform:
@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 3957762664546177097}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.40516, y: -0.7000184, z: 45.07037}
+  m_LocalPosition: {x: -24.22992, y: -0.34, z: 19.47}
   m_LocalScale: {x: 1, y: 2.7621, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

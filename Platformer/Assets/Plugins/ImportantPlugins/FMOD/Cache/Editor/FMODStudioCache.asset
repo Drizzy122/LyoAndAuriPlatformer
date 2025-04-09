@@ -42,7 +42,7 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638793195259537030
+  lastModified: 638794116820351704
   FileSizes:
   - Name: Desktop
     Value: 69056
@@ -145,10 +145,10 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/Level 1.bank
   Name: Level 1
   StudioPath: bank:/Level 1
-  lastModified: 638790500085744968
+  lastModified: 638797601915036114
   FileSizes:
   - Name: Desktop
-    Value: 6142432
+    Value: 6258976
   Exists: 1
 --- !u!114 &-2253986011995685342
 MonoBehaviour:
@@ -165,7 +165,7 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638793195257448803
+  lastModified: 638794116817714562
   FileSizes:
   - Name: Desktop
     Value: 1632
@@ -263,7 +263,7 @@ MonoBehaviour:
   - {fileID: -2253986011995685342}
   StringsBanks:
   - {fileID: 404127982105630655}
-  cacheTime: 638793195259537030
+  cacheTime: 638797601915036114
   cacheVersion: 131622
 --- !u!114 &404127982105630655
 MonoBehaviour:
@@ -280,7 +280,7 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638793195257475980
+  lastModified: 638794116817734570
   FileSizes:
   - Name: Desktop
     Value: 1898
@@ -324,10 +324,10 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638793195258774556
+  lastModified: 638794116819533747
   FileSizes:
   - Name: Desktop
-    Value: 226528
+    Value: 224704
   Exists: 1
 --- !u!114 &1752819968745544938
 MonoBehaviour:
@@ -570,7 +570,7 @@ MonoBehaviour:
   - {fileID: 669220214532968943}
   MinDistance: 1
   MaxDistance: 20
-  Length: 12000
+  Length: 5800
 --- !u!114 &7058915144139990184
 MonoBehaviour:
   m_ObjectHideFlags: 0
