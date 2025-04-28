@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -176,6 +177,7 @@ namespace Platformer
             SaveGame();
         }
 
+        [Obsolete("Obsolete")]
         private List<IDataPersistence> FindAllDataPersistenceObjects()
         {
             // FindObjectsofType takes in an optional boolean to include inactive gameobjects

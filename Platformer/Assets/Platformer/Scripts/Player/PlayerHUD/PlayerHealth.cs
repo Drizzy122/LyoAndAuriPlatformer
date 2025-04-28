@@ -13,7 +13,7 @@ namespace Platformer
         private bool dead;
         public System.Action OnDeath; // Add a public event to notify death
         public bool IsInvulnerable { get; private set; }
-        
+  
         [Header("iFrames")] 
         [SerializeField] private float iFramesDuration;
         [SerializeField] private int numberOfFlashes;
@@ -43,7 +43,7 @@ namespace Platformer
             currentHealth = Mathf.Clamp(currentHealth + value, 0, startingHealth);
         }
 
-        private void HandleDamage()
+        public void HandleDamage()
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.playerHurt, this.transform.position);
         }

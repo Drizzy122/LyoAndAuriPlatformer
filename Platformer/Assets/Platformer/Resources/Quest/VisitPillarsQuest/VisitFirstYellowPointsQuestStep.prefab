@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 3957762664546177097}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.22992, y: -0.34, z: 19.47}
+  m_LocalPosition: {x: -13.14, y: 0.83, z: 36.13}
   m_LocalScale: {x: 1, y: 2.7621, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3687,75 +3687,11 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1591
+  m_VersionIndex: 1594
   m_IsSelectable: 1
   m_SelectedFaces: 
-  m_SelectedEdges:
-  - a: 193
-    b: 194
-  - a: 201
-    b: 202
-  - a: 209
-    b: 210
-  - a: 217
-    b: 218
-  - a: 225
-    b: 226
-  - a: 233
-    b: 234
-  - a: 241
-    b: 242
-  - a: 249
-    b: 250
-  - a: 257
-    b: 258
-  - a: 265
-    b: 266
-  - a: 273
-    b: 274
-  - a: 281
-    b: 282
-  - a: 289
-    b: 290
-  - a: 297
-    b: 298
-  - a: 305
-    b: 306
-  - a: 313
-    b: 314
-  - a: 321
-    b: 322
-  - a: 329
-    b: 330
-  - a: 337
-    b: 338
-  - a: 345
-    b: 346
-  - a: 353
-    b: 354
-  - a: 361
-    b: 362
-  - a: 369
-    b: 370
-  - a: 377
-    b: 378
-  - a: 385
-    b: 386
-  - a: 393
-    b: 394
-  - a: 401
-    b: 402
-  - a: 409
-    b: 410
-  - a: 417
-    b: 418
-  - a: 425
-    b: 426
-  - a: 433
-    b: 434
-  - a: 441
-    b: 442
-  m_SelectedVertices: c1000000c2000000c9000000ca000000d1000000d2000000d9000000da000000e1000000e2000000e9000000ea000000f1000000f2000000f9000000fa0000000101000002010000090100000a0100001101000012010000190100001a0100002101000022010000290100002a0100003101000032010000390100003a0100004101000042010000490100004a0100005101000052010000590100005a0100006101000062010000690100006a0100007101000072010000790100007a0100008101000082010000890100008a0100009101000092010000990100009a010000a1010000a2010000a9010000aa010000b1010000b2010000b9010000ba010000
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!114 &2108638290589749581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3770,14 +3706,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Shape:
     rid: 7808907056311697412
-  m_Size: {x: 6.7385387, y: 12.014179, z: 6.5412073}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
+  m_ShapeRotation: {x: 0, y: 0, z: 0, w: 1}
   m_UnmodifiedMeshVersion: 1551
-  m_ShapeBox:
-    m_Center: {x: 3.3672318, y: 6.007088, z: 3.2686245}
-    m_Extent: {x: 3.3692694, y: 6.0070896, z: 3.2706037}
+  m_Size: {x: 6.7385387, y: 12.014179, z: 6.5412073}
+  m_LocalCenter: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -3804,6 +3736,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3861,7 +3796,7 @@ MeshCollider:
   m_Mesh: {fileID: 0}
 --- !u!95 &3991918927719736628
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3875,6 +3810,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -8668,6 +8604,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8766,9 +8705,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7814685195742843767}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 0
-  m_Shape: 0
   m_Color: {r: 0.9724281, g: 1, b: 0, a: 1}
   m_Intensity: 357.7
   m_Range: 13.4
@@ -8818,8 +8756,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!114 &160446495630476523
 MonoBehaviour:
   m_ObjectHideFlags: 0

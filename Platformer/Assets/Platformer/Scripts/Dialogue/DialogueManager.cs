@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Ink.Runtime;
 
@@ -18,6 +19,7 @@ namespace Platformer
       
       private InkExternalFunctions inkExternalFunctions;
       private InkDialogueVariables inkDialogueVariables;
+      [Obsolete("Obsolete")]
       private void Awake()
       {
          story = new Story(inkjson.text);

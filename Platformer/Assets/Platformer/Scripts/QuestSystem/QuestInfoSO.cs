@@ -18,8 +18,8 @@ namespace Platformer
         public GameObject[] questStepPrefabs;
 
         [Header("Rewards")] 
-        public int goldReward;
         public int experienceReward;
+        public int goldReward;
 
         // ensure the id is always the name of the Scriptable Object asset
         private void OnValidate()

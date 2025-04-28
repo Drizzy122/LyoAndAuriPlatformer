@@ -16,7 +16,8 @@ namespace Platformer
         private string questId;
         private QuestState currentQuestState;
         private QuestIcon questIcon;
-        private bool playerIsNear = false;
+        
+        
 
         private void Awake()
         {
@@ -48,7 +49,8 @@ namespace Platformer
         {
             if (otherCollider.CompareTag("Player"))
             {
-                playerIsNear = true;   
+         
+                
                 // start or finish quest
                 if (currentQuestState.Equals(QuestState.CAN_START) && startPoint)
                 {
@@ -65,7 +67,8 @@ namespace Platformer
         {
             if (otherCollider.CompareTag("Player"))
             {
-                playerIsNear = false;
+           
+                
             }
         }
     }

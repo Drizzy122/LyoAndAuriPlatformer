@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Cinemachine;
 using KBCore.Refs;
 using UnityEngine;
 using Utilities;
@@ -16,7 +14,7 @@ namespace Platformer
         [SerializeField, Self] Rigidbody rb;
         [SerializeField, Self] GroundChecker groundChecker;
         [SerializeField, Self] Animator animator;
-        [SerializeField, Anywhere] CinemachineFreeLook freeLookVCam;
+        //[SerializeField, Anywhere] CinemachineFreeLook freeLookVCam;
         [SerializeField, Anywhere] InputReader input;
         [SerializeField, Self] private FootstepController footstepController;
         [SerializeField, Self] PlayerHealth playerHealth;
@@ -48,6 +46,7 @@ namespace Platformer
         [SerializeField] ParticleSystem detectionParticle;
         public ScriptableRendererFeature echoRendererFeature; // Reference to your custom RenderObjects renderer feature
         private ScriptableRendererData rendererData;
+        [SerializeField] private float echoDuration = 5f;
       
         
         [Header("Glide Settings")] 
@@ -106,23 +105,14 @@ namespace Platformer
         //Audio
         private EventInstance playerFootsteps;
         
-        
-        
         // Animator parameter
         static readonly int Speed = Animator.StringToHash("Speed");
 
         void Awake()
         {
             mainCam = Camera.main.transform;
-            freeLookVCam.Follow = transform;
-            freeLookVCam.LookAt = transform;
-            // Invoke event when observed transform is teleported, adjusting freeLookVCam's position accordingly
-            freeLookVCam.OnTargetObjectWarped(transform,
-                transform.position - freeLookVCam.transform.position - Vector3.forward);
             rb.freezeRotation = true;
-
             glideStamina = GetComponent<GlideStamina>();
-
             SetupTimers();
             SetupStateMachine();
         }
@@ -300,7 +290,7 @@ namespace Platformer
                 SmoothSpeed(ZeroF);
 
                 // Reset horizontal velocity for a snappy stop
-                rb.velocity = new Vector3(ZeroF, rb.velocity.y, ZeroF);
+                rb.linearVelocity = new Vector3(ZeroF, rb.linearVelocity.y, ZeroF);
             }
             UpdateSound();
         }
@@ -308,7 +298,7 @@ namespace Platformer
         {
             // Move player
             Vector3 velocity = adjustedDirection * (moveSpeed * dashVelocity * Time.fixedDeltaTime);
-            rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
+            rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
         }
         void HandleRotation(Vector3 adjustedDirection)
         {
@@ -352,7 +342,7 @@ namespace Platformer
         {
             //movement = new Vector3(input.Direction.x, 0f, input.Direction.y);
 
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             transform.position = wallClimbPos;
 
             transform.LookAt(transform.position - wallClimbNormal);
@@ -560,7 +550,7 @@ namespace Platformer
                     }
                 }
                 // Disable the effect after a delay (e.g., for a short duration)
-                Invoke(nameof(DisableEchoEffect), 5f); // Adjust time if needed
+                Invoke(nameof(DisableEchoEffect), echoDuration); // Adjust time if needed
             }
         } 
         private void EnableEchoEffect(bool state)
@@ -635,7 +625,7 @@ namespace Platformer
             }
 
             // Apply velocity
-            rb.velocity = new Vector3(rb.velocity.x, jumpVelocity, rb.velocity.z);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpVelocity, rb.linearVelocity.z);
         }
         public void OnGlide(bool performed)
         {
@@ -660,12 +650,12 @@ namespace Platformer
             if (glideBoost > 1)
             {
                 glideBoost -= glideBoostDecayRate;
-                rb.velocity = new Vector3(rb.velocity.x * glideBoost, -glideFallSpeed, rb.velocity.z * glideBoost);
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x * glideBoost, -glideFallSpeed, rb.linearVelocity.z * glideBoost);
             }
             else
             {
                 glideBoost = 1;
-                rb.velocity = new Vector3(rb.velocity.x, -glideFallSpeed, rb.velocity.z);
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, -glideFallSpeed, rb.linearVelocity.z);
             }
             if (groundChecker.IsGrounded)
             {
@@ -690,7 +680,7 @@ namespace Platformer
         }
         void UpdateSound()
         {
-            if (rb.velocity.x != 0 && groundChecker.IsGrounded)
+            if (rb.linearVelocity.x != 0 && groundChecker.IsGrounded)
             {
                 PLAYBACK_STATE playbackState;
                 playerFootsteps.getPlaybackState(out playbackState);

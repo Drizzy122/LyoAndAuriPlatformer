@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{5d9b5b46-fe8a-45f3-af32-012bf8405047}">
+		<property name="assetPath">
+			<value>High/2_6.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.21808333333333332</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d9ca23a5-3a01-4b12-a649-521ded2f774c}</destination>
+		</relationship>
+	</object>
+</objects>

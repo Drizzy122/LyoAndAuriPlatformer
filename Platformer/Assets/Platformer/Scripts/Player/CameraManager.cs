@@ -1,42 +1,43 @@
-using System.Collections;
-using Cinemachine;
+using Unity.Cinemachine;
 using KBCore.Refs;
 using UnityEngine;
 
-namespace Platformer {
-    public class CameraManager : ValidatedMonoBehaviour {
-        [Header("References")]
-        [SerializeField, Anywhere] InputReader input;
-        [SerializeField, Anywhere] CinemachineFreeLook freeLookVCam;
+namespace Platformer
+{
+    public class CameraManager : ValidatedMonoBehaviour
+    {
+        
+        [Header("References")] [SerializeField, Anywhere]
+        InputReader input;
 
-        [Header("Settings")] 
-        [SerializeField, Range(0.5f, 3f)] float speedMultiplier = 1f;
-
-        bool cameraMovementLock;
-
-        void OnEnable() {
-            input.Look += OnLook;
+        [SerializeField, Anywhere] CinemachineOrbitalFollow freeLookCam;
+        
+        void OnEnable()
+        {
             // Lock and hide the cursor when the component is enabled
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            
+            // Enable Cinemachine camera
+            if (freeLookCam != null)
+            {
+                freeLookCam.gameObject.SetActive(true);
+            }
+
         }
-        
-        void OnDisable() {
-            input.Look -= OnLook;
+
+        void OnDisable()
+        {
             // Unlock and show the cursor when the component is disabled
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-        }
-
-        void OnLook(Vector2 cameraMovement, bool isDeviceMouse) {
-            if (cameraMovementLock) return;
-
-            // If the device is mouse, use fixedDeltaTime, otherwise use deltaTime
-            float deviceMultiplier = isDeviceMouse ? Time.fixedDeltaTime : Time.deltaTime;
             
-            // Set the camera axis values
-            freeLookVCam.m_XAxis.m_InputAxisValue = cameraMovement.x * speedMultiplier * deviceMultiplier;
-            freeLookVCam.m_YAxis.m_InputAxisValue = cameraMovement.y * speedMultiplier * deviceMultiplier;
+            // Disable Cinemachine camera
+            if (freeLookCam != null)
+            {
+                freeLookCam.gameObject.SetActive(false);
+            }
+
         }
     }
 }

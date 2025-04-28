@@ -1,6 +1,4 @@
-﻿using System;
-using KBCore.Refs;
-using Unity.VisualScripting;
+﻿using KBCore.Refs;
 using UnityEngine;
 using UnityEngine.AI;
 using Utilities;

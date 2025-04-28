@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Platformer
 {
@@ -15,8 +17,17 @@ namespace Platformer
         [SerializeField] private int dropCount = 5; // Number of prefabs to spawn
         [SerializeField] private float spawnRadius = 1f; // 
 
+        public SkinnedMeshRenderer skinnedMesh;
+        private Material[] skinnedMaterials;
+        [SerializeField] private float dissolveRate = 0.0125f;
+        [SerializeField] private float refreshRate = 0.025f;
+        public VisualEffect VFXGraph;
+        
+
         private void Awake()
         {
+            if (skinnedMesh != null)
+                skinnedMaterials = skinnedMesh.materials;
             currentHealth = startingHealth;
         }
 
@@ -43,6 +54,7 @@ namespace Platformer
                     AudioManager.instance.PlayOneShot(FMODEvents.instance.enemyDeath, this.transform.position);
                     dead = true;
                    HandleDeath();
+                   StartCoroutine(DissolveCo());
                 }
             }
         }
@@ -51,6 +63,13 @@ namespace Platformer
             // Trigger death event
             OnDeath?.Invoke(); 
             GameEventsManager.instance.enemyEvents.EnemyDeath();
+            OrbDrop();
+            StartCoroutine(DissolveCo());
+    
+        }
+        
+        public void OrbDrop()
+        {
             // Drop the prefab
             // Spawn multiple prefabs
             if (healthPrefab != null && dropCount > 0)
@@ -65,9 +84,29 @@ namespace Platformer
                     // Instantiate the prefab at the random position
                     Instantiate(healthPrefab, spawnPosition, Quaternion.identity);
                     Instantiate(XPOrbPrefab, spawnPosition, Quaternion.identity);
+                    
                 }
             }
-
+        }
+        IEnumerator DissolveCo()
+        {
+            if (VFXGraph != null)
+            {
+                VFXGraph.Play();
+            }
+                {if (skinnedMaterials.Length > 0)
+            {
+                float counter = 0;
+                while (skinnedMaterials[0].GetFloat("_DissolveAmount") < 1)
+                {
+                    counter += dissolveRate;
+                    for (int i = 0; i < skinnedMaterials.Length; i++)
+                    {
+                        skinnedMaterials[i].SetFloat("_DissolveAmount", counter);
+                    }
+                    yield return new WaitForSeconds(refreshRate);
+                }
+            }}
         }
     }
 }

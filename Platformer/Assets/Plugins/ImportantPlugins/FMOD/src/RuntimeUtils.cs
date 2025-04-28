@@ -436,8 +436,8 @@ namespace FMODUnity
                 vel.y = rigidbody.linearVelocity.y;
 #else
 #pragma warning disable CS0618
-                vel.x = rigidbody.velocity.x;
-                vel.y = rigidbody.velocity.y;
+                vel.x = rigidbody.linearVelocity.x;
+                vel.y = rigidbody.linearVelocity.y;
 #pragma warning restore CS0618
 #endif
                 vel.z = 0;
@@ -460,8 +460,8 @@ namespace FMODUnity
                 vel.y = rigidbody.linearVelocity.y;
 #else
 #pragma warning disable CS0618
-                vel.x = rigidbody.velocity.x;
-                vel.y = rigidbody.velocity.y;
+                vel.x = rigidbody.linearVelocity.x;
+                vel.y = rigidbody.linearVelocity.y;
 #pragma warning restore CS0618
 #endif
                 vel.z = 0;

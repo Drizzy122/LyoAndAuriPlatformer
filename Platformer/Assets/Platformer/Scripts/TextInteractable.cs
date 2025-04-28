@@ -1,11 +1,10 @@
-using System;
 using UnityEngine;
 
 namespace Platformer
 {
     public class TextInteractable : MonoBehaviour
     {
-        public GameObject gameObject;
+        public new GameObject gameObject;
 
         private void Awake()
         {

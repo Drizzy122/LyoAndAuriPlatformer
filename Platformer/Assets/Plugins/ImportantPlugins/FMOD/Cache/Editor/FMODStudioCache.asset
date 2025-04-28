@@ -145,10 +145,10 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/Level 1.bank
   Name: Level 1
   StudioPath: bank:/Level 1
-  lastModified: 638797601915036114
+  lastModified: 638805065749274972
   FileSizes:
   - Name: Desktop
-    Value: 6258976
+    Value: 8082496
   Exists: 1
 --- !u!114 &-2253986011995685342
 MonoBehaviour:
@@ -165,7 +165,7 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638794116817714562
+  lastModified: 638805065749368477
   FileSizes:
   - Name: Desktop
     Value: 1632
@@ -258,12 +258,13 @@ MonoBehaviour:
   - {fileID: 5036183168543259029}
   - {fileID: -713268718369635401}
   - {fileID: 3743753912516612126}
+  - {fileID: 1511782415226490311}
   EditorParameters: []
   MasterBanks:
   - {fileID: -2253986011995685342}
   StringsBanks:
   - {fileID: 404127982105630655}
-  cacheTime: 638797601915036114
+  cacheTime: 638805065749393763
   cacheVersion: 131622
 --- !u!114 &404127982105630655
 MonoBehaviour:
@@ -280,10 +281,10 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638794116817734570
+  lastModified: 638805065749393763
   FileSizes:
   - Name: Desktop
-    Value: 1898
+    Value: 1968
   Exists: 1
 --- !u!114 &669220214532968943
 MonoBehaviour:
@@ -324,11 +325,38 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638794116819533747
+  lastModified: 638805064276250596
   FileSizes:
   - Name: Desktop
     Value: 224704
   Exists: 1
+--- !u!114 &1511782415226490311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/MainMenuMusic/MainMenuMusic
+  m_EditorClassIdentifier: 
+  Path: event:/Music/MainMenuMusic/MainMenuMusic
+  Guid:
+    Data1: 150515324
+    Data2: 1181827883
+    Data3: 766181041
+    Data4: 353643165
+  Banks:
+  - {fileID: -2878771243944069925}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 154877
 --- !u!114 &1752819968745544938
 MonoBehaviour:
   m_ObjectHideFlags: 0

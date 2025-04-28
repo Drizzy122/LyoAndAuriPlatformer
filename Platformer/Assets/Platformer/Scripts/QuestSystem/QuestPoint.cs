@@ -76,6 +76,7 @@ namespace Platformer
         {
             if (otherCollider.CompareTag("Player"))
             {
+                
                 playerIsNear = true;
             }
         }
