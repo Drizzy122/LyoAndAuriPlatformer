@@ -145,7 +145,7 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/Level 1.bank
   Name: Level 1
   StudioPath: bank:/Level 1
-  lastModified: 638805065749274972
+  lastModified: 638816245255595793
   FileSizes:
   - Name: Desktop
     Value: 8082496
@@ -165,7 +165,7 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638805065749368477
+  lastModified: 638816245255683041
   FileSizes:
   - Name: Desktop
     Value: 1632
@@ -259,12 +259,14 @@ MonoBehaviour:
   - {fileID: -713268718369635401}
   - {fileID: 3743753912516612126}
   - {fileID: 1511782415226490311}
+  - {fileID: 468683200641672763}
+  - {fileID: 7684639727484421253}
   EditorParameters: []
   MasterBanks:
   - {fileID: -2253986011995685342}
   StringsBanks:
   - {fileID: 404127982105630655}
-  cacheTime: 638805065749393763
+  cacheTime: 638816436944200165
   cacheVersion: 131622
 --- !u!114 &404127982105630655
 MonoBehaviour:
@@ -281,11 +283,38 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638805065749393763
+  lastModified: 638816245255693148
   FileSizes:
   - Name: Desktop
-    Value: 1968
+    Value: 2064
   Exists: 1
+--- !u!114 &468683200641672763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Collectables/LuminOrb
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Collectables/LuminOrb
+  Guid:
+    Data1: -1775076166
+    Data2: 1302071002
+    Data3: -2143722615
+    Data4: -641735029
+  Banks:
+  - {fileID: 909403521123498804}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &669220214532968943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,10 +354,10 @@ MonoBehaviour:
   Path: Assets/Platformer/Audio/PlatformerAudio/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638805064276250596
+  lastModified: 638816436944200165
   FileSizes:
   - Name: Desktop
-    Value: 224704
+    Value: 264128
   Exists: 1
 --- !u!114 &1511782415226490311
 MonoBehaviour:
@@ -623,6 +652,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &7684639727484421253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Collectables/EcliptiumShard
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Collectables/EcliptiumShard
+  Guid:
+    Data1: 1797274618
+    Data2: 1093062450
+    Data3: -626287693
+    Data4: -536322921
+  Banks:
+  - {fileID: 909403521123498804}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &8083679574700392758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,7 +705,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 377
+  Length: 335
 --- !u!114 &8709465447670378416
 MonoBehaviour:
   m_ObjectHideFlags: 0

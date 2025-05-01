@@ -29,6 +29,8 @@ namespace Platformer
             if (skinnedMesh != null)
                 skinnedMaterials = skinnedMesh.materials;
             currentHealth = startingHealth;
+            
+            VFXGraph.Stop();
         }
 
         public void TakeDamage(float damage, float knockBackTime)

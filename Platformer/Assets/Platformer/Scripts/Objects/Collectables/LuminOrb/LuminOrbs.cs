@@ -48,7 +48,7 @@ namespace Platformer
             collected = true;
             visual.gameObject.SetActive(false);
             GameEventsManager.instance.miscEvents.LuminCollected();
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.coinCollected, this.transform.position);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.luminCollected, this.transform.position);
            
         }
         

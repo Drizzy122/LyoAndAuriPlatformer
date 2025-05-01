@@ -33,8 +33,9 @@ namespace Platformer
         [field: Header("Ambience")]
         [field: SerializeField] public EventReference ambience { get; private set; }
       
-        [field: Header("Coin SFX")]
+        [field: Header("Collectable SFX")]
         [field: SerializeField] public EventReference coinCollected { get; private set;}
+        [field: SerializeField] public EventReference luminCollected { get; private set;}
         
         [field: Header("Audio By Distance")]
         //[field: SerializeField] public EventReference ChestIdle { get; private set; }

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using KBCore.Refs;
 using UnityEngine;
@@ -54,8 +55,12 @@ namespace Platformer
         private float glideBoostDecayRate = 0.02f;
         [SerializeField] float glideFallSpeed = 0.1f;
         public float glideTime = 3;
+
+        [Header("Attack Settings")] 
+        [SerializeField] private GameObject sword;
+        [SerializeField] private float attackDuration = 3f; // The duration the sword is active.
+        private bool isAttacking = false;
         
-        [Header("Attack Settings")]
         [SerializeField] float attackCoolDown = 0.5f;
         [SerializeField] float attackDistance = 1f;
         [SerializeField] private float spinAttackDistance = 5f;
@@ -115,6 +120,7 @@ namespace Platformer
             glideStamina = GetComponent<GlideStamina>();
             SetupTimers();
             SetupStateMachine();
+            sword.SetActive(false);
         }
         
         public void LoadData(GameData data) 
@@ -485,41 +491,67 @@ namespace Platformer
         {
             if (!attackTimer.IsRunning)
             {
+                StartCoroutine(HandleAttack());
+
                 attackTimer.Start();
             }
+            
         }
         public void Attack()
         {
-            Vector3 attackPos = transform.position + transform.forward * attackDistance;
-            Collider[] hitEnemies = Physics.OverlapSphere(attackPos, attackDistance);
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.playerAttack, this.transform.position);
-            foreach (var enemy in hitEnemies)
-            {
-                if (enemy.CompareTag("Enemy"))
+            
+                Vector3 attackPos = transform.position + transform.forward * attackDistance;
+                Collider[] hitEnemies = Physics.OverlapSphere(attackPos, attackDistance);
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.playerAttack, this.transform.position);
+                foreach (var enemy in hitEnemies)
                 {
-                    enemy.GetComponent<EnemyHealth>().TakeDamage(attackDamage, knockbackTime);
+                    if (enemy.CompareTag("Enemy"))
+                    {
+                        enemy.GetComponent<EnemyHealth>().TakeDamage(attackDamage, knockbackTime);
+                    }
                 }
-            }
+            
+            
         }
+
+        private IEnumerator HandleAttack()
+        {
+            isAttacking = true;
+            sword.SetActive(true);
+
+           
+
+            // Wait for the attack duration
+            yield return new WaitForSeconds(attackDuration);
+
+            // Deactivate sword and reset attacking state
+            sword.SetActive(false);
+            isAttacking = false;
+        }
+
+
         void OnSpinAttack()
         {
             if (!spinAttackTimer.IsRunning)
             {
                 spinAttackTimer.Start();
+                StartCoroutine(HandleAttack());
+
             }
         }
         public void SpinAttack()
         {
-            Vector3 attackPos = transform.position;
-            Collider[] hitEnemies = Physics.OverlapSphere(attackPos, spinAttackDistance);
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.playerAttack, this.transform.position);
-            foreach (var enemy in hitEnemies)
-            {
-                if (enemy.CompareTag("Enemy"))
+            
+                Vector3 attackPos = transform.position;
+                Collider[] hitEnemies = Physics.OverlapSphere(attackPos, spinAttackDistance);
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.playerAttack, this.transform.position);
+                foreach (var enemy in hitEnemies)
                 {
-                    enemy.GetComponent<EnemyHealth>().TakeDamage(spinAttackDamage, knockbackTime);
+                    if (enemy.CompareTag("Enemy"))
+                    {
+                        enemy.GetComponent<EnemyHealth>().TakeDamage(spinAttackDamage, knockbackTime);
+                    }
                 }
-            }
         }
         void OnEcho(bool performed)
         {
