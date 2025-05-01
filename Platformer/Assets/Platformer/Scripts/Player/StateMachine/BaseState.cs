@@ -18,6 +18,10 @@ namespace Platformer
         protected static readonly int DieHash = Animator.StringToHash("Death");
         protected static readonly int EcholocationHash = Animator.StringToHash("Echolocation");        
         protected static readonly int TeleportationHash = Animator.StringToHash("Teleport");
+        
+        protected static readonly int FallHash = Animator.StringToHash("Falling");
+        protected static readonly int LandHash = Animator.StringToHash("Land");
+        protected static readonly int DrowningHash = Animator.StringToHash("Drowning");
 
         protected const float crossFadeDuration = 0.1f;
 

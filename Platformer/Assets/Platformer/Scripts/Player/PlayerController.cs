@@ -55,6 +55,12 @@ namespace Platformer
         private float glideBoostDecayRate = 0.02f;
         [SerializeField] float glideFallSpeed = 0.1f;
         public float glideTime = 3;
+        
+        [SerializeField] private GameObject defaultMesh;    // Normal character mesh
+        [SerializeField] private GameObject glidingMesh;    // Gliding mesh or object
+
+        private bool isGliding = false;
+
 
         [Header("Attack Settings")] 
         [SerializeField] private GameObject sword;
@@ -168,13 +174,19 @@ namespace Platformer
             // Declare states
             var locomotionState = new LocomotionState(this, animator);
             var jumpState = new JumpState(this, animator);
+            var doubleJumpState = new DoubleJumpState(this, animator);
+            var fallState = new FallState(this, animator);
+            var landState = new LandState(this, animator);
+            
             var glideState = new GlideState(this, animator);
             var dashState = new DashState(this, animator);
+            
             var attackState = new AttackState(this, animator);
             var spinAttackState = new SpinAttackState(this, animator);
+            
             var deathState = new DeathState(this, animator);
-
-            var doubleJumpState = new DoubleJumpState(this, animator);
+            var drownState = new DrownState(this, animator);
+            
             var echoLocationState = new EcholocationState(this, animator);
             var teleportState = new TeleportState(this, animator);
             var wallClimbState = new WallClimbState(this, animator);
@@ -221,11 +233,22 @@ namespace Platformer
             
             // Definne transition for teleportation
              At(teleportState, locomotionState, new FuncPredicate(() => !isTeleporting));
+             
+             // Define transitions for fall
+             
+             
+             // Define Transition for land
+             
+             
+             // Define Transition for Death
+       
+             
 
             // Set initial state
             Any(teleportState, new FuncPredicate(() => isTeleporting));
             Any(locomotionState, new FuncPredicate(ReturnToLocomotionState));
             Any(deathState, new FuncPredicate(() => playerHealth.currentHealth <= 0));
+            
 
             stateMachine.SetState(locomotionState);
             playerHealth.OnDeath += () => stateMachine.SetState(deathState);
@@ -669,12 +692,18 @@ namespace Platformer
                         glideBoost = 0;
                         jumpTimer.Stop();
                         glideStamina.StartGlide();
+                        // Enable the gliding mesh and disable the default mesh
+                        glidingMesh.SetActive(true);
+                        defaultMesh.SetActive(false);
                 }
             }
             else if (!performed && glideTimer.IsRunning)
             {
                 glideStamina?.StopGlide();
                 glideTimer.Stop();
+                // Revert back to the default mesh
+                glidingMesh.SetActive(false);
+                defaultMesh.SetActive(true);
             }
         }
         public void HandleGlide()
@@ -694,6 +723,9 @@ namespace Platformer
                 glideTimer.Stop();
                 glideStamina?.StopGlide();
             }
+            
+           
+
            
         }
         void TriggerFootstepEvents()
