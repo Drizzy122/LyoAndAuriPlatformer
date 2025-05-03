@@ -140,7 +140,11 @@ namespace Platformer
         
         private void ClaimRewards(Quest quest)
         {
-            //GameEventsManager.instance.goldEvents.GoldGained(quest.info.goldReward);
+            for (int i = 0; i < quest.info.goldReward; i++)
+            {
+                GameEventsManager.instance.miscEvents.CoinCollected();
+            }
+
             GameEventsManager.instance.playerEvents.ExperienceGained(quest.info.experienceReward);
         }
         

@@ -10,7 +10,12 @@ namespace Platformer
         {
             if (collision.tag == "Player")
             {
+                
                 collision.GetComponent<PlayerHealth>().TakeDamage(damage);
+            }
+            else if (collision.tag == "Enemy")
+            {
+                collision.GetComponent<EnemyHealth>().TakeDamage(100,0);
             }
         }
     }

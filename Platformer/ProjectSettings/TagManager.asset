@@ -13,6 +13,8 @@ TagManager:
   - PW - Nature
   - PW - Prop
   - PW - Building
+  - Water
+  - ToCoins
   layers:
   - Default
   - TransparentFX

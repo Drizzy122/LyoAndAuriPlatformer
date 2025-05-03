@@ -6,17 +6,24 @@ namespace Platformer
 { 
     public class Coin : MonoBehaviour, IDataPersistence
     {
+        [Header("Config")]
+        [SerializeField] private int goldGained = 1;
+        
+        private MeshRenderer visual;
+        private ParticleSystem collectParticle;
+        private bool collected = false;
+        
+        
+        
+        [Header("Data Persistence")]
         [SerializeField] private string id;
-
         [ContextMenu("Generate guid for id")]
         private void GenerateGuid() 
         {
             id = System.Guid.NewGuid().ToString();
         }
         
-        private MeshRenderer visual;
-        private ParticleSystem collectParticle;
-        private bool collected = false;
+       
         
         private void Awake() 
         {
@@ -43,15 +50,6 @@ namespace Platformer
             }
             data.coinsCollected.Add(id, collected);
         }
-       
-        private void OnTriggerEnter()
-        {
-            if (!collected)
-            {
-                collectParticle.Play();
-                CollectCoin();
-            }
-        }
         private void CollectCoin()
         {
             collected = true;
@@ -59,6 +57,15 @@ namespace Platformer
             GameEventsManager.instance.miscEvents.CoinCollected();
             AudioManager.instance.PlayOneShot(FMODEvents.instance.coinCollected, this.transform.position);
             
+        }
+        
+        private void OnTriggerEnter()
+        {
+            if (!collected)
+            {
+                collectParticle.Play();
+                CollectCoin();
+            }
         }
         
         private void Destroy() 

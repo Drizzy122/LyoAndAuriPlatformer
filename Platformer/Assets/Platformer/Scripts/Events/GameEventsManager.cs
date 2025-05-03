@@ -12,6 +12,7 @@ namespace Platformer
         public InputEvents inputEvents;
         public EnemyEvents enemyEvents;
         public DialogueEvents dialogueEvents;
+
       
         private void Awake()
         {

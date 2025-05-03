@@ -5,26 +5,46 @@ namespace Platformer
 {
     public class Magnet : MonoBehaviour
     {
-        public float attractorStrength = 10f;
-        public float attractorRange = 10f;
+        public List<GameObject> collectables = new List<GameObject>();
+        public float magnetForce;
+        public float speed;
 
-        void FixedUpdate()
+
+        void Start()
         {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, attractorRange);
-            foreach (Collider hitCollider in hitColliders)
+            foreach (var collectable in GameObject.FindGameObjectsWithTag("Collectible"))
             {
-                if (hitCollider.CompareTag("Collectible"))
-                {
-                    Vector3 forceDirenction = transform.position - hitCollider.transform.position;
-                    hitCollider.GetComponent<Rigidbody>().AddForce(forceDirenction.normalized * attractorStrength);
-                }
+                collectables.Add(collectable);
             }
         }
 
-        private void OnDrawGizmos()
+        void Update()
         {
-            Gizmos.color = Color.black;
-            Gizmos.DrawWireSphere(transform.position, attractorRange);
+            foreach (var collectable in collectables)
+            {
+                float distance = Vector3.Distance(transform.position, collectable.transform.position);
+                if (distance < magnetForce)
+                {
+                    collectable.transform.position = Vector3.Lerp(collectable.transform.position, transform.position, speed);
+                }
+            }
         }
+        
+        void OnDrawGizmos()
+        {
+            // Set the color of the Gizmos
+            Gizmos.color = Color.yellow;
+            
+            // Draw a sphere to represent the magnet's radius
+            Gizmos.DrawWireSphere(transform.position, magnetForce);
+        }
+
     }
+}
+
+public class CollectableAnim : MonoBehaviour
+{
+    
+    [Min(1)]
+    public int collectableIndex;
 }

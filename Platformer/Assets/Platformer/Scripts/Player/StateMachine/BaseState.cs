@@ -19,6 +19,7 @@ namespace Platformer
         protected static readonly int EcholocationHash = Animator.StringToHash("Echolocation");        
         protected static readonly int TeleportationHash = Animator.StringToHash("Teleport");
         
+        // new states for the player
         protected static readonly int FallHash = Animator.StringToHash("Falling");
         protected static readonly int LandHash = Animator.StringToHash("Land");
         protected static readonly int DrowningHash = Animator.StringToHash("Drowning");
