@@ -11,6 +11,7 @@ namespace Platformer
         
         public override void OnEnter()
         {
+            Debug.Log("Player drowned");
             animator.CrossFade(DrowningHash, crossFadeDuration);
             player.waterParticles.Play();
         }

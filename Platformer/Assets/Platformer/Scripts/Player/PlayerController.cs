@@ -55,6 +55,7 @@ namespace Platformer
         public float glideBoost = 1;
         private float glideBoostDecayRate = 0.02f;
         [SerializeField] float glideFallSpeed = 0.1f;
+        [SerializeField] private float glideMoveSpeed = 2;
         public float glideTime = 3;
         
         [SerializeField] private GameObject defaultMesh;    // Normal character mesh
@@ -256,7 +257,17 @@ namespace Platformer
             
 
             stateMachine.SetState(locomotionState);
-            playerHealth.OnDeath += () => stateMachine.SetState(deathState);
+            playerHealth.OnDeath += delegate
+            {
+                if (drowning)
+                {
+                    stateMachine.SetState(drownState);
+                }
+                else
+                {
+                    stateMachine.SetState(deathState);
+                }
+            };
         }
 
         bool ReturnToLocomotionState()
@@ -320,6 +331,7 @@ namespace Platformer
             if (adjustedDirection.magnitude > ZeroF)
             {
                 HandleRotation(adjustedDirection);
+                if (glideTimer.IsRunning) adjustedDirection *= glideMoveSpeed;
                 HandleHorizontalMovement(adjustedDirection * glideBoost);
                 SmoothSpeed(adjustedDirection.magnitude);
             }
