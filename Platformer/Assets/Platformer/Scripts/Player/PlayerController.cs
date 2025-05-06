@@ -21,6 +21,7 @@ namespace Platformer
         [SerializeField, Self] PlayerHealth playerHealth;
         [SerializeField, Self] GlideStamina glideStamina;
 
+
         [Header("Movement Settings")]
         [SerializeField] float moveSpeed = 6f;
         [SerializeField] float rotationSpeed = 15f;
@@ -82,7 +83,10 @@ namespace Platformer
         [SerializeField] private float wallCheckDist = 1f;
         [SerializeField] private float wallClimbMoveSpeed = 5f;
         [SerializeField] private LayerMask wallClimbLayer;
-        
+
+        public bool drowning;
+        public ParticleSystem waterParticles;
+
         public bool wallClimbimg;
         bool[] wallClimbChecks;
         private Vector3 wallClimbNormal;
@@ -247,7 +251,8 @@ namespace Platformer
             // Set initial state
             Any(teleportState, new FuncPredicate(() => isTeleporting));
             Any(locomotionState, new FuncPredicate(ReturnToLocomotionState));
-            Any(deathState, new FuncPredicate(() => playerHealth.currentHealth <= 0));
+            Any(deathState, new FuncPredicate(() => playerHealth.currentHealth <= 0 && !drowning));
+            Any(drownState, new FuncPredicate(() => playerHealth.currentHealth <= 0 && drowning));
             
 
             stateMachine.SetState(locomotionState);
@@ -303,6 +308,10 @@ namespace Platformer
             timers = new List<Timer>(8)
                 { jumpTimer, jumpCooldownTimer, dashTimer, dashCooldownTimer, attackTimer,spinAttackTimer, echoTimer, glideTimer };
         }
+        
+        
+        
+        
         public void HandleMovement()
         {
             // Rotate movement direction to match camera rotation
@@ -494,132 +503,8 @@ namespace Platformer
    
             }
         }
-        void OnInteract(bool performed)
-        {
-            if(performed)
-            {
-                //Debug.Log("Trying to interact");
         
-                foreach (var interactable in FindObjectsByType<Interactable>(FindObjectsSortMode.InstanceID))
-                {
-                    if (Vector3.Distance(transform.position, interactable.transform.position) < interactDistance)
-                    {
-                        interactable.Interact();
-                        break;
-                    }
-                }
-            }
-        }
-        void OnAttack()
-        {
-            if (!attackTimer.IsRunning)
-            {
-                StartCoroutine(HandleAttack());
-
-                attackTimer.Start();
-            }
-            
-        }
-        public void Attack()
-        {
-            
-                Vector3 attackPos = transform.position + transform.forward * attackDistance;
-                Collider[] hitEnemies = Physics.OverlapSphere(attackPos, attackDistance);
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.playerAttack, this.transform.position);
-                foreach (var enemy in hitEnemies)
-                {
-                    if (enemy.CompareTag("Enemy"))
-                    {
-                        enemy.GetComponent<EnemyHealth>().TakeDamage(attackDamage, knockbackTime);
-                    }
-                }
-            
-            
-        }
-
-        private IEnumerator HandleAttack()
-        {
-            isAttacking = true;
-            sword.SetActive(true);
-
-           
-
-            // Wait for the attack duration
-            yield return new WaitForSeconds(attackDuration);
-
-            // Deactivate sword and reset attacking state
-            sword.SetActive(false);
-            isAttacking = false;
-        }
-
-
-        void OnSpinAttack()
-        {
-            if (!spinAttackTimer.IsRunning)
-            {
-                spinAttackTimer.Start();
-                StartCoroutine(HandleAttack());
-
-            }
-        }
-        public void SpinAttack()
-        {
-            
-                Vector3 attackPos = transform.position;
-                Collider[] hitEnemies = Physics.OverlapSphere(attackPos, spinAttackDistance);
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.playerAttack, this.transform.position);
-                foreach (var enemy in hitEnemies)
-                {
-                    if (enemy.CompareTag("Enemy"))
-                    {
-                        enemy.GetComponent<EnemyHealth>().TakeDamage(spinAttackDamage, knockbackTime);
-                    }
-                }
-        }
-        void OnEcho(bool performed)
-        {
-            if (!echoTimer.IsRunning)
-            {
-                echoTimer.Start();
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.playerEcolocation, this.transform.position);
-            }
-        }
-
-        public void HandleEcho()
-        {
-            if (echoCooldown > 0 && echoTimer.IsRunning)
-            {
-                detectionParticle.Play(); 
-                // Detect objects within the defined radius
-                Collider[] detectedObjects = Physics.OverlapSphere(transform.position, detectionRadius, detectionLayer);
-                foreach (Collider collider in detectedObjects)
-                {
-                    if (collider.CompareTag("Enemy"))
-                    {
-                        // Dynamically enable the render feature for the duration of the echo
-                        EnableEchoEffect(true);
-                    } 
-                    if (collider.CompareTag("Collectible"))
-                    {
-                        EnableEchoEffect(true);
-                    }
-                }
-                // Disable the effect after a delay (e.g., for a short duration)
-                Invoke(nameof(DisableEchoEffect), echoDuration); // Adjust time if needed
-            }
-        } 
-        private void EnableEchoEffect(bool state)
-        {
-            if (echoRendererFeature != null)
-            {
-                echoRendererFeature.SetActive(state);
-            }
-        }
-        private void DisableEchoEffect()
-        {
-            EnableEchoEffect(false);
-        }
-        void OnDash(bool performed)
+                void OnDash(bool performed)
         {
             if (performed && !dashTimer.IsRunning && !dashCooldownTimer.IsRunning && !glideTimer.IsRunning)
             {
@@ -728,6 +613,137 @@ namespace Platformer
 
            
         }
+        
+        
+        
+        void OnInteract(bool performed)
+        {
+            if(performed)
+            {
+                //Debug.Log("Trying to interact");
+        
+                foreach (var interactable in FindObjectsByType<Interactable>(FindObjectsSortMode.InstanceID))
+                {
+                    if (Vector3.Distance(transform.position, interactable.transform.position) < interactDistance)
+                    {
+                        interactable.Interact();
+                        break;
+                    }
+                }
+            }
+        }
+        void OnAttack()
+        {
+            if (!attackTimer.IsRunning)
+            {
+                StartCoroutine(HandleAttack());
+
+                attackTimer.Start();
+            }
+            
+        }
+        public void Attack()
+        {
+            
+                Vector3 attackPos = transform.position + transform.forward * attackDistance;
+                Collider[] hitEnemies = Physics.OverlapSphere(attackPos, attackDistance);
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.playerAttack, this.transform.position);
+                foreach (var enemy in hitEnemies)
+                {
+                    if (enemy.CompareTag("Enemy"))
+                    {
+                        enemy.GetComponent<EnemyHealth>().TakeDamage(attackDamage, knockbackTime);
+                    }
+                }
+            
+            
+        }
+        private IEnumerator HandleAttack()
+        {
+            isAttacking = true;
+            sword.SetActive(true);
+
+           
+
+            // Wait for the attack duration
+            yield return new WaitForSeconds(attackDuration);
+
+            // Deactivate sword and reset attacking state
+            sword.SetActive(false);
+            isAttacking = false;
+        }
+        void OnSpinAttack()
+        {
+            if (!spinAttackTimer.IsRunning)
+            {
+                spinAttackTimer.Start();
+                StartCoroutine(HandleAttack());
+
+            }
+        }
+        public void SpinAttack()
+        {
+            
+                Vector3 attackPos = transform.position;
+                Collider[] hitEnemies = Physics.OverlapSphere(attackPos, spinAttackDistance);
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.playerAttack, this.transform.position);
+                foreach (var enemy in hitEnemies)
+                {
+                    if (enemy.CompareTag("Enemy"))
+                    {
+                        enemy.GetComponent<EnemyHealth>().TakeDamage(spinAttackDamage, knockbackTime);
+                    }
+                }
+        }
+        
+        
+        
+        void OnEcho(bool performed)
+        {
+            if (!echoTimer.IsRunning)
+            {
+                echoTimer.Start();
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.playerEcolocation, this.transform.position);
+            }
+        }
+        public void HandleEcho()
+        {
+            if (echoCooldown > 0 && echoTimer.IsRunning)
+            {
+                detectionParticle.Play(); 
+                // Detect objects within the defined radius
+                Collider[] detectedObjects = Physics.OverlapSphere(transform.position, detectionRadius, detectionLayer);
+                foreach (Collider collider in detectedObjects)
+                {
+                    if (collider.CompareTag("Enemy"))
+                    {
+                        // Dynamically enable the render feature for the duration of the echo
+                        EnableEchoEffect(true);
+                    } 
+                    if (collider.CompareTag("Collectible"))
+                    {
+                        EnableEchoEffect(true);
+                    }
+                }
+                // Disable the effect after a delay (e.g., for a short duration)
+                Invoke(nameof(DisableEchoEffect), echoDuration); // Adjust time if needed
+            }
+        } 
+        private void EnableEchoEffect(bool state)
+        {
+            if (echoRendererFeature != null)
+            {
+                echoRendererFeature.SetActive(state);
+            }
+        }
+        private void DisableEchoEffect()
+        {
+            EnableEchoEffect(false);
+        }
+        
+        
+        
+
         void TriggerFootstepEvents()
         {
             if (groundChecker.IsGrounded && currentSpeed > 0.1f)
