@@ -15,7 +15,7 @@ namespace Platformer
         [SerializeField] private GameObject noDataContent;
         [SerializeField] private GameObject hasDataContent;
         [SerializeField] private TextMeshProUGUI percentageCompleteText;
-        [SerializeField] private TextMeshProUGUI deathCountText;
+        //[SerializeField] private TextMeshProUGUI coinCountText;
 
         [Header("Clear Data Button")]
         [SerializeField] private Button clearButton;
@@ -48,7 +48,7 @@ namespace Platformer
                 clearButton.gameObject.SetActive(true);
 
                 percentageCompleteText.text = data.GetPercentageComplete() + "% COMPLETE";
-                deathCountText.text = "DEATH COUNT: " + data.deathCount;
+               // coinCountText.text = "COIN COUNT: " + data.coinsCollected;
             }
         }
 

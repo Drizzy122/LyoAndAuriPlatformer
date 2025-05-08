@@ -86,7 +86,8 @@ namespace Platformer
                     // Instantiate the prefab at the random position
                     Instantiate(healthPrefab, spawnPosition, Quaternion.identity);
                     Instantiate(XPOrbPrefab, spawnPosition, Quaternion.identity);
-                    
+                    Destroy(XPOrbPrefab, 10f);
+                    Destroy(healthPrefab, 10f);
                 }
             }
         }

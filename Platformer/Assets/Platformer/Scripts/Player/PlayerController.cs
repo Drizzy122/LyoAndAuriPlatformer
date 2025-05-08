@@ -61,13 +61,12 @@ namespace Platformer
         [SerializeField] private GameObject defaultMesh;    // Normal character mesh
         [SerializeField] private GameObject glidingMesh;    // Gliding mesh or object
 
-        private bool isGliding = false;
+        
 
 
         [Header("Attack Settings")] 
-        [SerializeField] private GameObject sword;
-        [SerializeField] private float attackDuration = 3f; // The duration the sword is active.
-        private bool isAttacking = false;
+     
+        
         
         [SerializeField] float attackCoolDown = 0.5f;
         [SerializeField] float attackDistance = 1f;
@@ -131,7 +130,7 @@ namespace Platformer
             glideStamina = GetComponent<GlideStamina>();
             SetupTimers();
             SetupStateMachine();
-            sword.SetActive(false);
+         
         }
         
         public void LoadData(GameData data) 
@@ -516,7 +515,8 @@ namespace Platformer
             }
         }
         
-                void OnDash(bool performed)
+        /*
+        void OnDash(bool performed)
         {
             if (performed && !dashTimer.IsRunning && !dashCooldownTimer.IsRunning && !glideTimer.IsRunning)
             {
@@ -534,6 +534,7 @@ namespace Platformer
             }
             
         }
+        */
         void OnJump(bool performed)
         {
             if (wallClimbimg)
@@ -592,7 +593,9 @@ namespace Platformer
                         // Enable the gliding mesh and disable the default mesh
                         glidingMesh.SetActive(true);
                         defaultMesh.SetActive(false);
+                        
                 }
+                
             }
             else if (!performed && glideTimer.IsRunning)
             {
@@ -601,6 +604,7 @@ namespace Platformer
                 // Revert back to the default mesh
                 glidingMesh.SetActive(false);
                 defaultMesh.SetActive(true);
+
             }
         }
         public void HandleGlide()
@@ -619,11 +623,9 @@ namespace Platformer
             {
                 glideTimer.Stop();
                 glideStamina?.StopGlide();
+                glidingMesh.SetActive(false);
+                defaultMesh.SetActive(true);
             }
-            
-           
-
-           
         }
         
         
@@ -648,8 +650,7 @@ namespace Platformer
         {
             if (!attackTimer.IsRunning)
             {
-                StartCoroutine(HandleAttack());
-
+               
                 attackTimer.Start();
             }
             
@@ -670,26 +671,13 @@ namespace Platformer
             
             
         }
-        private IEnumerator HandleAttack()
-        {
-            isAttacking = true;
-            sword.SetActive(true);
-
-           
-
-            // Wait for the attack duration
-            yield return new WaitForSeconds(attackDuration);
-
-            // Deactivate sword and reset attacking state
-            sword.SetActive(false);
-            isAttacking = false;
-        }
+      
         void OnSpinAttack()
         {
             if (!spinAttackTimer.IsRunning)
             {
                 spinAttackTimer.Start();
-                StartCoroutine(HandleAttack());
+                
 
             }
         }
@@ -794,7 +782,7 @@ namespace Platformer
         void OnEnable()
         {
             input.Jump += OnJump;
-            input.Dash += OnDash;
+            //input.Dash += OnDash;
             input.Echo += OnEcho;
             input.Wallclimb += OnWallClimb;
             input.Glide += OnGlide;
@@ -806,7 +794,7 @@ namespace Platformer
         void OnDisable()
         {
             input.Jump -= OnJump;
-            input.Dash -= OnDash;
+           // input.Dash -= OnDash;
             input.Echo -= OnEcho;
             input.Wallclimb -= OnWallClimb;
             input.Glide -= OnGlide;

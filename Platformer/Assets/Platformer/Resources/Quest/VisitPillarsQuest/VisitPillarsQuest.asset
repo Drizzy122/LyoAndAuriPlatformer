@@ -22,6 +22,5 @@ MonoBehaviour:
   - {fileID: 3957762664546177097, guid: f8a8bcac30093fe4fb03cf83723be9ff, type: 3}
   - {fileID: 4386628403202273825, guid: 715af5c5b4a975147a563e6439424633, type: 3}
   - {fileID: 171599385850068435, guid: fb69b363c2c52fb429005b7c1df4176d, type: 3}
-  - {fileID: 6980198512739901403, guid: 8e5220e404d033d4f9be704efc2c5b43, type: 3}
   experienceReward: 200
   goldReward: 0

@@ -1224,7 +1224,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783563462218004}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -334000983
   m_Radius: 1.84
   m_Speed: 2
   m_Acceleration: 8
@@ -1273,8 +1273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ef1d4de3a9e7141882f9e7af0fe002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionAngle: 140.7
-  detectionRadius: 10
+  detectionAngle: 92.5
+  detectionRadius: 9.39
   innerDetectionRadius: 6.25
   detectionCooldown: 1
   attackRange: 2.7
@@ -1786,7 +1786,7 @@ VisualEffect:
       - m_Value: {x: -0.000011099058, y: 270, z: 200}
         m_Name: Transform_angles
         m_Overridden: 1
-      - m_Value: {x: 0.000009625679, y: 1.0893483, z: -0.4261007}
+      - m_Value: {x: -0.000006324961, y: 1.0893481, z: -0.42608926}
         m_Name: Transform_position
         m_Overridden: 1
       - m_Value: {x: 1.0000002, y: 1.0000002, z: 1.0000001}

@@ -21,43 +21,34 @@ You’re not quite ready for this task. Come back after you’ve gained a bit mo
 
 = canStart
 Hey, traveler! Could I ask a favor?
-Can You find an Elumin orb for me please.
-* [Sure, I can get one for you.]
-    ~ StartQuest(CollectEluminsQuestId)
-    Perfect thank you so  much. Bring it back when you find it please.
-
-* [What is this Elumin Orb, exactly?]
-    They are these specials orbs that allows us to live.
+* [What do you need help with?]
+    There are Bugs and Plague bats in the abandoned island can you clear that area please
+* [Of Course]
+        ~ StartQuest(CollectEluminsQuestId)
+    Perfect thank you so much!
     
 * [Not right now.]
     No worries. Come back if you change your mind.
 --> END
 
 
-
-
 = inProgress
-How is the hunt for those Elumin Orbs going?
+Those bugs and plague bats destroyed that island, its a shame really it is said that there is a powerful orb somewhere within the island that can give you incredible power?
 -> END
-
 
 
 
 = canFinish
-You found an Elumin Orb? Incredible—thank you!
+You defeated all enemies? Incredible—thank you!
 
-* [Here you go.]
+* [no worries.]
     ~FinishQuest(CollectEluminsQuestId)
-    Its so beautifull isnt it. .
-
+    you are the best, return to me soon and ill have another mission for you.
 -> END
 
 
-
-
-
 = finished
-Thanks again for your help! That orb made a real difference.
+Thanks again for your help!
 -> END
 
 
@@ -68,7 +59,7 @@ Hm? What do you want?
 -> END
 
 
-* { CollectEluminsQuestState == "CAN_FINISH"} [here is the LuminOrb you have requested.]
+* { CollectEluminsQuestState == "CAN_FINISH"} [I have defeated all enemies you have requested.]
     ~ FinishQuest(CollectEluminsQuestId)
-    Oh? these Elumin Orbs are for me? thank you!
+    Oh wow incredible thank you so much!
 -> END

@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3607935319983241148}
   - component: {fileID: 8389054290352167700}
-  - component: {fileID: 1658765003481238696}
   - component: {fileID: 4047831435013265011}
   - component: {fileID: 7568840587616074407}
   - component: {fileID: 4812874532995857258}
+  - component: {fileID: 1961543121500856259}
   m_Layer: 8
   m_Name: Coin
   m_TagString: Collectible
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 191.23882, y: 191.23882, z: 191.23882}
+  m_LocalScale: {x: 202.62, y: 202.62, z: 202.62}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7457741039126256157}
@@ -59,33 +59,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0032115998, y: 0.0032133886, z: 0.0008134382}
   m_Center: {x: 0.000009929005, y: 0.000043494045, z: -0.0000010468211}
---- !u!54 &1658765003481238696
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5631258302630574252}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &4047831435013265011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
   m_OverrideArea: 0
   m_Area: 0
   m_OverrideGenerateLinks: 0
@@ -132,6 +106,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+--- !u!114 &1961543121500856259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5631258302630574252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c148811d43541689cf29ae85cf42ef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistance: 0.3
+  moveDuration: 1
 --- !u!1 &7867968015760557404
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,10 +178,13 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ed41acf358d85d04d88b50b17f45b8cb, type: 2}
+  - {fileID: 2100000, guid: b62a6c17a1201924987492193ebec6d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5056,6 +5047,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

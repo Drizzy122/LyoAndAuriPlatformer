@@ -41,6 +41,8 @@ namespace Platformer
             collected = true;
             gameObject.SetActive(false);
             GameEventsManager.instance.miscEvents.EcliptiumCollected();
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.luminCollected, this.transform.position);
+            
         }
     }
 }

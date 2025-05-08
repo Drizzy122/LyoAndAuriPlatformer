@@ -250,7 +250,7 @@ MonoBehaviour:
         asm: Unity.RenderPipelines.Universal.Runtime}
       data:
         m_Version: 0
-        m_VolumeProfile: {fileID: 11400000, guid: 198d5a34eded5754b8c55930a95aa057,
+        m_VolumeProfile: {fileID: 11400000, guid: 193c6f405625c7e4bb194d73c3f65ed3,
           type: 2}
     - rid: 3596913975991992332
       type: {class: GPUResidentDrawerResources, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.GPUDriven.Runtime}

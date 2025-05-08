@@ -56,16 +56,19 @@ namespace Platformer
             InitializeSelectedProfileId();
         }
 
+        [Obsolete("Obsolete")]
         private void OnEnable()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
+        [Obsolete("Obsolete")]
         private void OnDisable()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
+        [Obsolete("Obsolete")]
         public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             this.dataPersistenceObjects = FindAllDataPersistenceObjects();

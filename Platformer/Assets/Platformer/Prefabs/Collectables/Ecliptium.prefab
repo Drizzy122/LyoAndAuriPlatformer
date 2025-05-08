@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1780903191364751259}
   - component: {fileID: 2740720160601980728}
   - component: {fileID: 3542485984293202578}
+  - component: {fileID: -65490053544663389}
   m_Layer: 8
   m_Name: Ecliptium
   m_TagString: Collectible
@@ -65,10 +66,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7121656643310516040}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -97,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
   m_OverrideArea: 0
   m_Area: 0
   m_OverrideGenerateLinks: 0
@@ -132,6 +134,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   collected: 0
+--- !u!114 &-65490053544663389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7121656643310516040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c148811d43541689cf29ae85cf42ef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistance: 0.3
+  moveDuration: 1
 --- !u!1001 &7425458969409640168
 PrefabInstance:
   m_ObjectHideFlags: 0

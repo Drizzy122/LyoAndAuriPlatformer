@@ -7,7 +7,7 @@ namespace Platformer
     public class Coin : MonoBehaviour, IDataPersistence
     {
         [Header("Config")]
-        [SerializeField] private int goldGained = 1;
+        
         
         private MeshRenderer visual;
         private ParticleSystem collectParticle;

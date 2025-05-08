@@ -18,11 +18,7 @@ namespace Platformer
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             
-            // Enable Cinemachine camera
-            if (freeLookCam != null)
-            {
-                freeLookCam.gameObject.SetActive(true);
-            }
+          
 
         }
 
@@ -33,10 +29,7 @@ namespace Platformer
             Cursor.visible = true;
             
             // Disable Cinemachine camera
-            if (freeLookCam != null)
-            {
-                freeLookCam.gameObject.SetActive(false);
-            }
+          
 
         }
     }

@@ -28,6 +28,7 @@ namespace Platformer {
         StateMachine stateMachine;
         private EnemyHealth enemyHealth;
         CountdownTimer attackTimer;
+        [SerializeField] private Transform[] waypoints; // Assign in the Inspector
 
         void OnValidate() => this.ValidateRefs();
 
@@ -36,7 +37,7 @@ namespace Platformer {
             stateMachine = new StateMachine();
             enemyHealth = GetComponent<EnemyHealth>();
             
-            var wanderState = new EnemyWanderState(this, animator, agent, wanderRadius);
+            var wanderState = new EnemyWanderState(this, animator, agent, wanderRadius, waypoints);
             var chaseState = new EnemyChaseState(this, animator, agent, playerDetector.Player);
             var attackState = new EnemyAttackState(this, animator, agent, playerDetector.Player);
             var dieState = new  EnemyDieState(this, animator);
